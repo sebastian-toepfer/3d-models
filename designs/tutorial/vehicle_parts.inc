@@ -72,6 +72,24 @@ module complex_wheel(wheel_radius=10, side_spheres_radius=50, hub_thickness=4, c
     }
 }
 
+module spoked_wheel(radius=12, width=5, thickness=5, number_of_spokes=7, spoke_radius=1.5) {
+    rotate([90, 0, 0]) {
+        // Ring
+        inner_radius = radius - thickness/2;
+        difference() {
+            cylinder(h=width,r=radius,center=true);
+            cylinder(h=width + 1,r=inner_radius,center=true);
+        }
+        // Spokes
+        spoke_length = radius - thickness/4;
+        for (angle=[0:360/number_of_spokes:359]) {
+            rotate([0, 90, angle]) {
+                cylinder(r = spoke_radius, h = spoke_length);
+            }
+        }
+   }
+}
+
 module axle(track=35, radius=2) {
     rotate([90,0,0])
         cylinder(h=track,r=radius,center=true);
