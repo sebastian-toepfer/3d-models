@@ -41,6 +41,10 @@ jobs:
         run: |
           ./generate-stls.sh
 
+      - name: generate previews for stl files
+        run: |
+          stl-thumb generated/abluft_snapy/tisch-schlauchbefestigung.scad.stl generated/abluft_snapy/tisch-schlauchbefestigung.scad.png
+
       - name: upload stls
         uses: actions/upload-artifact@v3
         with:
