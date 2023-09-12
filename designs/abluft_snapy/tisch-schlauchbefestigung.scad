@@ -1,3 +1,5 @@
+use <../../libs/own/mirror_copy.scad>
+
 schlauch_durchmesser    = 75;
 
 // ein paar berechnete werte ...
@@ -15,11 +17,6 @@ schrauben_durchmesser   = basis_breite * 0.33;
 schrauben_kopf_hoehe    = basis_hoehen_versatz * 0.50;
 
 schraube_plazierung_z = basis_hoehe / -2 - schrauben_kopf_hoehe / 2;
-
-module mirror_copy(v = [1, 0, 0]) {
-    children();
-    mirror(v) children();
-}
 
 module abrundung(radius = 1) {
     difference() {
