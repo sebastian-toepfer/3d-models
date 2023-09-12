@@ -46,8 +46,8 @@ difference() {
     translate([0, 0, schraube_plazierung_z]) {
         union() {
             cylinder(h = schrauben_hoehe, d = schrauben_durchmesser);
-            //0.01 um die bohrung etwas sauberer zu haben :)
-            translate([0, 0, schrauben_hoehe - 0.01]) {
+            //0.0001 um die bohrung etwas sauberer zu haben :)
+            translate([0, 0, schrauben_hoehe - 0.0001]) {
                 cylinder(h = schrauben_kopf_hoehe, d = schrauben_durchmesser * 1.75);
             }
         }
