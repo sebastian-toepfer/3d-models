@@ -1,0 +1,23 @@
+{
+    "parameterSets":
+    {
+        "75mm-maenlich": {
+            "schlauch_durchmesser": 75,
+            "ueberlappung": 4.5
+        },
+        "75mm-weiblich": {
+            "schlauch_durchmesser": 75,
+            "ueberlappung": -4.5
+        },
+        "120mm-maenlich": {
+            "schlauch_durchmesser": 120,
+            "ueberlappung": 4.5
+        },
+        "120mm-weiblich": {
+            "schlauch_durchmesser": 120,
+            "ueberlappung": -4.5
+        }
+    },
+    "fileFormatVersion": "1"
+}
+
