@@ -42,17 +42,7 @@ jobs:
 
       - name: update generated stls
         if: ${{ github.ref == 'refs/heads/main' }}
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Release Action [bot]"
-
-          git add -f generated
-          git commit -m "update generated models" || true
-
-      - name: push to main
-        if: ${{ github.ref == 'refs/heads/main' }}
-        uses: ad-m/github-push-action@v0.6.0
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: 'main'
+          commit_message: "update generated models"
 
