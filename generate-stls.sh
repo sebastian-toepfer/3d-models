@@ -11,10 +11,19 @@ for file in ./designs/**/*.scad; do
         for configuration in $configurations
         do
             generatedFileName=./generated/$subDirs/$outputFileName.$configuration.stl
-            openscad -q -p $parametersFileName -P $configuration -D \$fn=100 $file -o $generatedFileName
+            if [ ! -f $generatedFileName ] || [ $file -nt $generatedFileName ] || [ $parametersFileName -nt $generatedFileName ];
+            then
+                echo "generate $generatedFileName"
+                openscad -p $parametersFileName -P $configuration -D \$fn=100 $file -o $generatedFileName
+            fi
         done
     else
-        openscad -q -D \$fn=100 -o ./generated/$subDirs/$outputFileName.stl $file
+        generatedFileName=./generated/$subDirs/$outputFileName.stl
+        if [ ! -f $generatedFileName ] || [ $file -nt $generatedFileName ];
+        then
+            echo "generate $generatedFileName"
+            openscad -D \$fn=100 -o ./generated/$subDirs/$outputFileName.stl $file
+        fi
     fi
 done
 
