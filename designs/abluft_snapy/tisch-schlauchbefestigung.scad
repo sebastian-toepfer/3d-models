@@ -30,40 +30,43 @@ module abrundung(radius = 1) {
     }
 }
 
-difference() {
-    cube([basis_laenge, basis_breite, basis_hoehe], center=true);
+rotate([90, 0, 0]) {
+    difference() {
+        cube([basis_laenge, basis_breite, basis_hoehe], center=true);
 
-    translate([0, 0, basis_hoehen_versatz]) {
-        rotate([90, 0, 0]) {
-            cylinder(
-                h = schlauch_laenge,
-                d = schlauch_durchmesser,
-                center = true
-            );
+        translate([0, 0, basis_hoehen_versatz]) {
+            rotate([90, 0, 0]) {
+                cylinder(
+                    h = schlauch_laenge,
+                    d = schlauch_durchmesser,
+                    center = true
+                );
+            }
         }
-    }
 
-    translate([0, 0, schraube_plazierung_z]) {
-        union() {
-            cylinder(h = schrauben_hoehe, d = schrauben_durchmesser);
-            //0.01 um die bohrung etwas sauberer zu haben :)
-            translate([0, 0, schrauben_hoehe - 0.01]) {
-                cylinder(h = schrauben_kopf_hoehe, d = schrauben_durchmesser * 1.75);
+        translate([0, 0, schraube_plazierung_z]) {
+            union() {
+                cylinder(h = schrauben_hoehe, d = schrauben_durchmesser);
+                //0.01 um die bohrung etwas sauberer zu haben :)
+                translate([0, 0, schrauben_hoehe - 0.01]) {
+                    cylinder(h = schrauben_kopf_hoehe, d = schrauben_durchmesser * 1.75);
+                }
+            }
+        }
+
+        //meine version von abgerundeten ecken :)
+        radius = 2;
+        mirror_copy([1, 0, 0]) {
+            translate([basis_laenge / 2 - radius , 0, basis_hoehe / 2 - radius]) {
+                abrundung(radius);
+            }
+        }
+
+        mirror_copy([1, 0, 0]) {
+            translate([(sqrt(pow(schlauch_durchmesser / 2, 2) - pow(basis_hoehe / 2 - basis_hoehen_versatz, 2)) + radius) * -1 , 0, basis_hoehe / 2 - radius]) {
+                abrundung(2);
             }
         }
     }
-
-    //meine version von abgerundeten ecken :)
-    radius = 2;
-    mirror_copy([1, 0, 0]) {
-        translate([basis_laenge / 2 - radius , 0, basis_hoehe / 2 - radius]) {
-            abrundung(radius);
-        }
-    }
-
-    mirror_copy([1, 0, 0]) {
-        translate([(sqrt(pow(schlauch_durchmesser / 2, 2) - pow(basis_hoehe / 2 - basis_hoehen_versatz, 2)) + radius) * -1 , 0, basis_hoehe / 2 - radius]) {
-            abrundung(2);
-        }
-    }
 }
+
