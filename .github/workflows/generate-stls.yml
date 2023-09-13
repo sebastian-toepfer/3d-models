@@ -23,6 +23,7 @@ jobs:
       # Give the default GITHUB_TOKEN write permission to commit and push the
       # added or changed files to the repository.
       contents: write
+      pull-requests: write
 
     steps:
       - uses: actions/checkout@v4
@@ -44,6 +45,13 @@ jobs:
       - name: generate previews for stl files
         run: |
           stl-thumb generated/abluft_snapy/tisch-schlauchbefestigung.scad.stl generated/abluft_snapy/tisch-schlauchbefestigung.scad.png
+
+      - name: update pull request with changed desgins
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: mshick/add-pr-comment@v2.8.1
+        with:
+          message: |
+            "neue bilder sind da"
 
       - name: upload stls
         uses: actions/upload-artifact@v3
