@@ -1,5 +1,7 @@
 #!/bin/sh
 
+BASE_OPENSCAD_CMD="openscad --hardwarnings -D \$fn=128"
+
 for file in ./designs/**/*.scad; do
     outputFileName=$(basename "$file")
     subDirs=$(dirname "$file" | sed "s/\.\/designs\///")
@@ -14,7 +16,12 @@ for file in ./designs/**/*.scad; do
             if [ ! -f $generatedFileName ] || [ $file -nt $generatedFileName ] || [ $parametersFileName -nt $generatedFileName ];
             then
                 echo "generate $generatedFileName"
-                openscad -p $parametersFileName -P $configuration -D \$fn=100 $file -o $generatedFileName
+                $BASE_OPENSCAD_CMD -p $parametersFileName -P $configuration $file -o $generatedFileName
+                retVal=$?
+                if [ $retVal -ne 0 ];
+                then
+                    exit $retVal
+                fi
             fi
         done
     else
@@ -22,7 +29,12 @@ for file in ./designs/**/*.scad; do
         if [ ! -f $generatedFileName ] || [ $file -nt $generatedFileName ];
         then
             echo "generate $generatedFileName"
-            openscad -D \$fn=100 -o ./generated/$subDirs/$outputFileName.stl $file
+            $BASE_OPENSCAD_CMD -o ./generated/$subDirs/$outputFileName.stl $file
+            retVal=$?
+            if [ $retVal -ne 0 ];
+            then
+                exit $retVal
+            fi
         fi
     fi
 done
