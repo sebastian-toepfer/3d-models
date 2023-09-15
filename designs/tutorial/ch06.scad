@@ -1,5 +1,5 @@
 //https://en.wikibooks.org/wiki/OpenSCAD_Tutorial/Chapter_6
-use <vehicle_parts.scad>
+use <vehicle_parts.inc>
 
 $fa = 1;
 $fs = 0.4;
