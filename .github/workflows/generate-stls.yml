@@ -37,7 +37,7 @@ jobs:
           ./generate-stls.sh
 
       - name: upload stls
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: stls
           path: generated
