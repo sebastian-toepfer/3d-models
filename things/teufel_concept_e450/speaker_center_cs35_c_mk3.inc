@@ -1,5 +1,5 @@
-use <../../libs/own/mirror_copy.scad>
-use <../../libs/own/sector_arc.scad>
+use <../../libs/own/mirror_copy.fuc>
+use <../../libs/own/sector_arc.fuc>
 
 module speaker_center_cs35_c_mk3() {
   hoehe_vorn         = 100; //schraeg
