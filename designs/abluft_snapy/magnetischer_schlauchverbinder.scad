@@ -1,5 +1,5 @@
 //inspiriert durch: https://www.thingiverse.com/thing:5358837 
-use <../../libs/own/mirror_copy.scad>
+use <../../libs/own/mirror_copy.fuc>
 use <../../libs/own/polar_pattern.scad>
 
 schlauch_durchmesser  = 75;

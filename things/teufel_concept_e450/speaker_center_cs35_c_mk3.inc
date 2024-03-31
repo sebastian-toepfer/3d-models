@@ -1,4 +1,4 @@
-use <../../libs/own/mirror_copy.scad>
+use <../../libs/own/mirror_copy.fuc>
 use <../../libs/own/sector_arc.scad>
 
 module speaker_center_cs35_c_mk3() {

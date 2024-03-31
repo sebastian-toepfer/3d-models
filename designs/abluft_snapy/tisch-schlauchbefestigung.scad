@@ -1,4 +1,4 @@
-use <../../libs/own/mirror_copy.scad>
+use <../../libs/own/mirror_copy.fuc>
 
 schlauch_durchmesser    = 75;
 
