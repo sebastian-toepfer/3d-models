@@ -1,5 +1,5 @@
 use <../../libs/own/mirror_copy.fuc>
-use <../../libs/own/sector_arc.scad>
+use <../../libs/own/sector_arc.fuc>
 
 module speaker_satellite_cs25_fcr_mk3() {
   breite_vorn        = 100;
