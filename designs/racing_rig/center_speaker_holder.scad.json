@@ -1,0 +1,13 @@
+{
+    "parameterSets":
+    {
+        "links": {
+            "links": true
+        },
+        "rechts": {
+            "links": false
+        }
+    },
+    "fileFormatVersion": "1"
+}
+

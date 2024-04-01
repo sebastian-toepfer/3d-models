@@ -2,8 +2,8 @@ use <../../libs/own/mirror_copy.fuc>
 use <../../libs/own/sector_arc.fuc>
 
 module speaker_center_cs35_c_mk3() {
-  hoehe_vorn         = 100; //schraeg
-  hoehe_hinten       = 70;  //schraeg
+  hoehe_vorn         = 101; //schraeg
+  hoehe_hinten       = 71;  //schraeg
   tiefe              = 95;
   breite             = 225;
   radius_abrundungen = 5;
