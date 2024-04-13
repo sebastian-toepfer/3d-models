@@ -7,6 +7,21 @@ wand_staerke                          = 1.5;
 
 hoehe                                 = 60;
 
+difference() {
+    body(
+        schlauch_durchmesser - schlauch_wand_staerke * 2,
+        schlauch_anschluss_durchmesser,
+        schlauch_anschluss_durchmesser_aussen,
+        hoehe
+    );
+    body(
+        schlauch_durchmesser - schlauch_wand_staerke * 2 - wand_staerke * 2,
+        schlauch_anschluss_durchmesser - wand_staerke * 2,
+        schlauch_anschluss_durchmesser - wand_staerke * 2,
+        hoehe + 0.1
+    );
+}
+
 module body(von_durchmesser = 10, auf_durchmesser_innen = 20, auf_durchmesser_aussen = 30, gesamt_hoehe = 30) {
     union() {
         translate([0, 0, gesamt_hoehe / -3]) {
@@ -27,20 +42,5 @@ module body(von_durchmesser = 10, auf_durchmesser_innen = 20, auf_durchmesser_au
             }
         }
     }
-}
-
-difference() {
-    body(
-        schlauch_durchmesser - schlauch_wand_staerke * 2,
-        schlauch_anschluss_durchmesser,
-        schlauch_anschluss_durchmesser_aussen,
-        hoehe
-    );
-    body(
-        schlauch_durchmesser - schlauch_wand_staerke * 2 - wand_staerke * 2,
-        schlauch_anschluss_durchmesser - wand_staerke * 2,
-        schlauch_anschluss_durchmesser - wand_staerke * 2,
-        hoehe + 0.1
-    );
 }
 
