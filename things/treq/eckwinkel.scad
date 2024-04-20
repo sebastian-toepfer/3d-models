@@ -12,7 +12,7 @@ module eckwinkel() {
                         [groesse / + 2, groesse / + 2 - wand_staerke],
                         [groesse / - 2 + wand_staerke, groesse / - 2],
                         [groesse / - 2, groesse / - 2]
-                ])
+                ]);
             }
             union() {
                 translate([wand_staerke, - wand_staerke, 0]) {
