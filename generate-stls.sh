@@ -1,6 +1,7 @@
 #!/bin/sh
 
 BASE_OPENSCAD_CMD="openscad --hardwarnings -D \$fn=128"
+mkdir -p generated/new_stls
 
 for file in ./designs/**/*.scad; do
     outputFileName=$(basename "$file")
@@ -21,6 +22,8 @@ for file in ./designs/**/*.scad; do
                 if [ $retVal -ne 0 ];
                 then
                     exit $retVal
+                else
+                    cp $generatedFileName generated/new_stls/
                 fi
             fi
         done
@@ -34,6 +37,8 @@ for file in ./designs/**/*.scad; do
             if [ $retVal -ne 0 ];
             then
                 exit $retVal
+            else
+                cp $generatedFileName generated/new_stls/
             fi
         fi
     fi
