@@ -1,6 +1,5 @@
 #!/bin/sh
 
-BASE_OPENSCAD_CMD="openscad --hardwarnings -D \$fn=128"
 mkdir -p generated/new_stls
 
 for file in $(find ./designs -type f -name *.scad); do
@@ -17,7 +16,7 @@ for file in $(find ./designs -type f -name *.scad); do
             if [ ! -f $generatedFileName ] || [ $file -nt $generatedFileName ] || [ $parametersFileName -nt $generatedFileName ];
             then
                 echo "generate $generatedFileName"
-                $BASE_OPENSCAD_CMD -p $parametersFileName -P $configuration $file -o $generatedFileName
+                export OPENSCADPATH='./libs' ; openscad --hardwarnings -D \$fn=128 -p $parametersFileName -P $configuration $file -o $generatedFileName
                 retVal=$?
                 if [ $retVal -ne 0 ];
                 then
@@ -32,7 +31,7 @@ for file in $(find ./designs -type f -name *.scad); do
         if [ ! -f $generatedFileName ] || [ $file -nt $generatedFileName ];
         then
             echo "generate $generatedFileName"
-            $BASE_OPENSCAD_CMD -o ./generated/$subDirs/$outputFileName.stl $file
+            OPENSCADPATH='./libs' openscad --hardwarnings -D \$fn=128 -o ./generated/$subDirs/$outputFileName.stl $file
             retVal=$?
             if [ $retVal -ne 0 ];
             then
