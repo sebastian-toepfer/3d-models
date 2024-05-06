@@ -1,5 +1,5 @@
-use <../../things/teufel_concept_e450/speaker_center_cs35_c_mk3.scad>
-use <../../things/treq/eckwinkel.scad>
+use <../../../things/teufel_concept_e450/speaker_center_cs35_c_mk3.scad>
+use <../../../things/treq/eckwinkel.scad>
 
 links        = true;
 
