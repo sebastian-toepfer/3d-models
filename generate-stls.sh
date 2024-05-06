@@ -3,7 +3,7 @@
 BASE_OPENSCAD_CMD="openscad --hardwarnings -D \$fn=128"
 mkdir -p generated/new_stls
 
-for file in ./designs/**/*.scad; do
+for file in $(find ./designs -type f -name *.scad); do
     outputFileName=$(basename "$file")
     subDirs=$(dirname "$file" | sed "s/\.\/designs\///")
     mkdir -p generated/$subDirs
