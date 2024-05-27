@@ -19,11 +19,12 @@ hinter_abstand_stand_lautsprecher = (lautsprecher_breite_vorn - lautsprecher_bre
 
 //ohne ueberhaenge ... aber warum
 max_gesamt_breite                 = lautsprecher_breite_vorn + monitor_stand_breite;
+max_gesamt_tiefe                  = lautsprecher_tiefe + rahmenstaerke;
 breite_hinten                     = monitor_stand_breite + lautsprecher_breite_hinten + hinter_abstand_stand_lautsprecher;
 
-winkel_ls = 90 - atan(lautsprecher_tiefe / ((lautsprecher_breite_vorn - lautsprecher_breite_hinten) / 2));
-x = ((lautsprecher_tiefe + rahmenstaerke) * sin(winkel_ls)) / sin(90) + rahmenstaerke / 2;
-l = sqrt(pow(x, 2) - 2 * x * (lautsprecher_tiefe + rahmenstaerke) * cos(90 - winkel_ls) + pow(lautsprecher_tiefe + rahmenstaerke, 2));
+winkel_ls = 90 - atan(lautsprecher_tiefe / hinter_abstand_stand_lautsprecher);
+x = (max_gesamt_tiefe * sin(winkel_ls)) / sin(90) + rahmenstaerke / 2;
+l = sqrt(pow(x, 2) - 2 * x * max_gesamt_tiefe * cos(90 - winkel_ls) + pow(max_gesamt_tiefe, 2));
 
 mirror(links ? [0, 0, 0] : [1, 0, 0]) {
     difference() {
