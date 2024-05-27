@@ -45,7 +45,7 @@ mirror(links ? [0, 0, 0] : [1, 0, 0]) {
             }
 
             translate([(max_gesamt_breite - lautsprecher_breite_vorn - rahmenstaerke) / 2, 0, 0]) {
-                cube([rahmenstaerke * 3, lautsprecher_tiefe + rahmenstaerke, rahmenhoehe], center = true);
+                cube([rahmenstaerke * 2, lautsprecher_tiefe + rahmenstaerke, rahmenhoehe], center = true);
             }
 
             translate([(max_gesamt_breite - lautsprecher_breite_vorn - rahmenstaerke) + x, 0, 0]) {
