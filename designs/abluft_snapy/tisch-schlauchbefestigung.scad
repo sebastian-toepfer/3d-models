@@ -1,3 +1,4 @@
+use <../../parts/screw/hole.scad>
 use <../../libs/own/mirror_copy.fuc>
 
 schlauch_durchmesser    = 75;
@@ -16,7 +17,7 @@ schrauben_hoehe         = basis_hoehen_versatz;
 schrauben_durchmesser   = basis_breite * 0.33;
 schrauben_kopf_hoehe    = basis_hoehen_versatz * 0.50;
 
-schraube_plazierung_z = basis_hoehe / -2 - schrauben_kopf_hoehe / 2;
+schraube_plazierung_z = basis_hoehe / -2 + schrauben_hoehe / 2 - schrauben_kopf_hoehe / 2;
 
 rotate([90, 0, 0]) {
     difference() {
@@ -33,13 +34,13 @@ rotate([90, 0, 0]) {
         }
 
         translate([0, 0, schraube_plazierung_z]) {
-            union() {
-                cylinder(h = schrauben_hoehe, d = schrauben_durchmesser);
-                //0.01 um die bohrung etwas sauberer zu haben :)
-                translate([0, 0, schrauben_hoehe - 0.01]) {
-                    cylinder(h = schrauben_kopf_hoehe, d = schrauben_durchmesser * 1.75);
-                }
-            }
+            screw_hole(
+                    length = schrauben_hoehe,
+                    diameter = schrauben_durchmesser,
+                    head_diameter = schrauben_durchmesser * 1.75,
+                    head_length = schrauben_kopf_hoehe,
+                    center = true
+            );
         }
 
         //meine version von abgerundeten ecken :)
