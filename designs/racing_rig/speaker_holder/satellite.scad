@@ -28,111 +28,132 @@ l = sqrt(pow(x, 2) - 2 * x * max_gesamt_tiefe * cos(90 - winkel_ls) + pow(max_ge
 
 mirror(links ? [0, 0, 0] : [1, 0, 0]) {
     difference() {
-
         union() {
-            translate([(max_gesamt_breite - rahmenstaerke) / -2, (lautsprecher_tiefe - rahmenhoehe) / 2, 0]) {
-                cube([rahmenstaerke, rahmenhoehe, rahmenhoehe], center = true);
-            }
+            beinbefestigung();
+            speakerrahmen();
+        }
+        rechte_abschraegungen();
+        befestigung();
+        kabelfuehrung();
+        bein();
+        speaker();
+    }
+}
 
-            translate([(max_gesamt_breite - breite_hinten - 1) / -2, lautsprecher_tiefe / 2, 0]) {
-                cube([breite_hinten + 1, rahmenstaerke * 2, rahmenhoehe], center = true);
-            }
+module beinbefestigung() {
+    translate([(max_gesamt_breite - rahmenstaerke) / -2, (lautsprecher_tiefe - rahmenhoehe) / 2, 0]) {
+        cube([rahmenstaerke, rahmenhoehe, rahmenhoehe], center = true);
+    }
 
-            translate([x * -1, 0, 0]) {
-                rotate([0, 0, - winkel_ls]) {
-                    cube([rahmenstaerke, l, rahmenhoehe], center = true);
-                }
-            }
+    translate([(max_gesamt_breite - breite_hinten - 1) / -2, lautsprecher_tiefe / 2, 0]) {
+        cube([breite_hinten + 1, rahmenstaerke * 2, rahmenhoehe], center = true);
+    }
+}
 
-            translate([(max_gesamt_breite - lautsprecher_breite_vorn - rahmenstaerke) / 2, 0, 0]) {
-                cube([rahmenstaerke * 2, lautsprecher_tiefe + rahmenstaerke, rahmenhoehe], center = true);
-            }
+module speakerrahmen() {
+    translate([x * -1, 0, 0]) {
+        rotate([0, 0, - winkel_ls]) {
+            cube([rahmenstaerke, l, rahmenhoehe], center = true);
+        }
+    }
 
-            translate([(max_gesamt_breite - lautsprecher_breite_vorn - rahmenstaerke) + x, 0, 0]) {
-                rotate([0, 0, winkel_ls]) {
-                    cube([rahmenstaerke, l, rahmenhoehe], center = true);
-                }
-            }
+    translate([(max_gesamt_breite - lautsprecher_breite_vorn - rahmenstaerke) / 2, 0, 0]) {
+        cube([rahmenstaerke * 2, lautsprecher_tiefe + rahmenstaerke, rahmenhoehe], center = true);
+    }
 
-            difference() {
-                translate([(max_gesamt_breite - lautsprecher_breite_vorn - rahmenstaerke) / 2, lautsprecher_tiefe / -2, 0]) {
-                    cube([(lautsprecher_breite_vorn + rahmenstaerke * 2), rahmenstaerke * 2, rahmenhoehe], center = true);
-                }
+    translate([(max_gesamt_breite - lautsprecher_breite_vorn - rahmenstaerke) + x, 0, 0]) {
+        rotate([0, 0, winkel_ls]) {
+            cube([rahmenstaerke, l, rahmenhoehe], center = true);
+        }
+    }
 
-                //wie berechnet man hier die 0.85
-                translate([(x + rahmenstaerke + 0.85) * - 1, - rahmenstaerke, 0]) {
-                    rotate([0, 0, - winkel_ls]) {
-                        cube([rahmenstaerke, lautsprecher_tiefe + rahmenstaerke, rahmenhoehe * 1.1], center = true);
-                    }
-                }
-            }
+    difference() {
+        translate([(max_gesamt_breite - lautsprecher_breite_vorn - rahmenstaerke) / 2, lautsprecher_tiefe / -2, 0]) {
+            cube([(lautsprecher_breite_vorn + rahmenstaerke * 2), rahmenstaerke * 2, rahmenhoehe], center = true);
         }
 
         //wie berechnet man hier die 0.85
-        translate([(max_gesamt_breite - lautsprecher_breite_vorn - rahmenstaerke) + x + rahmenstaerke + 0.85, - rahmenstaerke, 0]) {
-            rotate([0, 0, winkel_ls]) {
-                cube([rahmenstaerke, (lautsprecher_tiefe + rahmenstaerke) * 2, rahmenhoehe * 1.1], center = true);
+        translate([(x + rahmenstaerke + 0.85) * - 1, - rahmenstaerke, 0]) {
+            rotate([0, 0, - winkel_ls]) {
+                cube([rahmenstaerke, lautsprecher_tiefe + rahmenstaerke, rahmenhoehe * 1.1], center = true);
             }
         }
+    }
+}
 
-        translate([(max_gesamt_breite - monitor_stand_breite - rahmenstaerke) / -2, rahmenstaerke * 1.25 + monitor_stand_tiefe, 0]) {
-            rotate([90, 0, 180]) {
-                screw_hole(
-                        length = rahmenstaerke * 4,
-                        diameter = 4.5,
-                        head_diameter = 10,
-                        head_length = 2.5,
+module rechte_abschraegungen() {
+    //wie berechnet man hier die 0.85
+    translate([(max_gesamt_breite - lautsprecher_breite_vorn - rahmenstaerke) + x + rahmenstaerke + 0.85, - rahmenstaerke, 0]) {
+        rotate([0, 0, winkel_ls]) {
+            cube([rahmenstaerke, (lautsprecher_tiefe + rahmenstaerke) * 2, rahmenhoehe * 1.1], center = true);
+        }
+    }
+}
+
+module befestigung() {
+    translate([(max_gesamt_breite - monitor_stand_breite - rahmenstaerke) / -2, rahmenstaerke * 1.25 + monitor_stand_tiefe, 0]) {
+        rotate([90, 0, 180]) {
+            screw_hole(
+                    length = rahmenstaerke * 4,
+                    diameter = 4.5,
+                    head_diameter = 10,
+                    head_length = 2.5,
+                    center = true
+            );
+        }
+    }
+}
+
+module kabelfuehrung() {
+    union() {
+        kabel_durchmesser = 2.5;
+        mitte_stand = (max_gesamt_breite - monitor_stand_breite - rahmenstaerke) / -2;
+        mitte_lautsprecher = 25;
+        abstand_mitte_stand_mitte_lautsprecher = abs(mitte_stand - mitte_lautsprecher);
+
+        translate([
+                (max_gesamt_breite - breite_hinten + 5) / -2 ,
+                (lautsprecher_tiefe + rahmenstaerke + kabel_durchmesser - 0.9) / 2,
+                0
+        ]) {
+            rotate([270, 0, 0]) {
+                cable_channel(
+                        length = abstand_mitte_stand_mitte_lautsprecher - 2,
+                        cable_diameter = kabel_durchmesser,
+                        cable_count = 2,
+                        cover_thick = 1,
                         center = true
                 );
             }
         }
 
-        union() {
-            kabel_durchmesser = 2.5;
-            mitte_stand = (max_gesamt_breite - monitor_stand_breite - rahmenstaerke) / -2;
-            mitte_lautsprecher = 25;
-            abstand_mitte_stand_mitte_lautsprecher = abs(mitte_stand - mitte_lautsprecher);
-
-            translate([
-                    (max_gesamt_breite - breite_hinten + 5) / -2 ,
-                    (lautsprecher_tiefe + rahmenstaerke + kabel_durchmesser - 0.9) / 2,
-                    0
-            ]) {
-                rotate([270, 0, 0]) {
-                    cable_channel(
-                            length = abstand_mitte_stand_mitte_lautsprecher - 2,
-                            cable_diameter = kabel_durchmesser,
-                            cable_count = 2,
-                            cover_thick = 1,
-                            center = true
-                    );
-                }
-            }
-
-            translate([
-                    25,
-                    (lautsprecher_tiefe + rahmenstaerke + kabel_durchmesser - 0.9) / 2,
-                    (rahmenhoehe - (kabel_durchmesser * 2 + (1 + 0.1) * 4)) / 2
-            ]) {
-                rotate([270, 90, 0]) {
-                    cable_channel(
-                            length = rahmenhoehe,
-                            cable_diameter = kabel_durchmesser,
-                            cable_count = 2,
-                            cover_thick = 1,
-                            center = true
-                    );
-                }
+        translate([
+                25,
+                (lautsprecher_tiefe + rahmenstaerke + kabel_durchmesser - 0.9) / 2,
+                (rahmenhoehe - (kabel_durchmesser * 2 + (1 + 0.1) * 4)) / 2
+        ]) {
+            rotate([270, 90, 0]) {
+                cable_channel(
+                        length = rahmenhoehe,
+                        cable_diameter = kabel_durchmesser,
+                        cable_count = 2,
+                        cover_thick = 1,
+                        center = true
+                );
             }
         }
+    }
+}
 
-        translate([(max_gesamt_breite - rahmenstaerke - monitor_stand_breite) / -2, (lautsprecher_tiefe - monitor_stand_tiefe - rahmenstaerke) / 2, 0]) {
-            playseat_monitor_stand_bein();
-        }
+module bein() {
+    translate([(max_gesamt_breite - rahmenstaerke - monitor_stand_breite) / -2, (lautsprecher_tiefe - monitor_stand_tiefe - rahmenstaerke) / 2, 0]) {
+        playseat_monitor_stand_bein();
+    }
+}
 
-        translate([(max_gesamt_breite - lautsprecher_breite_vorn - rahmenstaerke) / 2, 0, lautsprecher_hoehe / 2]) {
-            speaker_satellite_cs25_fcr_mk3();
-        }
+module speaker() {
+    translate([(max_gesamt_breite - lautsprecher_breite_vorn - rahmenstaerke) / 2, 0, lautsprecher_hoehe / 2]) {
+        speaker_satellite_cs25_fcr_mk3();
     }
 }
 
