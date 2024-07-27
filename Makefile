@@ -19,7 +19,7 @@ TARGETS              := $(subst $(SOURCEDIR), $(BUILDDIR), $(OPENSCADFILES:%.sca
 
 all: ${TARGETS}
 
-$(BUILDDIR)/%stl: $(addprefix $(SOURCEDIR)/,%scad)
+$(BUILDDIR)/%.stl: $(addprefix $(SOURCEDIR)/,%)
 	$(OPENSCAD) --hardwarnings -m make -D \$fn=128 -o $@ $<
 	cp $@ $(BUILDDIR)/new_stls/
 
