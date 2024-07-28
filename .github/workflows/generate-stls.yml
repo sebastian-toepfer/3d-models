@@ -34,7 +34,7 @@ jobs:
 
       - name: generate stl files
         run: |
-          ./generate-stls.sh
+          make all
 
       - name: upload stls
         uses: actions/upload-artifact@v4
