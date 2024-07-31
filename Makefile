@@ -7,7 +7,7 @@ STRUCTURE               := $(shell find $(SOURCEDIR) -type d)
 SRCFILES                := $(addsuffix /*, $(STRUCTURE))
 SRCFILES                := $(wildcard $(SRCFILES))
 JSONFILES               := $(filter %json, $(SRCFILES))
-PARAMETERFILES          := $(JSONFILES:%.json=%)
+PARAMETERFILES          := $(JSONFILES:%.json=%.scad)
 
 OPENSCADFILES           := $(filter %scad, $(SRCFILES))
 PARAMETERINIZEDFILES    := $(filter $(PARAMETERFILES), $(OPENSCADFILES))
@@ -16,8 +16,7 @@ CONFIGS                 := $(foreach file, $(JSONFILES), $(addprefix $(file),$(s
 CONFIGS                 := $(subst json,, $(CONFIGS))
 CONFIGS                 := $(addsuffix .stl, $(CONFIGS))
 
-
-TARGETS                 := $(subst $(SOURCEDIR), $(BUILDDIR), $(NONPARAMETERINIZEDFILES:%.scad=%.scad.stl))
+TARGETS                 := $(subst $(SOURCEDIR), $(BUILDDIR), $(NONPARAMETERINIZEDFILES:%.scad=%.stl))
 TARGETS                 += $(subst $(SOURCEDIR), $(BUILDDIR), $(CONFIGS))
 
 .PHONY: all clean pull
@@ -25,7 +24,7 @@ TARGETS                 += $(subst $(SOURCEDIR), $(BUILDDIR), $(CONFIGS))
 all: ${TARGETS}
 
 .SECONDEXPANSION:
-$(BUILDDIR)/%.stl: $$(filter $$(addprefix $(SOURCEDIR)/, $$(basename $$(basename %))).scad, $(OPENSCADFILES)) $$(filter $$(addprefix $(SOURCEDIR)/, $$(addsuffix .json, $$(basename %))), $(JSONFILES))
+$(BUILDDIR)/%.stl: $$(filter $$(addprefix $(SOURCEDIR)/, $$(basename %)).scad, $(OPENSCADFILES)) $$(filter $$(addprefix $(SOURCEDIR)/, $$(addsuffix .json, $$(basename %))), $(JSONFILES))
 	mkdir -p $(dir $(@))
 	mkdir -p $(BUILDDIR)/new_stls
 	$(OPENSCAD) --hardwarnings -m make -D \$$fn=128 $(addprefix -p ,$(filter %json, $(^))) $(addprefix -P ,$(shell echo $(@) | rev | cut -d. -f2 | rev)) -o $@ $(filter-out %json, $(^))
