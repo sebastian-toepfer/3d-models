@@ -1,12 +1,21 @@
 use <../../../libs/own/sector_arc.fuc>
 use <../../../libs/own/mirror_copy.fuc>
 
-playseat_monitor_stand_bein();
+function playseat_monitor_stand_bein_size() = [
+  playseat_monitor_stand_bein_breite(),
+  playseat_monitor_stand_bein_tiefe(),
+  playseat_monitor_stand_bein_hoehe()
+];
+
+function playseat_monitor_stand_bein_breite() = 56;
+function playseat_monitor_stand_bein_tiefe() = 34;
+function playseat_monitor_stand_bein_hoehe() = 780;
+function playseat_monitor_stand_bein_breite_luecke() = 26;
 
 module playseat_monitor_stand_bein() {
-    breite      = 56;
-    tiefe       = 34;
-    hoehe       = 780;
+    breite      = playseat_monitor_stand_bein_breite();
+    tiefe       = playseat_monitor_stand_bein_tiefe();
+    hoehe       = playseat_monitor_stand_bein_hoehe();
     wandstaerke = 2.6;
   
     color("silver") {
@@ -16,7 +25,7 @@ module playseat_monitor_stand_bein() {
             union() {
                 cube([breite - wandstaerke * 2, tiefe - wandstaerke * 2, hoehe * 1.1], center = true);
                 translate([0, 10, 0]) {
-                    cube([26, tiefe, hoehe * 1.1], center = true);
+                    cube([playseat_monitor_stand_bein_breite_luecke(), tiefe, hoehe * 1.1], center = true);
                 }
                 translate([0, tiefe / -2, hoehe / 2 - 30]) {
                     rotate([90, 0, 90]) {
