@@ -1,8 +1,14 @@
 use <../../libs/own/mirror_copy.fuc>
 
+function eckwinkel_size() = [eckwinkel_breite(), eckwinkel_tiefe(), eckwinkel_hoehe()];
+
+function eckwinkel_breite() = 36;
+function eckwinkel_hoehe() = 36;
+function eckwinkel_tiefe() = 38;
+
 module eckwinkel(seitlicher_verdrehschutz = false, unterer_verdrehschutz = false) {
-    groesse      = 36;
-    tiefe        = 38;
+    groesse      = eckwinkel_breite();
+    tiefe        = eckwinkel_tiefe();
     wand_staerke = 4.5;
   
     translate([seitlicher_verdrehschutz ? 1 : 0, 0, unterer_verdrehschutz ? 1 : 0]) {
