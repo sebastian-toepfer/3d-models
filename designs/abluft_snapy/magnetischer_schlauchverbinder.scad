@@ -1,6 +1,7 @@
 //inspiriert durch: https://www.thingiverse.com/thing:5358837 
 use <../../libs/own/mirror_copy.fuc>
 use <../../libs/own/polar_pattern.fuc>
+use <../../libs/own/roehre.scad>
 
 schlauch_durchmesser  = 75;
 schlauch_wand_staerke = 1.5;
@@ -11,10 +12,23 @@ ueberlappung          = -4.5;
 magnet_durchmesser    = 10;
 magnet_dicke          = 3;
 
-module roehre(laenge = 10, durchmesser = 20, wand_staerke = 1, center = false) {
-    difference() {
-        cylinder(h = laenge, r = durchmesser / 2, center = center);
-        cylinder(h = laenge + 0.2, r = durchmesser / 2 - wand_staerke, center = center);
+magnetischer_schlauchverbinder(
+        schlauch_durchmesser  = schlauch_durchmesser,
+        schlauch_wand_staerke = schlauch_wand_staerke,
+        wand_staerke          = wand_staerke,
+        ueberlappung          = ueberlappung
+);
+
+module magnetischer_schlauchverbinder(schlauch_durchmesser, schlauch_wand_staerke, wand_staerke = 1.5, ueberlappung = -4.5) {
+    kegel_hoehe  = 25;
+    gesamt_hoehe = kegel_hoehe * 2 + ueberlappung;
+    union() {
+        roehre(laenge = gesamt_hoehe, durchmesser = schlauch_durchmesser - schlauch_wand_staerke * 2, wand_staerke = wand_staerke, center = true);
+        translate([0, 0, gesamt_hoehe / 2 - kegel_hoehe - ueberlappung]) {
+            befestigungsring(hoehe = kegel_hoehe, durchmesser = schlauch_durchmesser - schlauch_wand_staerke * 2 - 0.0001) {
+                cylinder(h = magnet_dicke, d = magnet_durchmesser);
+            }
+        }
     }
 }
 
@@ -25,10 +39,10 @@ module befestigungsring(hoehe = 20, durchmesser = 20, magnet_anzahl = 6) {
         hoehe_schraege = hoehe - hoehe_gerade;
         aussen_radius = radius + hoehe_schraege;
         union() {
-          cylinder(h = hoehe_schraege, r1 = radius, r2 = aussen_radius, center = false);
-          translate([0, 0, hoehe_schraege - 0.0001]) {
-              cylinder(h = hoehe_gerade, r = aussen_radius);
-          }
+            cylinder(h = hoehe_schraege, r1 = radius, r2 = aussen_radius, center = false);
+            translate([0, 0, hoehe_schraege - 0.0001]) {
+                cylinder(h = hoehe_gerade, r = aussen_radius);
+            }
         }
         aussparrungen_hoehe = hoehe * 2.5;
         cylinder(h = aussparrungen_hoehe, r = radius, center = true);
@@ -46,17 +60,6 @@ module befestigungsring(hoehe = 20, durchmesser = 20, magnet_anzahl = 6) {
                     }
                 }
             }
-        }
-    }
-}
-
-kegel_hoehe  = 25;
-gesamt_hoehe = kegel_hoehe * 2 + ueberlappung;
-union() {
-    roehre(laenge = gesamt_hoehe, durchmesser = schlauch_durchmesser - schlauch_wand_staerke * 2, wand_staerke = wand_staerke, center = true);
-    translate([0, 0, gesamt_hoehe / 2 - kegel_hoehe - ueberlappung]) {
-        befestigungsring(hoehe = kegel_hoehe, durchmesser = schlauch_durchmesser - schlauch_wand_staerke * 2 - 0.0001) {
-            cylinder(h = magnet_dicke, d = magnet_durchmesser);
         }
     }
 }
