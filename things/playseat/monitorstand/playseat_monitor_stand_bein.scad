@@ -1,22 +1,29 @@
 use <../../../libs/own/sector_arc.fuc>
 use <../../../libs/own/mirror_copy.fuc>
 
-function playseat_monitor_stand_bein_size() = [
-  playseat_monitor_stand_bein_breite(),
-  playseat_monitor_stand_bein_tiefe(),
-  playseat_monitor_stand_bein_hoehe()
+function playseat_monitor_stand_bein_dimension_innen() = [
+    playseat_monitor_stand_bein_dimension().x - playseat_monitor_stand_bein_wandstaerke() * 2,
+    playseat_monitor_stand_bein_dimension().y - playseat_monitor_stand_bein_wandstaerke() * 2,
+    playseat_monitor_stand_bein_dimension().z - playseat_monitor_stand_bein_wandstaerke() * 2
+];
+
+function playseat_monitor_stand_bein_dimension() = [
+    playseat_monitor_stand_bein_breite(),
+    playseat_monitor_stand_bein_tiefe(),
+    playseat_monitor_stand_bein_hoehe()
 ];
 
 function playseat_monitor_stand_bein_breite() = 56;
 function playseat_monitor_stand_bein_tiefe() = 34;
 function playseat_monitor_stand_bein_hoehe() = 780;
 function playseat_monitor_stand_bein_breite_luecke() = 26;
+function playseat_monitor_stand_bein_wandstaerke() = 2.6;
 
 module playseat_monitor_stand_bein() {
     breite      = playseat_monitor_stand_bein_breite();
     tiefe       = playseat_monitor_stand_bein_tiefe();
     hoehe       = playseat_monitor_stand_bein_hoehe();
-    wandstaerke = 2.6;
+    wandstaerke = playseat_monitor_stand_bein_wandstaerke();
   
     color("silver") {
         difference() {
