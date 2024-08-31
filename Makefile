@@ -43,5 +43,7 @@ pull:
 	git pull -r
 
 clean:
-	-rm -f ${TARGETS}
+	-rm -rf $(BUILDDIR)/new_stls
+	-rm -f ${STL_TARGETS}
+	-rm -f ${3MF_TARGETS}
 
