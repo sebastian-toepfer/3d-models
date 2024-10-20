@@ -5,11 +5,12 @@ function eckwinkel_size() = [eckwinkel_breite(), eckwinkel_tiefe(), eckwinkel_ho
 function eckwinkel_breite() = 36;
 function eckwinkel_hoehe() = 36;
 function eckwinkel_tiefe() = 38;
+function eckwinkel_wandstaerke() = 4.5;
 
 module eckwinkel(seitlicher_verdrehschutz = false, unterer_verdrehschutz = false) {
     groesse      = eckwinkel_breite();
     tiefe        = eckwinkel_tiefe();
-    wand_staerke = 4.5;
+    wand_staerke = eckwinkel_wandstaerke();
   
     translate([seitlicher_verdrehschutz ? 1 : 0, 0, unterer_verdrehschutz ? 1 : 0]) {
         rotate([270, 0, 0]) {
