@@ -16,6 +16,9 @@ fp-info-cache
 *.gbl
 *.gm1
 
+# Platform IO stuff
+**/.pio/
+
 # vi swap and backup files
 *.swp
 *.swo

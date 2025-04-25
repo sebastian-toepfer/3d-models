@@ -7,6 +7,7 @@ SCAD_MODEL := 3d/openscad/models/gehaeuse.scad
 DOCS_DIR := docs/assembly
 FRAMES := 1 2 3 4 5
 FRAME_FILES := $(addprefix $(DOCS_DIR)/frame_,$(addsuffix .png,$(FRAMES)))
+FIRMWARE_DIR := firmware
 
 # Alle .kicad_pcb-Dateien finden
 PCB_FILES := $(shell find $(KICAD_DIR) -type f -name '*.kicad_pcb')
@@ -42,6 +43,7 @@ PRINTABLE_3MF_FILES := $(foreach scad,$(SCAD_PART_FILES),$(call SCAD_TO_3MF,$(sc
 
 # Standard-Ziel
 all: $(STEP_FILES) $(PCB_STL_FILES) $(PRINTABLE_STL_FILES) $(PRINTABLE_3MF_FILES) frames
+	$(MAKE) -C $(FIRMWARE_DIR)
 
 pcbstl: $(PCB_STL_FILES)
 3mf: $(PRINTABLE_3MF_FILES)
@@ -49,8 +51,16 @@ stl: $(PRINTABLE_STL_FILES)
 
 frames: $(FRAME_FILES)
 
+# Firmware flashen
+flash:
+	$(MAKE) -C $(FIRMWARE_DIR) upload
+
+# Firmware testen
+monitor:
+	$(MAKE) -C $(FIRMWARE_DIR) monitor
+
 # Generiere jede Regel explizit
-$(foreach rule,$(STL_RULES), \
+$(foreach rule,$(STEP_RULES), \
   $(eval $(firstword $(subst :, ,$(rule))): $(lastword $(subst :, ,$(rule)))) \
 )
 
@@ -94,5 +104,6 @@ $(foreach i,$(FRAMES),\
 clean:
 	rm -rf $(STEP_OUT) $(STL_OUT) $(3MF_OUT)
 	rm -rf $(FRAME_FILES)
+	$(MAKE) -C $(FIRMWARE_DIR) clean
 
-.PHONY: all clean
+.PHONY: all clean flash monitor
