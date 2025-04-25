@@ -1,0 +1,22 @@
+# macOS system files
+.DS_Store
+
+# KiCad backup and autosave files
+*.bak
+*_autosave-*
+*.lck
+fp-info-cache
+
+# KiCad generated output
+*.gbr
+*.drl
+*.gbrjob
+*.gtl
+*.gbl
+*.gm1
+
+# vi swap and backup files
+*.swp
+*.swo
+*~
+
