@@ -1,33 +1,33 @@
 KICAD_DIR := kicad
-STEP_OUT := 3d/step
+STL_OUT := 3d/stl
 
 # Alle .kicad_pcb-Dateien finden
 PCB_FILES := $(shell find $(KICAD_DIR) -type f -name '*.kicad_pcb')
 
 # Hilfsfunktion: nur Dateinamen extrahieren und Zielpfad erzeugen
-define PCB_TO_STEP
-$(STEP_OUT)/board_$(notdir $(basename $(1))).step
+define PCB_TO_STL
+$(STL_OUT)/board_$(notdir $(basename $(1))).stl
 endef
 
-# Erzeuge Liste mit expliziten Regeln: STEP_ZIEL: PCB_QUELLE
-STEP_RULES := $(foreach pcb,$(PCB_FILES),$(call PCB_TO_STEP,$(pcb)):$(pcb))
+# Erzeuge Liste mit expliziten Regeln: STL_ZIEL: PCB_QUELLE
+STL_RULES := $(foreach pcb,$(PCB_FILES),$(call PCB_TO_STL,$(pcb)):$(pcb))
 
-# Liste der STEP-Ziele
-STEP_FILES := $(foreach rule,$(STEP_RULES),$(firstword $(subst :, ,$(rule))))
+# Liste der STL-Ziele
+STL_FILES := $(foreach rule,$(STL_RULES),$(firstword $(subst :, ,$(rule))))
 
 # Standard-Ziel
-all: $(STEP_FILES)
+all: $(STL_FILES)
 
 # Generiere jede Regel explizit
-$(foreach rule,$(STEP_RULES),\
-  $(eval $(firstword $(subst :, ,$(rule))): $(lastword $(subst :, ,$(rule))) ) \
+$(foreach rule,$(STL_RULES), \
+  $(eval $(firstword $(subst :, ,$(rule))): $(lastword $(subst :, ,$(rule)))) \
 )
 
 # Kommandos zum Generieren
-$(STEP_OUT)/board_%.step:
-	@mkdir -p $(STEP_OUT)
-	@echo "⭢️  Erzeuge STEP für: $<"
-	kicad-cli pcb export step "$<" --output "$@" --include-tracks --include-zones
+$(STL_OUT)/board_%.stl:
+	@mkdir -p $(STL_OUT)
+	@echo "⭢️  Erzeuge STL für: $<"
+	kicad-cli pcb export stl "$<" --output "$@" --grid-origin --include-tracks --include-zones
 	@echo "✅ Exportiert: $@"
 
 # Aufräumen
