@@ -6,6 +6,7 @@
 *_autosave-*
 *.lck
 fp-info-cache
+**/*-backups/
 
 # KiCad generated output
 *.gbr
