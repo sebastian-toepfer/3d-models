@@ -38,6 +38,27 @@ module gehaeuse_unterseite(
                     ],
                     center = true
                 );
+                mirror_copy([0, 1, 0]) {
+                    mirror_copy() {
+                        translate([
+                            (dimension.x - wandstaerke * 2 )/ -2 - 1,
+                            dimension.y / 4,
+                            0
+                        ]) {
+                            rotate([270, 270, 0]) {
+                                linear_extrude(3.5, center = true) {
+                                    polygon(
+                                        points = [
+                                            [0, 0],
+                                            [0, 1],
+                                            [1, 1],
+                                        ]
+                                    );
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
