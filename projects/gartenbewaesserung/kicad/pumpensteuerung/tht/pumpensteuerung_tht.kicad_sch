@@ -2389,7 +2389,7 @@
 		(uuid "fddc8e6d-8e3c-42da-96ef-e2bf206b7fac")
 	)
 	(label "-5V"
-		(at 83.82 24.13 0)
+		(at 83.82 26.67 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2489,7 +2489,7 @@
 		(uuid "61186dc8-34ad-4104-a1da-e09d71c41f96")
 	)
 	(label "+5V"
-		(at 83.82 26.67 0)
+		(at 83.82 19.05 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2529,7 +2529,7 @@
 		(uuid "a40e738e-1595-4af7-9273-712631bafa11")
 	)
 	(label "SDA"
-		(at 83.82 19.05 0)
+		(at 83.82 24.13 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2753,7 +2753,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "25771d83-215a-44ae-af96-1806d7040bfd")
-		(property "Reference" "A1"
+		(property "Reference" "MCU1"
 			(at 120.65 17.78 0)
 			(effects
 				(font
@@ -2883,7 +2883,7 @@
 		(instances
 			(project ""
 				(path "/21a07dfa-371b-4773-840e-44a8dfeac208"
-					(reference "A1")
+					(reference "MCU1")
 					(unit 1)
 				)
 			)
@@ -3053,7 +3053,7 @@
 				)
 			)
 		)
-		(property "Footprint" "TerminalBlock:TerminalBlock_Altech_AK300-4_P5.00mm"
+		(property "Footprint" "PhoenixContact:MKDSN 1,5_4-5,08"
 			(at 78.74 24.13 0)
 			(effects
 				(font
@@ -3470,7 +3470,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TerminalBlock:TerminalBlock_Altech_AK300-2_P5.00mm"
+		(property "Footprint" "PhoenixContact:MKDSN 1,5_2-5,08"
 			(at 29.21 63.5 0)
 			(effects
 				(font

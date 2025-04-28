@@ -1584,7 +1584,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TerminalBlock:TerminalBlock_Altech_AK300-3_P5.00mm"
+		(property "Footprint" "PhoenixContact:MKDSN 1,5_3-5,08"
 			(at 82.55 41.91 0)
 			(effects
 				(font

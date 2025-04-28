@@ -1,17 +1,147 @@
-(module AZ_PSU_Module (layer F.Cu) (tedit 5B307E4C)
-  (descr "AZ-Delivery 220V to 5V Mini PSU (realistic pin layout)")
-  (tags "AZ PSU AC DC")
-  (fp_text reference "U?" (at 9.5 -4) (layer F.SilkS)
-    (effects (font (size 1 1) (thickness 0.15))))
-  (fp_text value "AZ_PSU_Module" (at 9.5 6) (layer F.Fab)
-    (effects (font (size 1 1) (thickness 0.15))))
-  (fp_line (start -2 -3.5) (end 21 -3.5) (layer F.SilkS) (width 0.12))
-  (fp_line (start 21 -3.5) (end 21 5.5) (layer F.SilkS) (width 0.12))
-  (fp_line (start 21 5.5) (end -2 5.5) (layer F.SilkS) (width 0.12))
-  (fp_line (start -2 5.5) (end -2 -3.5) (layer F.SilkS) (width 0.12))
-  (pad 1 thru_hole rect (at 0 0) (size 1.6 1.6) (drill 1.0) (layers *.Cu *.Mask))
-  (pad 2 thru_hole circle (at 0 2.54) (size 1.6 1.6) (drill 1.0) (layers *.Cu *.Mask))
-  (pad 3 thru_hole circle (at 19.0 0) (size 1.6 1.6) (drill 1.0) (layers *.Cu *.Mask))
-  (pad 4 thru_hole circle (at 19.0 2.54) (size 1.6 1.6) (drill 1.0) (layers *.Cu *.Mask))
+(footprint "AZ_PSU_Module"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "AZ-Delivery 220V to 5V Mini PSU (realistic pin layout)")
+	(tags "AZ PSU AC DC")
+	(property "Reference" "U?"
+		(at 9.5 -4 0)
+		(layer "F.SilkS")
+		(uuid "7b3adb3e-dd56-430e-a59c-054cd2adf191")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "AZ_PSU_Module"
+		(at 9.5 6 0)
+		(layer "F.Fab")
+		(uuid "597039a3-96e2-4a0f-836a-8ade50b75901")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "07082b50-7426-4ef7-9aa2-0c97e7c0925b")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "3c834412-8784-4289-9dc0-1c09467c81cc")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -18.5 -12)
+		(end 18.5 -12)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "72382f02-f75c-45a6-b722-28d28724bd62")
+	)
+	(fp_line
+		(start -18.5 12)
+		(end -18.5 -12)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "53621d45-fb8a-4325-9abc-796530162375")
+	)
+	(fp_line
+		(start 18.5 -12)
+		(end 18.5 12)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f6f6f732-055e-4427-b75b-31895a295cd4")
+	)
+	(fp_line
+		(start 18.5 12)
+		(end -18.5 12)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f023bda2-c630-420e-ac10-8393681ed386")
+	)
+	(pad "1" thru_hole rect
+		(at 15.24 -8.89)
+		(size 1.6 1.6)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "284a6683-1d78-4d75-bb99-89840b9b1bf7")
+	)
+	(pad "2" thru_hole circle
+		(at 10.18 -8.89)
+		(size 1.6 1.6)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "7b8e7a5d-6b1c-4e25-a18e-b91d828add9f")
+	)
+	(pad "3" thru_hole circle
+		(at -10.18 8.89)
+		(size 1.6 1.6)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "91cbd901-1b9b-4934-b68d-8b2a5f4d6e79")
+	)
+	(pad "4" thru_hole circle
+		(at -15.24 8.89)
+		(size 1.6 1.6)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "d79c7b3f-5ede-41d4-9052-2ab1ffb912d6")
+	)
+	(pad "NC" thru_hole circle
+		(at -15.24 -8.89)
+		(size 1.6 1.6)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "2fcb320e-b47d-4d7a-b8d9-efa10005e735")
+	)
+	(embedded_fonts no)
+	(model "/home/sebastian/workspaces/oss/3d-models/projects/gartenbewaesserung/kicad/libraries/footprints/AZFootprints.pretty/Mininetzteil.STEP"
+		(offset
+			(xyz 2.5 37.5 4.5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 -0)
+		)
+	)
 )
-
