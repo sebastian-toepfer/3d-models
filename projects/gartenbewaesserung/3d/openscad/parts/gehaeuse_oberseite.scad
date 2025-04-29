@@ -11,7 +11,7 @@ gehaeuse_oberseite();
 
 module gehaeuse_oberseite(
     dimension   = gehaeuse_oberseite_dimension(),
-    wandstaerke = 2,
+    wandstaerke = 1.25,
     center      = true
 ) {
     difference() {
@@ -44,16 +44,16 @@ module gehaeuse_oberseite(
         }
 
         //i2c ...
-        translate([1.6, (dimension.y - 15) / 2, -10]) {
-            schraubterminal_loecher(anzahl = 4);
-        }
+        //translate([1.6, (dimension.y - 15) / 2, -5]) {
+        //    schraubterminal_loecher(anzahl = 4);
+        //}
 
         mirror_copy([1, 0, 0]) {
             mirror_copy([0, 1, 0]) {
                 translate([
                     (dimension.x - wandstaerke + 0.1) / 2,
                     (dimension.y - 45) / 2,
-                    (dimension.z - 6.5 ) / -2
+                    (dimension.z - 1.5 - 1.2) / -2
                 ]) {
                     rotate([90, 180, 0]) {
                         linear_extrude(height = 4, center = true) {
@@ -66,18 +66,9 @@ module gehaeuse_oberseite(
                             );
                         }
                     }
-                }
-            }
-        }
-
-        mirror_copy([0, 1, 0]) {
-            mirror_copy() {
-                translate([
-                    (dimension.x - wandstaerke * 2) / 2,
-                    dimension.y / 4,
-                    -25.25
-                ]) {
-                    cube([0.5 + 0.01, 5, 5], center = true);
+                    translate([-wandstaerke + 0.5, 0, 1.2 / -2]) {
+                        cube([0.5 + 0.01, 5, 1.5 + 1.2 / 2], center = true);
+                    }
                 }
             }
         }
@@ -113,8 +104,8 @@ module gehaeuse_oberseite(
                 cylinder(d = 6, h = 10, center = true);
             }
         }
-        translate([0, 0, -5]) {
-            cube([ende - begin + distanz, 20, 10], center = true);
+        translate([0, 0, -7.5]) {
+            cube([ende - begin + distanz, 20, 7.5], center = true);
         }
     }
 }

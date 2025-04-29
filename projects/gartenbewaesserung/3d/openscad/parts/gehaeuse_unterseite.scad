@@ -10,56 +10,62 @@ gehaeuse_unterseite();
 
 module gehaeuse_unterseite(
     dimension   = gehaeuse_unterseite_dimension(),
-    wandstaerke = 2,
+    wandstaerke = 1.25,
     ueberhang   = 5,
-    board_dicke = 1.6
+    board_dicke = 1.61
 ) {
     difference() {
-        korpus(dimension = dimension, wandstaerke = wandstaerke + 0.15, ueberhang = ueberhang);
-        translate([0, 0, ueberhang + (wandstaerke + 0.5) / 2]) {
+        korpus(dimension = dimension, wandstaerke = wandstaerke, ueberhang = ueberhang);
+        translate([0, 0, dimension.z / 2]) {
             innenraum(
                 dimension = [
                   dimension.x - wandstaerke * 4,
                   dimension.y - wandstaerke * 4,
-                  dimension.z - wandstaerke + 0.5 + 0.1
+                  ueberhang + 0.1
                 ],
                 board_befestigung = 6
             );
-            translate([0, 0, board_dicke - 0.2]) {
-                import("../../stl/board_pumpensteuerung_tht.stl");
-            }
         }
-        hutschienen_befestigung(dimension = dimension);
+        translate([0, 0, (ueberhang + dimension.z) / 2 - board_dicke]) {
+            import("../../stl/board_pumpensteuerung_tht.stl");
+        }
+        //die 5 sind die hutschiene ... das muss noch besser gehen!!
+        translate([0, 0, (ueberhang + dimension.z - 5) / -2]) {
+            hutschienen_befestigung(dimension = dimension);
+        }
     }
 
     module korpus(dimension = [10, 10, 10], wandstaerke = 1, ueberhang = 2) {
         union() {
-            cube(dimension, center = true);
-            translate([0, 0, (dimension.z + ueberhang) / 2]) {
-                cube(
-                    [
-                        dimension.x - wandstaerke * 2,
-                        dimension.y - wandstaerke * 2,
-                        ueberhang
-                    ],
-                    center = true
-                );
-                mirror_copy([0, 1, 0]) {
-                    mirror_copy() {
-                        translate([
-                            (dimension.x - wandstaerke * 2 )/ -2 - 1,
-                            dimension.y / 4,
-                            0
-                        ]) {
-                            rotate([270, 270, 0]) {
-                                linear_extrude(3.5, center = true) {
-                                    polygon(
-                                        points = [
-                                            [0, 0],
-                                            [0, 1],
-                                            [1, 1],
-                                        ]
-                                    );
+            cube(
+                [
+                    dimension.x - wandstaerke * 2 - 0.3,
+                    dimension.y - wandstaerke * 2 - 0.3,
+                    dimension.z + ueberhang
+                ],
+                center = true
+            );
+            translate([0, 0, ueberhang / -2]) {
+                cube(dimension, center = true);
+
+                translate([0, 0, dimension.z / 2 + 1.5]) {
+                    mirror_copy([0, 1, 0]) {
+                        mirror_copy() {
+                            translate([
+                                dimension.x / -2  + wandstaerke - 1,
+                                dimension.y / 4,
+                                0
+                            ]) {
+                                rotate([270, 270, 0]) {
+                                    linear_extrude(3.5, center = true) {
+                                        polygon(
+                                            points = [
+                                                [0, 0],
+                                                [0, 1],
+                                                [1, 1],
+                                            ]
+                                        );
+                                    }
                                 }
                             }
                         }
@@ -142,7 +148,7 @@ module gehaeuse_unterseite(
                 cube([dimension.x * 1.1, hutschienen_breite, hutschienen_hoehe], center = true);
                 mirror_copy() {
                     for( i = [10:20:dimension.x / 2]) {
-                        translate([i, 14.0, -2.5]) {
+                        translate([i, hutschienen_breite / 2 - 3.5 , -2.5]) {
                             rotate([90, 0, 90]) {
                                 linear_extrude(3.5, center = true) {
                                     polygon(
