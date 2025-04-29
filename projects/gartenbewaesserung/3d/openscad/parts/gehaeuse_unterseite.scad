@@ -102,45 +102,48 @@ module gehaeuse_unterseite(
     }
 
     module hutschienen_befestigung(dimension = [10, 10, 10]) {
+        hutschienen_breite = 36;
+        hutschienen_hoehe  = 5.02;
+        feder_breite       = 11;
         // aussparrung feder ...
-        translate([0, 17.5, (dimension.z - 5) / -2]) {
+        translate([0, -17.5, (dimension.z - 5) / -2]) {
             mirror_copy() {
                 difference() {
-                    linear_extrude(5.02, center = true) {
+                    linear_extrude(hutschienen_hoehe, center = true) {
                         polygon(
                             points = [
-                              [ 0, -0.1],
-                              [ 15, -0.1],
-                              [ 10, 15],
-                              [ 6.5, 15],
-                              [ 6.5, 5],
-                              [ 0, 5]
+                              [ 0, 0.1],
+                              [ 15, 0.1],
+                              [ 10, -15],
+                              [ feder_breite / 2 + 1.5, -15],
+                              [ feder_breite / 2 + 1.5, -5],
+                              [ 0, -5]
                             ]
                         );
                     }
-                    translate([13.5, 5, 0]) {
-                        cylinder(d = 4, h = 5.02, center = true);
+                    translate([13.5, -5, 0]) {
+                        cylinder(d = 4, h = hutschienen_hoehe, center = true);
                     }
                 }
             }
-            translate([0, 15, 0]) {
-                cube([10, 5, 5.02], center = true);
+            translate([0, -15, 0]) {
+                cube([feder_breite, 5, hutschienen_hoehe], center = true);
             }
         }
  
         //federfuehrungsaussparrung
-        translate([0, (dimension.y - 35) / 4, 0.4]) {
-            cube([10, 35 + (dimension.y - 35) / 2 + 0.01, 3.5], center = true);
+        translate([0, (dimension.y - hutschienen_breite) / -4, 0.4]) {
+            cube([feder_breite, hutschienen_breite + (dimension.y - hutschienen_breite) / 2 + 0.01, 3.5], center = true);
         }
 
         //hutschienenaussparrung ...
         translate([0, 0, (dimension.z - 5) / -2]) {
             difference() {
-                cube([dimension.x * 1.1, 35, 5.02], center = true);
+                cube([dimension.x * 1.1, hutschienen_breite, hutschienen_hoehe], center = true);
                 mirror_copy() {
                     for( i = [10:20:dimension.x / 2]) {
-                        translate([i, -14.0, -2.5]) {
-                            rotate([90, 0, 270]) {
+                        translate([i, 14.0, -2.5]) {
+                            rotate([90, 0, 90]) {
                                 linear_extrude(3.5, center = true) {
                                     polygon(
                                         points = [
