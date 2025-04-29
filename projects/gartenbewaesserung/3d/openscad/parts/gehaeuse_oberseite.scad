@@ -21,14 +21,31 @@ module gehaeuse_oberseite(
                 dimension = [
                     dimension.x - wandstaerke * 2,
                     dimension.y - wandstaerke * 2,
-                    dimension.z + 0.02
+                    dimension.z + 0.01
                 ],
                 center = center
             );
         }
 
-        translate([0, 0, dimension.z / -2 - 4.0]) {
-            gehaeuse_unterseite();
+        //stromanschluss ...
+        translate([dimension.x / -2 + 17.6, (dimension.y - 15) / -2, -10]) {
+            schraubterminal_loecher(anzahl = 2);
+        }
+
+        //oeffnungen fuer die relais
+        for(i = [1:3]) {
+            translate([
+                -3.2 + 18.2 * (i - 1),
+                (dimension.y - 15) / -2,
+                -10
+            ]) {
+                schraubterminal_loecher(anzahl = 3);
+            }
+        }
+
+        //i2c ...
+        translate([1.6, (dimension.y - 15) / 2, -10]) {
+            schraubterminal_loecher(anzahl = 4);
         }
 
         mirror_copy([0, 1, 0]) {
@@ -62,6 +79,20 @@ module gehaeuse_oberseite(
                     );
                 }
             }
+        }
+    }
+
+    module schraubterminal_loecher(anzahl = 1) {
+        distanz = 5.2;
+        begin = distanz * anzahl / -2 + 2.6;
+        ende  = begin + distanz * (anzahl - 1);
+        for(i = [begin:distanz:ende]) {
+            translate([i, 0, 0]) {
+                cylinder(d = 6, h = 10, center = true);
+            }
+        }
+        translate([0, 0, -5]) {
+            cube([ende - begin + distanz, 20, 10], center = true);
         }
     }
 }
