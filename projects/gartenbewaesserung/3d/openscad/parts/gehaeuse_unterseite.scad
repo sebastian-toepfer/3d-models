@@ -1,9 +1,15 @@
 include <../libs/own/mirror_copy.fuc>
 
+function gehaeuse_unterseite_dimension() = [
+   105,
+   90,
+   7.8
+];
+
 gehaeuse_unterseite();
 
 module gehaeuse_unterseite(
-    dimension   = [105, 90, 7.8],
+    dimension   = gehaeuse_unterseite_dimension(),
     wandstaerke = 2,
     ueberhang   = 5,
     board_dicke = 1.6
