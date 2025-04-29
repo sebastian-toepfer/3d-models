@@ -15,7 +15,7 @@ module gehaeuse_unterseite(
     board_dicke = 1.6
 ) {
     difference() {
-        korpus(dimension = dimension, wandstaerke = wandstaerke, ueberhang = ueberhang);
+        korpus(dimension = dimension, wandstaerke = wandstaerke + 0.15, ueberhang = ueberhang);
         translate([0, 0, ueberhang + (wandstaerke + 0.5) / 2]) {
             innenraum(
                 dimension = [

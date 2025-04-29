@@ -48,10 +48,32 @@ module gehaeuse_oberseite(
             schraubterminal_loecher(anzahl = 4);
         }
 
+        mirror_copy([1, 0, 0]) {
+            mirror_copy([0, 1, 0]) {
+                translate([
+                    (dimension.x - wandstaerke + 0.1) / 2,
+                    (dimension.y - 45) / 2,
+                    (dimension.z - 6.5 ) / -2
+                ]) {
+                    rotate([90, 180, 0]) {
+                        linear_extrude(height = 4, center = true) {
+                            polygon(
+                                points = [
+                                    [0, 0],
+                                    [1.2, 0],
+                                    [1.2, 1.2]
+                                ]
+                            );
+                        }
+                    }
+                }
+            }
+        }
+
         mirror_copy([0, 1, 0]) {
             mirror_copy() {
                 translate([
-                    (dimension.x - wandstaerke * 2) / 2 + 0.25,
+                    (dimension.x - wandstaerke * 2) / 2,
                     dimension.y / 4,
                     -25.25
                 ]) {
