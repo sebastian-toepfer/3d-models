@@ -1,19 +1,27 @@
 include <../libs/own/mirror_copy.fuc>
 use <gehaeuse_unterseite.scad>
 
-function gehaeuse_oberseite_dimension() = [
-   105,
-   90,
+function pcb_dimension() = [
+    100,
+    85,
+    1.6
+];
+
+function gehaeuse_oberseite_dimension(pcb_dimension = pcb_dimension(), wandstaerke = 1) = [
+   ///5.08 entspricht einer TE -> wir wollen 1/4 TE's nutzen
+   ceil((pcb_dimension.x * 1.01 + wandstaerke * 4) / (5.08 / 4)) * (5.08 / 4),
+   pcb_dimension.y * 1.01 + wandstaerke * 4,
    50.6
 ];
 
 gehaeuse_oberseite();
 
 module gehaeuse_oberseite(
-    dimension   = gehaeuse_oberseite_dimension(),
-    wandstaerke = 1.25,
-    center      = true
+    pcb_dimension = pcb_dimension(),
+    wandstaerke   = 1,
+    center        = true
 ) {
+    dimension   = gehaeuse_oberseite_dimension(pcb_dimension, wandstaerke);
     difference() {
         korpus(dimension = dimension, center = center);
         translate([0, 0, - wandstaerke - 0.01]) {

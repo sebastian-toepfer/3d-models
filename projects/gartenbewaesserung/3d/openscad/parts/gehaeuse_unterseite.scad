@@ -1,33 +1,42 @@
 include <../libs/own/mirror_copy.fuc>
 
-function gehaeuse_unterseite_dimension() = [
-   105,
-   90,
+function pcb_dimension() = [
+    100,
+    85,
+    1.6
+];
+
+function gehaeuse_unterseite_dimension(pcb_dimension = pcb_dimension(), wandstaerke = 1) = [
+   ///5.08 entspricht einer TE -> wir wollen 1/4 TE's nutzen
+   ceil((pcb_dimension.x * 1.01 + wandstaerke * 4) / (5.08 / 4)) * (5.08 / 4),
+   pcb_dimension.y * 1.01 + wandstaerke * 4,
    7.8
 ];
 
 gehaeuse_unterseite();
 
 module gehaeuse_unterseite(
-    dimension   = gehaeuse_unterseite_dimension(),
-    wandstaerke = 1.25,
-    ueberhang   = 5,
-    board_dicke = 1.61
+    pcb_dimension = pcb_dimension(),
+    wandstaerke   = 1,
+    ueberhang     = 5
 ) {
+    dimension   = gehaeuse_unterseite_dimension(pcb_dimension, wandstaerke);
     difference() {
         korpus(dimension = dimension, wandstaerke = wandstaerke, ueberhang = ueberhang);
         translate([0, 0, dimension.z / 2]) {
             innenraum(
                 dimension = [
-                  dimension.x - wandstaerke * 4,
-                  dimension.y - wandstaerke * 4,
+                  pcb_dimension.x * 1.01,
+                  pcb_dimension.y * 1.01,
                   ueberhang + 0.1
                 ],
-                board_befestigung = 6
+                board_befestigung = 10
             );
         }
-        translate([0, 0, (ueberhang + dimension.z) / 2 - board_dicke]) {
-            import("../../stl/board_pumpensteuerung_tht.stl");
+        scale([1.01, 1.01, 1.01]) {
+            translate([0, 0, (ueberhang + dimension.z) / 2 - pcb_dimension.z]) {
+                import("../../stl/board_pumpensteuerung_tht.stl");
+            }
         }
         //die 5 sind die hutschiene ... das muss noch besser gehen!!
         translate([0, 0, (ueberhang + dimension.z - 5) / -2]) {
