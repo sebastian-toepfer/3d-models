@@ -58,7 +58,44 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        [
+          "silk_edge_clearance|100750000|103555000|20b95a8c-0167-46e3-a259-9efb132bc5e0|52de3c0f-f248-4aec-9aec-92ab9c4dfb1c",
+          ""
+        ],
+        [
+          "silk_edge_clearance|112763979|107605000|cca1da03-e2db-443f-9bbe-956b25fe050b|2094aef8-03c3-4e0f-aa7c-6853fe8bab5a",
+          ""
+        ],
+        [
+          "silk_edge_clearance|112797014|103555000|cca1da03-e2db-443f-9bbe-956b25fe050b|978213a1-0a18-4a8b-bd9a-363ec5821418",
+          ""
+        ],
+        [
+          "silk_edge_clearance|118550000|103555000|cca1da03-e2db-443f-9bbe-956b25fe050b|2f54823a-9d10-4766-8bfc-e28135ae73b2",
+          ""
+        ],
+        [
+          "silk_edge_clearance|130905384|107555000|d2d599bb-cc98-4dda-92e0-aab79fc7d0c0|32568028-a6df-4413-bef5-6354447c0e78",
+          ""
+        ],
+        [
+          "silk_edge_clearance|130938419|103505000|d2d599bb-cc98-4dda-92e0-aab79fc7d0c0|1fe55e74-fe6e-4747-a679-907cda65d455",
+          ""
+        ],
+        [
+          "silk_edge_clearance|136690000|103505000|d2d599bb-cc98-4dda-92e0-aab79fc7d0c0|1e1e9f63-7271-4632-a7be-43bff69e5186",
+          ""
+        ],
+        [
+          "silk_edge_clearance|94964396|107605000|20b95a8c-0167-46e3-a259-9efb132bc5e0|f73433b1-1829-40ab-8825-04ec0bc6bbfe",
+          ""
+        ],
+        [
+          "silk_edge_clearance|94997431|103555000|20b95a8c-0167-46e3-a259-9efb132bc5e0|5711a9f0-fbdc-4aa4-8008-de040ee93f69",
+          ""
+        ]
+      ],
       "meta": {
         "version": 2
       },
@@ -123,7 +160,7 @@
       },
       "rules": {
         "max_error": 0.005,
-        "min_clearance": 0.0,
+        "min_clearance": 0.2,
         "min_connection": 0.0,
         "min_copper_edge_clearance": 0.5,
         "min_groove_width": 0.0,
@@ -136,7 +173,7 @@
         "min_text_height": 0.8,
         "min_text_thickness": 0.08,
         "min_through_hole_diameter": 0.3,
-        "min_track_width": 0.0,
+        "min_track_width": 0.3,
         "min_via_annular_width": 0.1,
         "min_via_diameter": 0.5,
         "solder_mask_to_copper_clearance": 0.0,
