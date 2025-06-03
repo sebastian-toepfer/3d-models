@@ -3,6 +3,10 @@ STEP_OUT := 3d/step
 STL_OUT := 3d/stl
 3MF_OUT := 3d/3mf
 SCAD_PARTS := 3d/openscad/parts
+SCAD_MODEL := 3d/openscad/models/gehaeuse.scad
+DOCS_DIR := docs/assembly
+FRAMES := 1 2 3 4 5
+FRAME_FILES := $(addprefix $(DOCS_DIR)/frame_,$(addsuffix .png,$(FRAMES)))
 
 # Alle .kicad_pcb-Dateien finden
 PCB_FILES := $(shell find $(KICAD_DIR) -type f -name '*.kicad_pcb')
@@ -37,11 +41,13 @@ PRINTABLE_STL_FILES := $(foreach scad,$(SCAD_PART_FILES),$(call SCAD_TO_STL,$(sc
 PRINTABLE_3MF_FILES := $(foreach scad,$(SCAD_PART_FILES),$(call SCAD_TO_3MF,$(scad)))
 
 # Standard-Ziel
-all: $(STEP_FILES) $(PCB_STL_FILES) $(PRINTABLE_STL_FILES) $(PRINTABLE_3MF_FILES)
+all: $(STEP_FILES) $(PCB_STL_FILES) $(PRINTABLE_STL_FILES) $(PRINTABLE_3MF_FILES) frames
 
 pcbstl: $(PCB_STL_FILES)
 3mf: $(PRINTABLE_3MF_FILES)
 stl: $(PRINTABLE_STL_FILES)
+
+frames: $(FRAME_FILES)
 
 # Generiere jede Regel explizit
 $(foreach rule,$(STL_RULES), \
@@ -76,8 +82,17 @@ $(3MF_OUT)/%.3mf: $(SCAD_PARTS)/%.scad
 	openscad --hardwarnings -m make -D \$$fn=128 "$<" -o "$@"
 	@echo "✅ Konvertiert: $@"
 
+$(foreach i,$(FRAMES),\
+  $(eval $(DOCS_DIR)/frame_$(i).png: $(SCAD_MODEL) $(PCB_STL_FILES))\
+  $(eval $(DOCS_DIR)/frame_$(i).png:; \
+    @mkdir -p $(DOCS_DIR); \
+    echo "Rendering frame $(i) (step_full_manuell = $(i))"; \
+    openscad -D 'manuell=true' -D 'step_full_manuell=$(i)' -o $$@ $$<) \
+)
+
 # Aufräumen
 clean:
 	rm -rf $(STEP_OUT) $(STL_OUT) $(3MF_OUT)
+	rm -rf $(FRAME_FILES)
 
 .PHONY: all clean
