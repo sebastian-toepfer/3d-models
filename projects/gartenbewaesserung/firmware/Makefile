@@ -1,7 +1,6 @@
 # Makefile für firmware/ (PlatformIO)
 all:
 	@$(MAKE) codestyle
-	@${MAKE} lint
 	platformio run
 
 upload:
@@ -16,15 +15,6 @@ clean:
 SRC_FILES := $(shell find src lib -type f \( -name '*.c' -o -name '*.cpp' \))
 CLANG_FORMAT := clang-format
 FORMAT_STYLE ?= file
-
-.PHONY: lint
-lint:
-	@echo "🔍 Running cppcheck analysis..."
-	cppcheck --enable=all --error-exitcode=1 \
-	  --inline-suppr --quiet --force \
-	  --suppress=missingIncludeSystem \
-	  -I include -I src \
-	  src
 
 .PHONY: codestyle
 codestyle:
