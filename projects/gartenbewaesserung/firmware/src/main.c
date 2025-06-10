@@ -10,7 +10,31 @@
 
 struct Pump *orpu;
 struct SecretStore *lora_secrets;
-struct Transceiver *lori;
+struct LoRa *lori;
+
+static void handle_garden_valve(uint8_t *data, size_t len, void *pump)
+{
+  if (len > 0 && data[0] == 0x01)
+  {
+    pump_open_garden_valve((struct Pump *)pump);
+  }
+  else
+  {
+    pump_close_garden_valve((struct Pump *)pump);
+  }
+}
+
+static void handle_pool_valve(uint8_t *data, size_t len, void *pump)
+{
+  if (len > 0 && data[0] == 0x01)
+  {
+    pump_open_pool_valve((struct Pump *)pump);
+  }
+  else
+  {
+    pump_close_pool_valve((struct Pump *)pump);
+  }
+}
 
 // cppcheck-suppress unusedFunction
 void setup()
@@ -46,23 +70,14 @@ void setup()
 
   lora_secrets = eccx08_create(8);
   lori = lora_create(lora_secrets);
+  lora_register_handler(lori, 1, handle_garden_valve, orpu);
+  lora_register_handler(lori, 2, handle_pool_valve, orpu);
 }
 
 // cppcheck-suppress unusedFunction
 void loop()
 {
-  uint8_t garden_valve_state[1];
-  if (transceiver_read(lori, garden_valve_state, 1) == 1)
-  {
-    if (garden_valve_state[0] == 0x01)
-    {
-      pump_open_garden_valve(orpu);
-    }
-    else
-    {
-      pump_close_garden_valve(orpu);
-    }
-  }
-  // das andere relais ... evtl. port?
-  // sollten wir hier mal ueber IRQ nachdenken?
+  lora_poll(lori);
+  // sollten wir hier mal ueber IRQ nachdenken? und wenn ja wie geht das mit
+  // mkrwan
 }
