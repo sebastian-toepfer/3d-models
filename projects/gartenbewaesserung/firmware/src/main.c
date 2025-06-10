@@ -1,10 +1,16 @@
 #include <Arduino.h>
 
+#include "connectivity/eccx08.h"
+#include "connectivity/lora.h"
+#include "connectivity/secretstore.h"
+#include "connectivity/transceiver.h"
 #include "digital_output_pin_samd21.h"
 #include "pinmap.h"
 #include "pump/pump.h"
 
 struct Pump *orpu;
+struct SecretStore *lora_secrets;
+struct Transceiver *lori;
 
 // cppcheck-suppress unusedFunction
 void setup()
@@ -37,36 +43,26 @@ void setup()
           .on_delay = 1000,
           .off_delay = 500,
       });
-  if (!orpu)
-  {
-    struct DigitalOutputPin *led = digital_output_pin_create(&(
-        digital_pin_config_t){
-        .pin = PIN_HAUPTRELAIS,
-        .platform_info = &(DigitalPinInfo_SAMD21){
-            .group = &PORT->Group[g_APinDescription[PIN_HAUPTRELAIS].ulPort],
-            .pin_mask = 1 << g_APinDescription[PIN_HAUPTRELAIS].ulPin}});
-    while (1)
-    {
-      digital_output_pin_toggle(led);
-      delay(250);
-    }
-  }
+
+  lora_secrets = eccx08_create(8);
+  lori = lora_create(lora_secrets);
 }
 
 // cppcheck-suppress unusedFunction
 void loop()
 {
-  // read state from lora ...
-  pump_open_garden_valve(orpu);
-  delay(5000);
-  pump_open_pool_valve(orpu);
-  delay(2000);
-  pump_close_pool_valve(orpu);
-  delay(2000);
-  pump_close_garden_valve(orpu);
-  delay(1000);
-  pump_open_pool_valve(orpu);
-  delay(4000);
-  pump_close_pool_valve(orpu);
-  delay(3000);
+  uint8_t garden_valve_state[1];
+  if (transceiver_read(lori, garden_valve_state, 1) == 1)
+  {
+    if (garden_valve_state[0] == 0x01)
+    {
+      pump_open_garden_valve(orpu);
+    }
+    else
+    {
+      pump_close_garden_valve(orpu);
+    }
+  }
+  // das andere relais ... evtl. port?
+  // sollten wir hier mal ueber IRQ nachdenken?
 }
