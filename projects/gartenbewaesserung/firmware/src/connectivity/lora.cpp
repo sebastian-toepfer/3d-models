@@ -156,3 +156,12 @@ struct Transceiver *lora_transceiver(const struct LoRa *lora)
   result->read = lorawan_read;
   return result;
 }
+
+void lora_transceiver_destroy(struct Transceiver *transceiver)
+{
+  if (!transceiver)
+  {
+    return;
+  }
+  delete transceiver;
+}
