@@ -56,6 +56,13 @@ module gehaeuse_oberseite(
         //    schraubterminal_loecher(anzahl = 4);
         //}
 
+        //sma
+        translate([20, dimension.y / 2, -12.2]) {
+            rotate([90, 0, 0]) {
+                cylinder(h = wandstaerke * 3, d = 6.4, center = true);
+            }
+        }
+
         mirror_copy([1, 0, 0]) {
             mirror_copy([0, 1, 0]) {
                 translate([
