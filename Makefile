@@ -29,14 +29,14 @@ all: ${STL_TARGETS} ${3MF_TARGETS}
 $(BUILDDIR)/%.stl: $$(filter $$(addprefix $(SOURCEDIR)/, $$(basename %)).scad, $(OPENSCADFILES)) $$(filter $$(addprefix $(SOURCEDIR)/, $$(addsuffix .json, $$(basename %))), $(JSONFILES))
 	mkdir -p $(dir $(@))
 	mkdir -p $(BUILDDIR)/new_stls
-	$(OPENSCAD) --hardwarnings -m make -D \$$fn=128 $(addprefix -p ,$(filter %json, $(^))) $(addprefix -P ,$(shell echo $(@) | rev | cut -d. -f2 | rev)) -o $@ $(filter-out %json, $(^))
+	$(OPENSCAD) --hardwarnings -m render -D \$$fn=128 $(addprefix -p ,$(filter %json, $(^))) $(addprefix -P ,$(shell echo $(@) | rev | cut -d. -f2 | rev)) -o $@ $(filter-out %json, $(^))
 	cp $@ $(BUILDDIR)/new_stls/
 
 .SECONDEXPANSION:
 $(BUILDDIR)/%.3mf: $$(filter $$(addprefix $(SOURCEDIR)/, $$(basename %)).scad, $(OPENSCADFILES)) $$(filter $$(addprefix $(SOURCEDIR)/, $$(addsuffix .json, $$(basename %))), $(JSONFILES))
 	mkdir -p $(dir $(@))
 	mkdir -p $(BUILDDIR)/new_stls
-	$(OPENSCAD) --hardwarnings -m make -D \$$fn=128 $(addprefix -p ,$(filter %json, $(^))) $(addprefix -P ,$(shell echo $(@) | rev | cut -d. -f2 | rev)) -o $@ $(filter-out %json, $(^))
+	$(OPENSCAD) --hardwarnings -m render -D \$$fn=128 $(addprefix -p ,$(filter %json, $(^))) $(addprefix -P ,$(shell echo $(@) | rev | cut -d. -f2 | rev)) -o $@ $(filter-out %json, $(^))
 	cp $@ $(BUILDDIR)/new_stls/
 
 pull:

@@ -82,14 +82,14 @@ $(STL_OUT)/board_%.stl: $(STEP_OUT)/board_%.step
 $(STL_OUT)/%.stl: $(SCAD_PARTS)/%.scad
 	@mkdir -p $(STL_OUT)
 	@echo "⭢️  Erzeuge STL aus OpenSCAD: $<"
-	openscad --hardwarnings -m make -D \$$fn=128 "$<" -o "$@"
+	openscad --hardwarnings -m render -D \$$fn=128 "$<" -o "$@"
 	@echo "✅ Konvertiert: $@"
 
 # SCAD-Teile zu 3MF
 $(3MF_OUT)/%.3mf: $(SCAD_PARTS)/%.scad
 	@mkdir -p $(3MF_OUT)
 	@echo "⭢️  Erzeuge 3MF aus OpenSCAD: $<"
-	openscad --hardwarnings -m make -D \$$fn=128 "$<" -o "$@"
+	openscad --hardwarnings -m render -D \$$fn=128 "$<" -o "$@"
 	@echo "✅ Konvertiert: $@"
 
 $(foreach i,$(FRAMES),\
@@ -97,7 +97,7 @@ $(foreach i,$(FRAMES),\
   $(eval $(DOCS_DIR)/frame_$(i).png:; \
     @mkdir -p $(DOCS_DIR); \
     echo "Rendering frame $(i) (step_full_manuell = $(i))"; \
-    openscad -D 'manuell=true' -D 'step_full_manuell=$(i)' -o $$@ $$<) \
+    openscad -m render -D 'manuell=true' -D 'step_full_manuell=$(i)' -o $$@ $$<) \
 )
 
 # Aufräumen
