@@ -1,6 +1,7 @@
-#include <Arduino.h>
 #include <stddef.h>
+#include <stdlib.h>
 
+#include "platform/sleep.h"
 #include "pump.h"
 
 struct Valve
@@ -107,14 +108,14 @@ static inline void pump_close_value(struct Valve *valve)
 
 static inline void pump_on(const struct Pump *pump)
 {
-  delay(pump->on_delay);
+  sleep_ms(pump->on_delay);
   digital_output_pin_switch_on(pump->main_switch);
 }
 
 static inline void pump_off(const struct Pump *pump)
 {
   digital_output_pin_switch_off(pump->main_switch);
-  delay(pump->off_delay);
+  sleep_ms(pump->off_delay);
 }
 
 void pump_open_garden_valve(const struct Pump *pump)
