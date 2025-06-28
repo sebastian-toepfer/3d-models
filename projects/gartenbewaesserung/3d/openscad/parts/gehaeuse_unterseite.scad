@@ -102,14 +102,19 @@ module gehaeuse_unterseite(
                         (dimension.y - board_befestigung) / 2,
                         - 1 
                     ]) {
-                        cube(
-                            [
-                              board_befestigung,
-                              board_befestigung,
-                              dimension.z
-                            ],
-                            center = true
-                        );
+                        difference() {
+                            cube(
+                                [
+                                  board_befestigung,
+                                  board_befestigung,
+                                  dimension.z - 1.3
+                                ],
+                                center = true
+                            );
+                            translate([1, 1, 0.1]) {
+                                cylinder(d = 3.5, h = dimension.z, center = true);
+                            }
+                        }
                     }
                 }
             }
