@@ -1322,7 +1322,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "220"
 			(at 30.48 31.7499 0)
 			(effects
 				(font
@@ -1331,7 +1331,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
 			(at 26.162 30.48 90)
 			(effects
 				(font
