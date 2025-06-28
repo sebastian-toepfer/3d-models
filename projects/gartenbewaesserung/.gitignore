@@ -1,0 +1,34 @@
+# generated sources
+firmware/include/pinmap.h
+firmware/src/platform/board/board.c
+
+netlist.xml
+
+# macOS system files
+.DS_Store
+
+# KiCad backup and autosave files
+*.bak
+*_autosave-*
+*.lck
+fp-info-cache
+**/*-backups/
+
+# KiCad generated output
+*.gbr
+*.drl
+*.gbrjob
+*.gtl
+*.gbl
+*.gm1
+
+# Platform IO stuff
+**/.pio/
+
+# vi swap and backup files
+*.swp
+*.swo
+*~
+
+# python
+**/__pycache__/

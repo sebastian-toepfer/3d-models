@@ -1,0 +1,5 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "AZFootprints")(type "KiCad")(uri "${KIPRJMOD}/../libraries/footprints/AZFootprints.pretty")(options "")(descr ""))
+  (lib (name "PhoenixContact")(type "KiCad")(uri "${KIPRJMOD}/../libraries/footprints/PhoenixContact.pretty")(options "")(descr ""))
+)
