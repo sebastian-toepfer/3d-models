@@ -218,6 +218,19 @@
 				)
 			)
 		)
+		(property "MPN" "HF3FA/005-ZTF"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "5bbd13bb-0a61-4688-a4c6-00cb73e8cb5d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Relay*SPDT*SANYOU*SRD*Series*Form*C*")
 		(path "/63189825-b5eb-44b8-a12d-37b83fa5c151/f742d472-199e-4e2d-8d64-e20624765134")
 		(sheetname "/Poolrelais/")
@@ -756,6 +769,19 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" "HF3FA/005-ZTF"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "65b09a78-62c0-4292-b524-bc52b20f85e9")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -1327,6 +1353,19 @@
 				)
 			)
 		)
+		(property "MPN" "1N4007"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "fa26c21c-e66e-4398-9a31-0b4bf666bf67")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "TO-???* *_Diode_* *SingleDiode* D_*")
 		(path "/016a9bfd-fffd-4284-b312-eaf12770d68d/1d18793e-0adb-40e2-9a1f-29425b3fcace")
 		(sheetname "/Hauptrelais/")
@@ -1612,6 +1651,19 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" "ABX00029"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "6e11192d-1879-43c2-978b-5e58fcdc6b5a")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -2441,6 +2493,19 @@
 				)
 			)
 		)
+		(property "MPN" "1729131"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e67e9a1f-0398-43f1-95c4-c514a3f3001f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "TerminalBlock*:*")
 		(path "/d92ddb11-359c-4ecb-a782-88a2addaf04a/5a091443-d8d5-46cd-963d-a0778bfb30c3")
 		(sheetname "/Bewaesserungsrelais/")
@@ -2658,7 +2723,7 @@
 				)
 			)
 		)
-		(property "Value" "220"
+		(property "Value" "220 Ohm, axial, 250 mW, 0,1%"
 			(at 3.81 2.37 270)
 			(layer "F.Fab")
 			(uuid "3263230e-7c4d-4524-836f-4392af5a1602")
@@ -2689,6 +2754,19 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" " RC55Y-220RBI"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "3a36075c-7267-4b9b-a86d-07fd86c10409")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -2861,7 +2939,7 @@
 				)
 			)
 		)
-		(property "Value" "10 nF"
+		(property "Value" "10000pF 100V 10% Y5P 5mm"
 			(at 8.42 0.18 0)
 			(layer "F.Fab")
 			(uuid "91aded4b-efb7-4d21-a5ec-93e917f6337f")
@@ -2892,6 +2970,19 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" "D103K43Y5PH6TJ5R"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f0d10eb4-76ad-40ed-9fb8-876d68a8f26e")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -3077,6 +3168,19 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" "1729131"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "0bb42bdc-60c0-4635-80ea-58459478d6c7")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -3335,6 +3439,19 @@
 				)
 			)
 		)
+		(property "MPN" "2N3904"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "68a96566-6497-4e39-a5a9-67ccbc6af3de")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "TO?92*")
 		(path "/016a9bfd-fffd-4284-b312-eaf12770d68d/d4cd3ce2-95fc-465b-b7cf-288e364ca995")
 		(sheetname "/Hauptrelais/")
@@ -3518,7 +3635,7 @@
 				)
 			)
 		)
-		(property "Value" "220"
+		(property "Value" "220 Ohm, axial, 250 mW, 0,1%"
 			(at 3.81 2.37 270)
 			(layer "F.Fab")
 			(uuid "48bcd09a-b5d2-447d-b263-b87fba67d94a")
@@ -3549,6 +3666,19 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" " RC55Y-220RBI"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "30b2b159-5f02-4c4f-a25b-d06ce1d3b968")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -3852,6 +3982,19 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" "HF3FA/005-ZTF"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "98d84cfa-79bd-481f-b346-b7f281bacb15")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -4300,6 +4443,19 @@
 				)
 			)
 		)
+		(property "MPN" "2N3904"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "4857e08d-3722-4d4e-adb9-0e20cb7299f5")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "TO?92*")
 		(path "/63189825-b5eb-44b8-a12d-37b83fa5c151/d4cd3ce2-95fc-465b-b7cf-288e364ca995")
 		(sheetname "/Poolrelais/")
@@ -4483,7 +4639,7 @@
 				)
 			)
 		)
-		(property "Value" "1000 µF"
+		(property "Value" "1000 µF, 25 V, 105°C, low ESR, 12,5 x 20 mm, RM 5"
 			(at 0 9.5 0)
 			(layer "F.Fab")
 			(uuid "f086c146-680c-441e-9b0c-2ce28706ea8d")
@@ -4514,6 +4670,19 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" "EEUFM1E102"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "557ebb43-e24e-4f55-b873-4ef3667b028b")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -7041,6 +7210,19 @@
 				)
 			)
 		)
+		(property "MPN" "1N4007"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "ec97b38a-6167-4ffa-83f2-5ecc56c6a5b6")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "TO-???* *_Diode_* *SingleDiode* D_*")
 		(path "/63189825-b5eb-44b8-a12d-37b83fa5c151/1d18793e-0adb-40e2-9a1f-29425b3fcace")
 		(sheetname "/Poolrelais/")
@@ -7331,6 +7513,19 @@
 				)
 			)
 		)
+		(property "MPN" "1729128"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "8a0ad2b0-7c4e-4d4e-955e-e88cb88396cb")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "TerminalBlock*:*")
 		(path "/ca9aa48b-653f-46e1-9465-14d0f2b2582c")
 		(sheetname "/")
@@ -7570,6 +7765,19 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" "1729144"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b0cff638-459d-4e19-9f1f-0e963acc12e2")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -7936,6 +8144,19 @@
 				)
 			)
 		)
+		(property "MPN" "1729131"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "908645d3-db72-4375-8d4d-aae5ba1c3635")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "TerminalBlock*:*")
 		(path "/63189825-b5eb-44b8-a12d-37b83fa5c151/5a091443-d8d5-46cd-963d-a0778bfb30c3")
 		(sheetname "/Poolrelais/")
@@ -8153,7 +8374,7 @@
 				)
 			)
 		)
-		(property "Value" "220"
+		(property "Value" "220 Ohm, axial, 250 mW, 0,1%"
 			(at 3.81 2.37 270)
 			(layer "F.Fab")
 			(uuid "edb30bc2-f48c-40ea-a7ec-274f68359317")
@@ -8184,6 +8405,19 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" " RC55Y-220RBI"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e3ad48ce-444b-43f0-9121-4730a32783e9")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -8356,7 +8590,7 @@
 				)
 			)
 		)
-		(property "Value" "100 nF"
+		(property "Value" "0.1uF 500V +80/-20%"
 			(at 8.9 0.1 0)
 			(layer "F.Fab")
 			(uuid "1be4f68c-504a-44ec-93bc-f1adf96d9f99")
@@ -8387,6 +8621,19 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" "S104Z93Z5VL83L0R"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "3879564d-554a-4754-8402-3cd5c6b31b9d")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -8763,6 +9010,19 @@
 				)
 			)
 		)
+		(property "MPN" "1N4007"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "44d2c1d5-9a4e-4431-9fcc-46e5c3058509")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "TO-???* *_Diode_* *SingleDiode* D_*")
 		(path "/d92ddb11-359c-4ecb-a782-88a2addaf04a/1d18793e-0adb-40e2-9a1f-29425b3fcace")
 		(sheetname "/Bewaesserungsrelais/")
@@ -9049,6 +9309,19 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" "2N3904"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "93b2d40e-f761-49e9-8ba4-d3073bf61972")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)

@@ -2626,7 +2626,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10 nF"
+		(property "Value" "10000pF 100V 10% Y5P 5mm"
 			(at 83.82 77.47 0)
 			(effects
 				(font
@@ -2654,6 +2654,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 91.44 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "D103K43Y5PH6TJ5R"
 			(at 91.44 76.2 0)
 			(effects
 				(font
@@ -2796,6 +2805,15 @@
 				(hide yes)
 			)
 		)
+		(property "MPN" "ABX00029"
+			(at 120.65 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "D4"
 			(uuid "1763aff3-1dff-4c3d-b361-a97a15e76305")
 		)
@@ -2907,7 +2925,7 @@
 				)
 			)
 		)
-		(property "Value" "1000 µF"
+		(property "Value" "1000 µF, 25 V, 105°C, low ESR, 12,5 x 20 mm, RM 5"
 			(at 22.479 38.1 90)
 			(effects
 				(font
@@ -2935,6 +2953,15 @@
 		)
 		(property "Description" "Polarized capacitor"
 			(at 21.59 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "EEUFM1E102"
+			(at 21.59 43.18 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2975,7 +3002,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100 nF"
+		(property "Value" "0.1uF 500V +80/-20%"
 			(at 71.374 77.47 0)
 			(effects
 				(font
@@ -3003,6 +3030,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 80.01 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "S104Z93Z5VL83L0R"
 			(at 80.01 76.2 0)
 			(effects
 				(font
@@ -3073,6 +3109,15 @@
 		)
 		(property "Description" "Generic screw terminal, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
 			(at 78.74 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "1729144"
+			(at 78.74 24.13 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3490,6 +3535,15 @@
 		)
 		(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
 			(at 29.21 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "1729128"
+			(at 29.21 63.5 90)
 			(effects
 				(font
 					(size 1.27 1.27)

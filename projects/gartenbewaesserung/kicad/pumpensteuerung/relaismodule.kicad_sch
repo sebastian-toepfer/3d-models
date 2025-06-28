@@ -1322,7 +1322,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "220"
+		(property "Value" "220 Ohm, axial, 250 mW, 0,1%"
 			(at 30.48 31.7499 0)
 			(effects
 				(font
@@ -1350,6 +1350,15 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 27.94 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" " RC55Y-220RBI"
 			(at 27.94 30.48 0)
 			(effects
 				(font
@@ -1452,6 +1461,15 @@
 				(hide yes)
 			)
 		)
+		(property "MPN" "1N4007"
+			(at 45.72 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "6564189b-62ca-4984-b62b-831cedd599bf")
 		)
@@ -1521,6 +1539,15 @@
 			)
 		)
 		(property "Description" "Generic screw terminal, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 82.55 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "1729131"
 			(at 82.55 41.91 0)
 			(effects
 				(font
@@ -1611,6 +1638,15 @@
 				(hide yes)
 			)
 		)
+		(property "MPN" "2N3904"
+			(at 27.94 44.45 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "d21139f8-471d-40ce-8a3e-786bba12ec70")
 		)
@@ -1684,6 +1720,15 @@
 		)
 		(property "Description" "Sanyo SRD relay, Single Pole Miniature Power Relay,"
 			(at 45.72 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "HF3FA/005-ZTF"
+			(at 45.72 52.07 90)
 			(effects
 				(font
 					(size 1.27 1.27)
