@@ -1,3 +1,9 @@
+# generated sources
+firmware/include/pinmap.h
+firmware/src/platform/board/board.c
+
+netlist.xml
+
 # macOS system files
 .DS_Store
 
@@ -24,3 +30,5 @@ fp-info-cache
 *.swo
 *~
 
+# python
+**/__pycache__/

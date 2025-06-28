@@ -46,34 +46,13 @@ static void lora_daily_beacon()
 // cppcheck-suppress unusedFunction
 void setup()
 {
-  orpu = pump_create(
-      &(digital_pin_config_t){
-          .pin = PIN_HAUPTRELAIS,
-          .platform_info =
-              &(DigitalPinInfo_SAMD21){
-                  .group =
-                      &PORT->Group[g_APinDescription[PIN_HAUPTRELAIS].ulPort],
-                  .pin_mask = 1 << g_APinDescription[PIN_HAUPTRELAIS].ulPin}},
-      &(digital_pin_config_t){
-          .pin = PIN_BEWAESSERUNGSRELAIS,
-          .platform_info =
-              &(DigitalPinInfo_SAMD21){
-                  .group =
-                      &PORT->Group[g_APinDescription[PIN_BEWAESSERUNGSRELAIS]
-                                       .ulPort],
-                  .pin_mask =
-                      1 << g_APinDescription[PIN_BEWAESSERUNGSRELAIS].ulPin}},
-      &(digital_pin_config_t){
-          .pin = PIN_POOLRELAIS,
-          .platform_info =
-              &(DigitalPinInfo_SAMD21){
-                  .group =
-                      &PORT->Group[g_APinDescription[PIN_POOLRELAIS].ulPort],
-                  .pin_mask = 1 << g_APinDescription[PIN_POOLRELAIS].ulPin}},
-      &(timeout_config_t){
-          .on_delay = 1000,
-          .off_delay = 500,
-      });
+  orpu = pump_create(&Hauptrelais_pin_config,
+                     &Bewaesserungsrelais_pin_config,
+                     &Poolrelais_pin_config,
+                     &(timeout_config_t){
+                         .on_delay = 1000,
+                         .off_delay = 500,
+                     });
 
   lora_secrets = eccx08_create(8);
   lori = lora_create(lora_secrets);
@@ -87,6 +66,7 @@ void setup()
 // cppcheck-suppress unusedFunction
 void loop()
 {
+  lora_poll(lori);
   if (lora_daily_beacon_pending)
   {
     struct Transceiver *tx = lora_transceiver(lori);
@@ -96,7 +76,4 @@ void loop()
     }
     lora_transceiver_destroy(tx);
   }
-  lora_poll(lori);
-  // sollten wir hier mal ueber IRQ nachdenken? und wenn ja wie geht das mit
-  // mkrwan
 }

@@ -7,6 +7,10 @@ SCAD_MODEL := 3d/openscad/models/gehaeuse.scad
 DOCS_DIR := docs/assembly
 FRAMES := 1 2 3 4 5
 FRAME_FILES := $(addprefix $(DOCS_DIR)/frame_,$(addsuffix .png,$(FRAMES)))
+KICAD_SCH = kicad/pumpensteuerung/pumpensteuerung.kicad_sch
+NETLIST = netlist.xml
+PINMAP_H = firmware/include/pinmap.h
+BOARD_C  = firmware/src/platform/board/board.c
 FIRMWARE_DIR := firmware
 
 # Alle .kicad_pcb-Dateien finden
@@ -42,8 +46,7 @@ PRINTABLE_STL_FILES := $(foreach scad,$(SCAD_PART_FILES),$(call SCAD_TO_STL,$(sc
 PRINTABLE_3MF_FILES := $(foreach scad,$(SCAD_PART_FILES),$(call SCAD_TO_3MF,$(scad)))
 
 # Standard-Ziel
-all: $(STEP_FILES) $(PCB_STL_FILES) $(PRINTABLE_STL_FILES) $(PRINTABLE_3MF_FILES) frames
-	$(MAKE) -C $(FIRMWARE_DIR)
+all: $(STEP_FILES) $(PCB_STL_FILES) $(PRINTABLE_STL_FILES) $(PRINTABLE_3MF_FILES) frames firmware
 
 pcbstl: $(PCB_STL_FILES)
 3mf: $(PRINTABLE_3MF_FILES)
@@ -51,8 +54,17 @@ stl: $(PRINTABLE_STL_FILES)
 
 frames: $(FRAME_FILES)
 
+$(NETLIST): $(KICAD_SCH)
+	kicad-cli sch export netlist -o $(NETLIST) $(KICAD_SCH)
+
+$(PINMAP_H) $(BOARD_C): $(NETLIST) tools/pinmap/generate_board.py
+	python3 tools/pinmap/generate_board.py --platform mkrwan1310 --mcu-ref MCU1 --netlist $(NETLIST) --out-h $(PINMAP_H) --out-c $(BOARD_C)
+
+firmware: $(PINMAP_H) $(BOARD_C)
+	$(MAKE) -C $(FIRMWARE_DIR)
+
 # Firmware flashen
-flash:
+flash: firmware 
 	$(MAKE) -C $(FIRMWARE_DIR) upload
 
 # Firmware testen
@@ -102,7 +114,7 @@ $(foreach i,$(FRAMES),\
 
 # Aufräumen
 clean:
-	rm -rf $(STEP_OUT) $(STL_OUT) $(3MF_OUT)
+	rm -rf $(STEP_OUT) $(STL_OUT) $(3MF_OUT) $(NETLIST) $(PINMAP_H) $(BOARD_C)
 	rm -rf $(FRAME_FILES)
 	$(MAKE) -C $(FIRMWARE_DIR) clean
 
