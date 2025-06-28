@@ -872,7 +872,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Transistor_BJT:S8050"
+		(symbol "Transistor_BJT:2N3904"
 			(pin_names
 				(offset 0)
 				(hide yes)
@@ -889,7 +889,7 @@
 					(justify left)
 				)
 			)
-			(property "Value" "S8050"
+			(property "Value" "2N3904"
 				(at 5.08 0 0)
 				(effects
 					(font
@@ -909,7 +909,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "http://www.unisonic.com.tw/datasheet/S8050.pdf"
+			(property "Datasheet" "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF"
 				(at 0 0 0)
 				(effects
 					(font
@@ -919,7 +919,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "0.7A Ic, 20V Vce, Low Voltage High Current NPN Transistor, TO-92"
+			(property "Description" "0.2A Ic, 40V Vce, Small Signal NPN Transistor, TO-92"
 				(at 0 0 0)
 				(effects
 					(font
@@ -928,7 +928,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "S8050 NPN Low Voltage High Current Transistor"
+			(property "ki_keywords" "NPN Transistor"
 				(at 0 0 0)
 				(effects
 					(font
@@ -946,7 +946,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "S8050_0_1"
+			(symbol "2N3904_0_1"
 				(polyline
 					(pts
 						(xy -2.54 0) (xy 0.635 0)
@@ -983,7 +983,7 @@
 					)
 				)
 			)
-			(symbol "S8050_1_1"
+			(symbol "2N3904_1_1"
 				(polyline
 					(pts
 						(xy 0.635 0.635) (xy 2.54 2.54)
@@ -1476,88 +1476,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Transistor_BJT:S8050")
-		(at 27.94 44.45 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "48caa581-002b-429a-9f3d-ed6f61a1f95f")
-		(property "Reference" "Q1"
-			(at 27.94 50.8 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "S8050"
-			(at 27.94 53.34 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
-			(at 26.035 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.unisonic.com.tw/datasheet/S8050.pdf"
-			(at 27.94 44.45 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Description" "0.7A Ic, 20V Vce, Low Voltage High Current NPN Transistor, TO-92"
-			(at 27.94 44.45 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "26ce5d4a-8335-4235-a8db-551e3903637e")
-		)
-		(pin "1"
-			(uuid "8b37d35c-2b16-44a9-884b-3f8b469a252e")
-		)
-		(pin "2"
-			(uuid "ecbd7389-fde9-42e9-a082-3fead2a6eb2b")
-		)
-		(instances
-			(project "gartenbewaesserung"
-				(path "/21a07dfa-371b-4773-840e-44a8dfeac208/016a9bfd-fffd-4284-b312-eaf12770d68d"
-					(reference "Q1")
-					(unit 1)
-				)
-				(path "/21a07dfa-371b-4773-840e-44a8dfeac208/63189825-b5eb-44b8-a12d-37b83fa5c151"
-					(reference "Q3")
-					(unit 1)
-				)
-				(path "/21a07dfa-371b-4773-840e-44a8dfeac208/d92ddb11-359c-4ecb-a782-88a2addaf04a"
-					(reference "Q2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Connector:Screw_Terminal_01x03")
 		(at 82.55 41.91 180)
 		(unit 1)
@@ -1632,6 +1550,88 @@
 				)
 				(path "/21a07dfa-371b-4773-840e-44a8dfeac208/d92ddb11-359c-4ecb-a782-88a2addaf04a"
 					(reference "J4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Transistor_BJT:2N3904")
+		(at 27.94 44.45 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d4cd3ce2-95fc-465b-b7cf-288e364ca995")
+		(property "Reference" "Q1"
+			(at 27.94 50.8 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "2N3904"
+			(at 27.94 53.34 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+			(at 26.035 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF"
+			(at 27.94 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "0.2A Ic, 40V Vce, Small Signal NPN Transistor, TO-92"
+			(at 27.94 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "d21139f8-471d-40ce-8a3e-786bba12ec70")
+		)
+		(pin "1"
+			(uuid "2e0fd150-7f3d-4b55-b0b7-04dcdfd16cb8")
+		)
+		(pin "3"
+			(uuid "7a951e2a-8ea2-4115-b507-49557de61a12")
+		)
+		(instances
+			(project ""
+				(path "/21a07dfa-371b-4773-840e-44a8dfeac208/016a9bfd-fffd-4284-b312-eaf12770d68d"
+					(reference "Q1")
+					(unit 1)
+				)
+				(path "/21a07dfa-371b-4773-840e-44a8dfeac208/63189825-b5eb-44b8-a12d-37b83fa5c151"
+					(reference "Q3")
+					(unit 1)
+				)
+				(path "/21a07dfa-371b-4773-840e-44a8dfeac208/d92ddb11-359c-4ecb-a782-88a2addaf04a"
+					(reference "Q2")
 					(unit 1)
 				)
 			)

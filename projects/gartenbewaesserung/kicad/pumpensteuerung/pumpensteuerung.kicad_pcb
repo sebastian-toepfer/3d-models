@@ -3298,7 +3298,7 @@
 				)
 			)
 		)
-		(property "Value" "S8050"
+		(property "Value" "2N3904"
 			(at -2.26 -0.275 180)
 			(layer "F.Fab")
 			(uuid "0d6a1791-0571-49fa-9b0f-810d8558ed39")
@@ -3309,7 +3309,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "http://www.unisonic.com.tw/datasheet/S8050.pdf"
+		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -3322,7 +3322,7 @@
 				)
 			)
 		)
-		(property "Description" "0.7A Ic, 20V Vce, Low Voltage High Current NPN Transistor, TO-92"
+		(property "Description" "0.2A Ic, 40V Vce, Small Signal NPN Transistor, TO-92"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -3336,7 +3336,7 @@
 			)
 		)
 		(property ki_fp_filters "TO?92*")
-		(path "/016a9bfd-fffd-4284-b312-eaf12770d68d/48caa581-002b-429a-9f3d-ed6f61a1f95f")
+		(path "/016a9bfd-fffd-4284-b312-eaf12770d68d/d4cd3ce2-95fc-465b-b7cf-288e364ca995")
 		(sheetname "/Hauptrelais/")
 		(sheetfile "relaismodule.kicad_sch")
 		(attr through_hole)
@@ -4263,7 +4263,7 @@
 				)
 			)
 		)
-		(property "Value" "S8050"
+		(property "Value" "2N3904"
 			(at -2.18 -0.175 180)
 			(layer "F.Fab")
 			(uuid "0091c8fe-6757-419c-a012-d439a3de0f80")
@@ -4274,7 +4274,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "http://www.unisonic.com.tw/datasheet/S8050.pdf"
+		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -4287,7 +4287,7 @@
 				)
 			)
 		)
-		(property "Description" "0.7A Ic, 20V Vce, Low Voltage High Current NPN Transistor, TO-92"
+		(property "Description" "0.2A Ic, 40V Vce, Small Signal NPN Transistor, TO-92"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -4301,7 +4301,7 @@
 			)
 		)
 		(property ki_fp_filters "TO?92*")
-		(path "/63189825-b5eb-44b8-a12d-37b83fa5c151/48caa581-002b-429a-9f3d-ed6f61a1f95f")
+		(path "/63189825-b5eb-44b8-a12d-37b83fa5c151/d4cd3ce2-95fc-465b-b7cf-288e364ca995")
 		(sheetname "/Poolrelais/")
 		(sheetfile "relaismodule.kicad_sch")
 		(attr through_hole)
@@ -9016,7 +9016,7 @@
 				)
 			)
 		)
-		(property "Value" "S8050"
+		(property "Value" "2N3904"
 			(at -2.253 -0.124 180)
 			(layer "F.Fab")
 			(uuid "b50f1f2d-bbf9-4413-89f9-2c1db4307328")
@@ -9027,7 +9027,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "http://www.unisonic.com.tw/datasheet/S8050.pdf"
+		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -9040,7 +9040,7 @@
 				)
 			)
 		)
-		(property "Description" "0.7A Ic, 20V Vce, Low Voltage High Current NPN Transistor, TO-92"
+		(property "Description" "0.2A Ic, 40V Vce, Small Signal NPN Transistor, TO-92"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -9054,7 +9054,7 @@
 			)
 		)
 		(property ki_fp_filters "TO?92*")
-		(path "/d92ddb11-359c-4ecb-a782-88a2addaf04a/48caa581-002b-429a-9f3d-ed6f61a1f95f")
+		(path "/d92ddb11-359c-4ecb-a782-88a2addaf04a/d4cd3ce2-95fc-465b-b7cf-288e364ca995")
 		(sheetname "/Bewaesserungsrelais/")
 		(sheetfile "relaismodule.kicad_sch")
 		(attr through_hole)
