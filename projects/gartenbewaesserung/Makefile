@@ -68,7 +68,7 @@ $(foreach rule,$(STEP_RULES), \
 $(STEP_OUT)/board_%.step:
 	@mkdir -p $(STL_OUT)
 	@echo "⭢️  Erzeuge STEP für: $<"
-	kicad-cli pcb export step "$<" --output "$@" --grid-origin --include-tracks --include-zones
+	kicad-cli pcb export step "$<" --output "$@" --grid-origin --include-tracks --include-zones --subst-models
 	@echo "✅ Exportiert: $@"
 
 # PCB-STEP zu STL (für die OpenSCAD Verwendung)

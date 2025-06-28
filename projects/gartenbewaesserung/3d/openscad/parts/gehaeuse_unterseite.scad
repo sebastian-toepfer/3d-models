@@ -35,7 +35,7 @@ module gehaeuse_unterseite(
         }
         scale([1.01, 1.01, 1.01]) {
             translate([0, 0, (ueberhang + dimension.z) / 2 - pcb_dimension.z]) {
-                import("../../stl/board_pumpensteuerung_tht.stl");
+                import("../../stl/board_pumpensteuerung.stl");
             }
         }
         //die 5 sind die hutschiene ... das muss noch besser gehen!!

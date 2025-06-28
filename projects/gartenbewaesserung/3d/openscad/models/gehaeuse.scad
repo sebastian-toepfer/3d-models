@@ -2,7 +2,7 @@ use <../parts/gehaeuse_oberseite.scad>
 use <../parts/gehaeuse_unterseite.scad>
 
 manuell = true;
-step_full_manuell = 5;
+step_full_manuell = 3;
 
 max_steps = 3;
 step_full = manuell 
@@ -53,7 +53,7 @@ module gehaeuse(
                   + 2.5
                   + (exploded[0] ? 30 : 0)
         ]) {
-            import("../../stl/board_pumpensteuerung_tht.stl");
+            import("../../stl/board_pumpensteuerung.stl");
         }
     }
 
