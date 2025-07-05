@@ -29,6 +29,3 @@ fp-info-cache
 *.swp
 *.swo
 *~
-
-# python
-**/__pycache__/

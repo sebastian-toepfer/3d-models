@@ -1,3 +1,5 @@
 .*.swp
 .DS_Store
-generated/new_stls
+
+# python
+**/__pycache__/
