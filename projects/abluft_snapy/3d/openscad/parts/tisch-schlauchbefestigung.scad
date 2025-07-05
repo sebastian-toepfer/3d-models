@@ -1,5 +1,5 @@
-use <../../parts/screw/hole.scad>
-use <../../libs/own/mirror_copy.fuc>
+use <../sharedparts/screw/hole.scad>
+use <../libs/own/mirror_copy.fuc>
 
 schlauch_durchmesser    = 75;
 
