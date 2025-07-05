@@ -1,29 +1,10 @@
-use <../../../things/simucube/simucube_2_pro_psu.scad>
-use <../../../things/treq/eckwinkel.scad>
+use <../things/simucube/simucube_2_pro_psu.scad>
+use <../things/treq/eckwinkel.scad>
 
-links = true;
-
-psu_holder_corner(links = links);
+psu_holder_corner_template();
 
 //max 25 -> wegen kabel ...
-module psu_holder_corner(
-    max_contact = 25,
-    links = true
-) {
-    if (links) {
-        psu_holder_corner_links(max_contact = max_contact);
-    } else {
-        psu_holder_corner_rechts(max_contact = max_contact);
-    }
-}
-
-module psu_holder_corner_rechts(max_contact = 25) {
-    mirror([1, 0, 0]) {
-        psu_holder_corner_links(max_contact = max_contact);
-    }
-}
-
-module psu_holder_corner_links(
+module psu_holder_corner_template(
     max_contact = 25,
     scaling = 1.01
 ) {

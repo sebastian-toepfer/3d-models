@@ -1,5 +1,5 @@
-use <../../../things/simucube/simucube_2_pro_psu.scad>
-use <../../../things/treq/eckwinkel.scad>
+use <../things/simucube/simucube_2_pro_psu.scad>
+use <../things/treq/eckwinkel.scad>
 
 psu_holder_angle();
 
