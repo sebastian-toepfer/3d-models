@@ -7,7 +7,7 @@ struct DigitalOutputPin
   uint8_t pin;
 };
 
-struct DigitalOutputPin *digital_output_pin_adruino_create(const uint8_t *pin)
+struct DigitalOutputPin *digital_output_pin_arduino_create(const uint8_t *pin)
 {
   if (!pin)
   {
