@@ -1,7 +1,6 @@
 #include "digital_output_pin.h"
 
 #if defined(__SAMD21G18A__) || defined(ARDUINO_SAMD_ZERO)
-#include "digital_output_pin_samd21.c"
 #include "digital_output_pin_samd21.h"
 #include <stdlib.h>
 
@@ -15,7 +14,6 @@ digital_output_pin_create(const digital_pin_config_t *cfg)
 }
 
 #elif defined(ARDUINO)
-#include "digital_output_pin_arduino.c"
 #include "digital_output_pin_arduino.h"
 #include <stdlib.h>
 

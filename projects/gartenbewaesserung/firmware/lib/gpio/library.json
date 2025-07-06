@@ -17,7 +17,9 @@
   ],
   "build": {
     "srcFilter": [
-      "+<digital_output_pin.c>"
+      "+<digital_output_pin.c>",
+      "+<digital_output_pin_arduino.c>",
+      "+<digital_output_pin_samd21.c>"
     ],
     "includeDir": "include"
   }
