@@ -64,6 +64,7 @@ struct Pump *pump_create(const digital_pin_config_t *main_switch,
   {
     free(result->main_switch);
     free(result);
+    return NULL;
   }
 
   result->pool = pump_create_valve(pool_valve_relais);
@@ -72,6 +73,7 @@ struct Pump *pump_create(const digital_pin_config_t *main_switch,
     free(result->garden);
     free(result->main_switch);
     free(result);
+    return NULL;
   }
 
   result->on_delay = config->on_delay;
