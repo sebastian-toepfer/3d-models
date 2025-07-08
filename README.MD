@@ -1,6 +1,16 @@
 A repo that contains my hardwares projects.
 They are very simple, I am still learning. Most of the names are in German. My kicad stuff are mostly dangerous.
 
+## ⚠️ Legal Disclaimer
+
+This project and all associated hardware, firmware, and design files are provided **without any form of certification or regulatory approval**. They are intended **solely for private, educational, or research use**.
+
+Any use of this project in a commercial, professional, or publicly accessible context may **require certification** (e.g. CE, FCC, RED) and compliance with national and international regulations.
+
+It is **your sole responsibility** to ensure that any use, deployment, or modification of this project complies with applicable laws and technical standards, particularly in regard to **radio frequency emissions, electromagnetic compatibility (EMC), and product safety**.
+
+The authors disclaim any liability for damages, legal issues, or regulatory violations resulting from the use of this project.
+
 ## License
 until 2025/07/08: [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/)  
 from 2025/07/08 mutli licenses, see [LICENSE](LICENSE)
@@ -13,7 +23,7 @@ I'm making this move to express that the purpose of this repo is no longer just 
 |------------------------------------------------|-------------|
 |projects                                        | contains the project, each is an umbrella to stuff for the same problem |
 |projects/Makefile                               | create the hole project (e.g. generated 3mf, stl or generate step from the pcb, build the firmware, flash firmware) |
-|projects/<prjname>/3d                           | contains 3d stuff for the project |
+|projects/prjname&gt;/3d                           | contains 3d stuff for the project |
 |projects/<prjname>/3d/3mf                       | 3mf files for the project (currently all should be printable) |
 |projects/<prjname>/3d/openscad                  | contains the openscad files of the project |
 |projects/<prjname>/3d/openscad/libs             | link to the shared 3d libs (see below) |
