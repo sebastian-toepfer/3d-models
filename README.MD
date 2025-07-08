@@ -1,9 +1,9 @@
 A repo that contains my hardwares projects.
 They are very simple, I am still learning. Most of the names are in German. My kicad stuff are mostly dangerous.
 
-## Licence
+## License
 until 2025/07/08: [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/)  
-from 2025/07/08 mutli licences, see [LICENCE](LICENCE)
+from 2025/07/08 mutli licenses, see [LICENSE](LICENSE)
 
 I'm making this move to express that the purpose of this repo is no longer just 3d (creative) content, but also includes PCBs and firmware.
 
