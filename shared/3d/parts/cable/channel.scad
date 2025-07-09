@@ -1,3 +1,5 @@
+// This file is licensed under CC0 1.0 Universal.
+// See https://creativecommons.org/publicdomain/zero/1.0/
 module cable_channel(length = 10, cable_diameter = 1, cable_count = 1, cover_thick = 0, center = true) {
     union() {
         cable_channel_cover(length, cable_diameter, cable_count, cover_thick  + 0.1, center);

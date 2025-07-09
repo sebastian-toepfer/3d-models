@@ -1,3 +1,7 @@
+/*
+ * MIT License
+ * Copyright (c) 2025 Sebastian Toepfer
+ */
 #ifndef DIGITAL_OUTPUT_PIN_SAMD21_H
 #define DIGITAL_OUTPUT_PIN_SAMD21_H
 #include "sam.h"
@@ -20,5 +24,4 @@ extern "C"
 
 #ifdef __cplusplus
 }
-#endif
-#endif
+#endif#endif

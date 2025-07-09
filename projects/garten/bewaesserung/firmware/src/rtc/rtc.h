@@ -1,3 +1,7 @@
+/*
+ * MIT License
+ * Copyright (c) 2025 Sebastian Toepfer
+ */
 #ifndef RTC_H
 #define RTC_H
 
@@ -13,5 +17,4 @@ extern "C"
 
 #ifdef __cplusplus
 }
-#endif
-#endif
+#endif#endif

@@ -1,3 +1,7 @@
+/*
+ * MIT License
+ * Copyright (c) 2025 Sebastian Toepfer
+ */
 #include "rtc.h"
 #include "sam.h"
 

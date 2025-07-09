@@ -1,3 +1,5 @@
+// This file is licensed under CC0 1.0 Universal.
+// See https://creativecommons.org/publicdomain/zero/1.0/
 schlauch_durchmesser                  = 75;
 schlauch_wand_staerke                 = 1.5;
 

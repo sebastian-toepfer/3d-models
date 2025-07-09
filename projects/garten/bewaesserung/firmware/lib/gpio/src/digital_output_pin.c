@@ -1,3 +1,7 @@
+/*
+ * MIT License
+ * Copyright (c) 2025 Sebastian Toepfer
+ */
 #include "digital_output_pin.h"
 
 #if defined(__SAMD21G18A__) || defined(ARDUINO_SAMD_ZERO)

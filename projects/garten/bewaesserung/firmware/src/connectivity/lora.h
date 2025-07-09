@@ -1,3 +1,7 @@
+/*
+ * MIT License
+ * Copyright (c) 2025 Sebastian Toepfer
+ */
 #ifndef LORA_H
 #define LORA_H
 #include <stddef.h>

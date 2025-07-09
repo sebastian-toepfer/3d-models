@@ -1,3 +1,7 @@
+/*
+ * MIT License
+ * Copyright (c) 2025 Sebastian Toepfer
+ */
 #ifndef ECCX08_H
 #define ECCX08_H
 #include <stdint.h>
@@ -14,5 +18,4 @@ struct SecretStore *eccx08_create(uint8_t slot);
 #ifdef __cplusplus
 }
 #endif
-
 #endif

@@ -1,3 +1,7 @@
+/*
+ * MIT License
+ * Copyright (c) 2025 Sebastian Toepfer
+ */
 #include "digital_output_pin_samd21.h"
 #include "digital_output_pin.h"
 #include <stddef.h>

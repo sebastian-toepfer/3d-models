@@ -1,3 +1,5 @@
+// This file is licensed under CC0 1.0 Universal.
+// See https://creativecommons.org/publicdomain/zero/1.0/
 playseat_stand_breite      = 55;
 playseat_stand_wandstaerke = 2.6;
 

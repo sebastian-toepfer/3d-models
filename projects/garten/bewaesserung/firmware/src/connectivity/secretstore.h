@@ -1,3 +1,7 @@
+/*
+ * MIT License
+ * Copyright (c) 2025 Sebastian Toepfer
+ */
 #ifndef SECURITYSTORE_H
 #define SECURITYSTORE_H
 #include <stddef.h>
@@ -15,5 +19,4 @@ size_t secretstore_write_secret(const struct SecretStore *store, const uint8_t *
 
 #ifdef __cplusplus
 }
-#endif
-#endif
+#endif#endif
