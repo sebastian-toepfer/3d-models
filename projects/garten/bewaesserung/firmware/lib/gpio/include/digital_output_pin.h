@@ -1,3 +1,7 @@
+/*
+ * MIT License
+ * Copyright (c) 2025 Sebastian Toepfer
+ */
 #ifndef DIGITAL_OUTPUT_PIN_H
 #define DIGITAL_OUTPUT_PIN_H
 #include <stdbool.h>

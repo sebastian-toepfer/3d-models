@@ -1,3 +1,7 @@
+/*
+ * MIT License
+ * Copyright (c) 2025 Sebastian Toepfer
+ */
 #ifndef TRANSCEIVER_H
 #define TRANSCEIVER_H
 #include <stddef.h>
@@ -18,5 +22,4 @@ size_t transceiver_read(const struct Transceiver *transceiver, uint8_t *data, si
 
 #ifdef __cplusplus
 }
-#endif
-#endif
+#endif#endif

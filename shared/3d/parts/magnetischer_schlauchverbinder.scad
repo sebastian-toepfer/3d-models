@@ -1,3 +1,5 @@
+// This file is licensed under CC0 1.0 Universal.
+// See https://creativecommons.org/publicdomain/zero/1.0/
 //inspiriert durch: https://www.thingiverse.com/thing:5358837 
 use <../libs/own/mirror_copy.fuc>
 use <../libs/own/polar_pattern.fuc>

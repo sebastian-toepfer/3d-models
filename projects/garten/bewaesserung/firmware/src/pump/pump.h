@@ -1,3 +1,7 @@
+/*
+ * MIT License
+ * Copyright (c) 2025 Sebastian Toepfer
+ */
 #ifndef PUMP_H
 #define PUMP_H
 #ifdef __cplusplus

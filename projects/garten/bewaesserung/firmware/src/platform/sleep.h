@@ -1,3 +1,7 @@
+/*
+ * MIT License
+ * Copyright (c) 2025 Sebastian Toepfer
+ */
 #ifndef DELAY_H
 #define DELAY_H
 #include <stdint.h>
@@ -11,5 +15,4 @@ void sleep_ms(uint16_t ms);
 
 #ifdef __cplusplus
 }
-#endif
-#endif
+#endif#endif

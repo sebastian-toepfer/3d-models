@@ -1,3 +1,7 @@
+/*
+ * MIT License
+ * Copyright (c) 2025 Sebastian Toepfer
+ */
 #ifndef DIGITAL_OUTPUT_PIN_ARDUINO_H
 #define DIGITAL_OUTPUT_PIN_ARDUINO_H
 #include <stdint.h>
@@ -12,5 +16,4 @@ extern "C"
 
 #ifdef __cplusplus
 }
-#endif
-#endif
+#endif#endif

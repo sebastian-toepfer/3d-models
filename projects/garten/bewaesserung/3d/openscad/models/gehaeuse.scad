@@ -1,3 +1,5 @@
+// This file is licensed under CC0 1.0 Universal.
+// See https://creativecommons.org/publicdomain/zero/1.0/
 use <../parts/gehaeuse_oberseite.scad>
 use <../parts/gehaeuse_unterseite.scad>
 

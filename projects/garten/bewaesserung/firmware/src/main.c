@@ -1,3 +1,7 @@
+/*
+ * MIT License
+ * Copyright (c) 2025 Sebastian Toepfer
+ */
 #include <Arduino.h>
 
 #include "connectivity/eccx08.h"
