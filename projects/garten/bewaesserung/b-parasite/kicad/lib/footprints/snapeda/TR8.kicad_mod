@@ -1,0 +1,179 @@
+(footprint "TR8"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0.032 -1.4064 0)
+		(layer "F.SilkS")
+		(uuid "7d237473-5cfc-4a46-af56-0ac739dbcf37")
+		(effects
+			(font
+				(size 0.64 0.64)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "XDCR_ALS-PT19-315C/L177/TR8"
+		(at 8.9728 1.4064 0)
+		(layer "F.Fab")
+		(uuid "4780b7e1-cbf9-4baf-bb04-f42f41afe715")
+		(effects
+			(font
+				(size 0.64 0.64)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "62b4013c-0b4e-4a7d-95d1-2f0363b52a2d")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "49063ce1-4e37-4499-adc3-59f8023b134f")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_circle
+		(center -1.75 0)
+		(end -1.65 0)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "2342f11b-47e6-4719-b8e3-bab9ceea6d44")
+	)
+	(fp_line
+		(start -1.4 -0.65)
+		(end -1.4 0.65)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "bd38f696-e806-44b3-9ea2-9e4f4e8505fd")
+	)
+	(fp_line
+		(start -1.4 0.65)
+		(end 1.4 0.65)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "ed3e6949-f1ba-463d-a455-e0260eebd886")
+	)
+	(fp_line
+		(start 1.4 -0.65)
+		(end -1.4 -0.65)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "0c47ca18-e3c7-40e6-97be-3ce122e36af4")
+	)
+	(fp_line
+		(start 1.4 0.65)
+		(end 1.4 -0.65)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "1782c1df-6b8f-490e-9234-d145b8efb23b")
+	)
+	(fp_line
+		(start -0.85 -0.4)
+		(end -0.85 0.4)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "d73ca827-f2ba-422f-8ede-529457a05ac8")
+	)
+	(fp_line
+		(start -0.85 0.4)
+		(end 0.85 0.4)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "030adf80-b7fc-4cb8-9225-403e2322aa5a")
+	)
+	(fp_line
+		(start 0.85 -0.4)
+		(end -0.85 -0.4)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "bfc8ac8d-4d66-460d-9afa-9edabd1952f9")
+	)
+	(fp_line
+		(start 0.85 0.4)
+		(end 0.85 -0.4)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "1db45d05-8e38-4eda-8fcf-8c7327b36666")
+	)
+	(fp_circle
+		(center -1.75 0)
+		(end -1.65 0)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "9888920e-ed98-4485-b34a-dcac92230258")
+	)
+	(pad "1" smd rect
+		(at -0.75 0)
+		(size 0.8 0.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "bcbcf819-c92e-424b-9772-3191cef6f430")
+	)
+	(pad "2" smd rect
+		(at 0.75 0)
+		(size 0.8 0.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "e5314699-5f77-4b67-993a-2a4c1c49930d")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib/footprints/snapeda/TR8.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 -0)
+		)
+	)
+)
