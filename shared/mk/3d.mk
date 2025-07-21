@@ -7,6 +7,16 @@ OPENSCADPATH := $(3D_MK_DIR)../3d/libs
 
 endif
 
+UNAME := $(shell uname)
+
+ifeq ($(UNAME), Darwin)
+  OPENSCAD := /Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD
+else ifeq ($(UNAME), Linux)
+  OPENSCAD := openscad
+else
+  $(error Unsupported platform: $(UNAME))
+endif
+
 # Rules for generating printable files from OpenSCAD sources
 STL_OUT ?= 3d/stl
 3MF_OUT ?= 3d/3mf
@@ -30,13 +40,13 @@ CLEAN_DIRS  += $(STL_OUT) $(3MF_OUT)
 $(STL_OUT)/%.stl: $(SCAD_PARTS)/%.scad
 	@mkdir -p $(STL_OUT)
 	@echo "\u27a2\ufe0f  Erzeuge STL aus OpenSCAD: $<"
-	openscad --hardwarnings -m render -D \$$fn=128 "$<" -o "$@"
+	OPENSCADPATH="$(OPENSCADPATH)" "$(OPENSCAD)" --hardwarnings -m render -D \$$fn=128 "$<" -o "$@"
 	@echo "\u2705 Konvertiert: $@"
 
 $(3MF_OUT)/%.3mf: $(SCAD_PARTS)/%.scad
 	@mkdir -p $(3MF_OUT)
 	@echo "\u27a2\ufe0f  Erzeuge 3MF aus OpenSCAD: $<"
-	openscad --hardwarnings -m render -D \$$fn=128 "$<" -o "$@"
+	OPENSCADPATH="$(OPENSCADPATH)" "$(OPENSCAD)" --hardwarnings -m render -D \$$fn=128 "$<" -o "$@"
 	@echo "\u2705 Konvertiert: $@"
 
 stl: $(PRINTABLE_STL_FILES)
