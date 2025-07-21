@@ -1,3 +1,12 @@
+ifndef __3D_MK_INCLUDED__
+__3D_MK_INCLUDED__ := 1
+
+3D_MK_PATH := $(lastword $(MAKEFILE_LIST))
+3D_MK_DIR := $(dir $(abspath $(3D_MK_PATH)))
+OPENSCADPATH := $(3D_MK_DIR)../3d/libs
+
+endif
+
 # Rules for generating printable files from OpenSCAD sources
 STL_OUT ?= 3d/stl
 3MF_OUT ?= 3d/3mf
