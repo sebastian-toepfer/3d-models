@@ -1,6 +1,23 @@
-// This file is licensed under CC0 1.0 Universal.
-// See https://creativecommons.org/publicdomain/zero/1.0/
-use <../libs/own/mirror_copy.fuc>
+//
+//  File:        deckel.scad
+//
+//  License:     Creative Commons Attribution 4.0 International (CC BY 4.0)
+//               https://creativecommons.org/licenses/by/4.0/
+//
+//  You are free to:
+//    - Share: copy and redistribute the material in any medium or format
+//    - Adapt: remix, transform, and build upon the material for any purpose
+//
+//  Under the following terms:
+//    - Attribution: You must give appropriate credit, provide a link to the license,
+//      and indicate if changes were made. You may do so in any reasonable manner,
+//      but not in any way that suggests the licensor endorses you or your use.
+//
+//  (c) 2025 Sebastian Toepfer – https://github.com/sebastian-toepfer/3d-models
+//
+//  SPDX-License-Identifier: CC-BY-4.0
+use <own/mirror_copy.fuc>
+use <threadlib/threadlib.scad>
 
 skimmer_abdeckung();
 
@@ -10,7 +27,7 @@ module skimmer_abdeckung(
     rundungen_radius        = 5,
     ring_aussen_durchmesser = 200,
     ring_wandstaerke        = 3,
-    ring_hoehe              = 10
+    ring_hoehe              = 20
 ) {
     union() {
         grundplatte(
@@ -21,7 +38,7 @@ module skimmer_abdeckung(
             ],
             rundungen_radius = rundungen_radius
         );
-        translate([0, 0, (dicke + ring_hoehe)/ 2]) {
+        translate([0, 0, (dicke + ring_hoehe) / 2]) {
             ring(
                 aussen_durchmesser = ring_aussen_durchmesser,
                 wandstaerke = ring_wandstaerke,
@@ -55,14 +72,11 @@ module skimmer_abdeckung(
     }
 
     module ring(aussen_durchmesser = 20, wandstaerke = 1, hoehe = 10) {
-       difference() {
-           cylinder(d = aussen_durchmesser, h = hoehe, center = true);
-           cylinder(
-               d = aussen_durchmesser - wandstaerke * 2,
-               h = hoehe * 1.1,
-               center = true
-           );
-       }
+        specs = thread_specs("M195x6-int");
+        turns = (hoehe / specs[0]) - 1;
+        translate([0, 0, hoehe / -2]) {
+            nut("M195x6", turns=turns, Douter=aussen_durchmesser);
+        }
     }
 }
 
