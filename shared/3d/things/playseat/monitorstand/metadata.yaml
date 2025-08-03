@@ -1,0 +1,17 @@
+---
+id: playseat/monitorstand
+title: "Reference Model – Playseat® TV Stand Triple"
+mpn: "R.AC.00096"
+source_url: "https://www.playseatstore.com/de/all-simulators/accessories/playseatr-tv-stand-triple"
+purpose: "Form reference for accessory development and spatial planning"
+contains_logo: false
+reverse_engineered: false
+license: "CC-BY-NC-4.0"
+author: "sebastian-toepfer"
+date_created: "2024-07-20"
+notes: >
+  This is a simplified, self-modeled representation of the Playseat® TV Stand Triple.
+  It is not a replica and is not suitable for manufacturing or reproducing the original product.
+  Created for private, non-commercial use to support compatibility planning, mount design,
+  and layout visualization. Not affiliated with or endorsed by Playseat®.
+

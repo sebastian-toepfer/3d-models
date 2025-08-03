@@ -1,5 +1,27 @@
-// This file is licensed under CC0 1.0 Universal.
-// See https://creativecommons.org/publicdomain/zero/1.0/
+/*
+  Reference Model – Playseat® TV Stand Triple
+  Author: sebastian-toepfer
+  Date: 2024-07-20
+  MPN: R.AC.00096
+  Source: https://www.playseatstore.com/de/all-simulators/accessories/playseatr-tv-stand-triple
+  Metadata: ./metadata.yaml
+
+  Description:
+    This OpenSCAD model is a simplified, self-created geometric representation of
+    the Playseat® TV Stand Triple. It is intended for use as a non-functional placeholder
+    to support accessory design, spatial configuration, or compatibility testing.
+
+  ⚠️  Disclaimer:
+    - This model is NOT a replica of the original product.
+    - It must NOT be used for manufacturing or reproduction of the original device.
+    - It contains no branding, functional geometry, or proprietary design elements.
+    - Not affiliated with or endorsed by Playseat® or its partners.
+
+  License:
+    Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+    https://creativecommons.org/licenses/by-nc/4.0/
+
+*/
 use <../../../libs/own/sector_arc.fuc>
 use <../../../libs/own/mirror_copy.fuc>
 
