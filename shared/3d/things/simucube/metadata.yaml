@@ -1,0 +1,18 @@
+---
+id: simucube_2_pro
+title: "Reference Model – Simucube 2 Pro"
+mpn: "SC2-PRO"
+source_url: "https://simucube.com/simucube-2-pro/"
+purpose: "Form reference for mount design, enclosure prototyping, and integration planning"
+contains_logo: false
+reverse_engineered: false
+license: "CC-BY-NC-4.0"
+author: "sebastian-toepfer"
+date_created: "2024-10-20"
+notes: >
+  This is a simplified, self-created representation of the Simucube 2 Pro Direct Drive system.
+  It was modeled based on publicly available dimensions and imagery for use in technical integration
+  scenarios only (e.g. mount development or enclosure fit testing). This model is not a replica,
+  not suitable for functional use or manufacturing, and contains no proprietary design elements.
+  Not affiliated with or endorsed by Granite Devices Oy or Simucube.
+
