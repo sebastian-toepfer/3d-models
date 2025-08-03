@@ -1,5 +1,27 @@
-// This file is licensed under CC0 1.0 Universal.
-// See https://creativecommons.org/publicdomain/zero/1.0/
+/*
+  Reference Model – Teufel Concept E 450 Digital 5.1 Set
+  Author: sebastian-toepfer
+  Date: 2024-03-30
+  MPN: 104762000
+  Source: https://teufel.de/concept-e-450-digital-51-set-104762000
+  Metadata: ./metadata.yaml
+
+  Description:
+    This OpenSCAD model is a simplified, manually constructed approximation of the
+    Teufel Concept E 450 Digital 5.1 speaker system. It serves as a non-functional placeholder
+    to support technical workflows such as enclosure prototyping, spatial integration, or
+    accessory development.
+
+  ⚠️  Disclaimer:
+    - This is NOT a replica of the original product.
+    - It must NOT be used for product reproduction or functional modeling.
+    - The model contains no proprietary geometry, logos, or internal structures.
+    - There is no affiliation with or endorsement by Lautsprecher Teufel GmbH.
+
+  License:
+    Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+    https://creativecommons.org/licenses/by-nc/4.0/
+*/
 use <../../libs/own/mirror_copy.fuc>
 use <../../libs/own/sector_arc.fuc>
 
