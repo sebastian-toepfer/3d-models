@@ -1,0 +1,6 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "ultralibrarian")(type "KiCad")(uri "${KIPRJMOD}/lib/footprints/ultralibrarian")(options "")(descr ""))
+  (lib (name "digikey")(type "KiCad")(uri "${KIPRJMOD}/lib/footprints/digikey")(options "")(descr ""))
+  (lib (name "snapeda")(type "KiCad")(uri "${KIPRJMOD}/lib/footprints/snapeda")(options "")(descr ""))
+)
