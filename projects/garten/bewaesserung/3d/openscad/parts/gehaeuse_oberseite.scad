@@ -37,21 +37,22 @@ module gehaeuse_oberseite(
             );
         }
 
-        //stromanschluss ...
-        translate([dimension.x / -2 + 17.6, (dimension.y - 15) / -2, -10]) {
-            schraubterminal_loecher(anzahl = 2);
-        }
-
         //oeffnungen fuer die relais
         for(i = [1:3]) {
             translate([
-                -3.2 + 18.2 * (i - 1),
+                -33 + 18.2 * (i - 1),
                 (dimension.y - 15) / -2,
                 -10
             ]) {
                 schraubterminal_loecher(anzahl = 3);
             }
         }
+
+        //stromanschluss ...
+        translate([dimension.x / -2 + 17.6, (dimension.y - 15) / 2, -5]) {
+            schraubterminal_loecher(anzahl = 2);
+        }
+
 
         //i2c ...
         //translate([1.6, (dimension.y - 15) / 2, -5]) {

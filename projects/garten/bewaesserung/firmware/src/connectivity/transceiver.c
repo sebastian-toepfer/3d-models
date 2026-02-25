@@ -21,4 +21,5 @@ size_t transceiver_read(const struct Transceiver *transceiver, uint8_t *data,
   {
     return 0;
   }
-  return transceiver->read(transceiver, data, len);}
+  return transceiver->read(transceiver, data, len);
+}
