@@ -1,5 +1,21 @@
-// This file is licensed under CC0 1.0 Universal.
-// See https://creativecommons.org/publicdomain/zero/1.0/
+//
+//  File:        gehaeuse_oberseite.scad
+//
+//  License:     Creative Commons Attribution 4.0 International (CC BY 4.0)
+//               https://creativecommons.org/licenses/by/4.0/
+//
+//  You are free to:
+//    - Share: copy and redistribute the material in any medium or format
+//    - Adapt: remix, transform, and build upon the material for any purpose
+//
+//  Under the following terms:
+//    - Attribution: You must give appropriate credit, provide a link to the license,
+//      and indicate if changes were made. You may do so in any reasonable manner,
+//      but not in any way that suggests the licensor endorses you or your use.
+//
+//  (c) 2026 Sebastian Toepfer – https://github.com/sebastian-toepfer/3d-models
+//
+//  SPDX-License-Identifier: CC-BY-4.0
 include <../libs/own/mirror_copy.fuc>
 use <gehaeuse_unterseite.scad>
 
@@ -38,7 +54,7 @@ module gehaeuse_oberseite(
         }
 
         //oeffnungen fuer die relais
-        for(i = [1:3]) {
+        for(i = [1:4]) {
             translate([
                 -33 + 18.2 * (i - 1),
                 (dimension.y - 15) / -2,
