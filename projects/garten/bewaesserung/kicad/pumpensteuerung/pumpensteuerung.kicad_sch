@@ -3083,7 +3083,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 29.21 24.13 180)
+		(at 31.75 24.13 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3091,7 +3091,7 @@
 		(dnp no)
 		(uuid "14d3db49-a5e2-49ca-8281-a32b2b86556a")
 		(property "Reference" "#PWR0101"
-			(at 29.21 17.78 0)
+			(at 31.75 17.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3100,7 +3100,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 29.2099 20.32 90)
+			(at 31.7499 20.32 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3109,7 +3109,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 29.21 24.13 0)
+			(at 31.75 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3118,7 +3118,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 29.21 24.13 0)
+			(at 31.75 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3127,7 +3127,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 29.21 24.13 0)
+			(at 31.75 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3139,7 +3139,7 @@
 			(uuid "c63b2481-4884-4cf4-8f5f-4e607a612efc")
 		)
 		(instances
-			(project ""
+			(project "pumpensteuerung"
 				(path "/21a07dfa-371b-4773-840e-44a8dfeac208"
 					(reference "#PWR0101")
 					(unit 1)
@@ -4524,7 +4524,7 @@
 	)
 	(symbol
 		(lib_id "power:VCC")
-		(at 31.75 24.13 0)
+		(at 29.21 24.13 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4532,7 +4532,7 @@
 		(dnp no)
 		(uuid "d53db539-dfc6-4bf5-bd8d-0880074ee8b3")
 		(property "Reference" "#PWR0102"
-			(at 31.75 27.94 0)
+			(at 29.21 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4541,7 +4541,7 @@
 			)
 		)
 		(property "Value" "VCC"
-			(at 31.7501 20.32 0)
+			(at 29.2101 20.32 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4550,7 +4550,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 31.75 24.13 0)
+			(at 29.21 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4559,7 +4559,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 31.75 24.13 0)
+			(at 29.21 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4568,7 +4568,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 31.75 24.13 0)
+			(at 29.21 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4580,7 +4580,7 @@
 			(uuid "53c62849-c3d9-4994-b91a-7d522e57259e")
 		)
 		(instances
-			(project ""
+			(project "pumpensteuerung"
 				(path "/21a07dfa-371b-4773-840e-44a8dfeac208"
 					(reference "#PWR0102")
 					(unit 1)

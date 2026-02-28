@@ -51,7 +51,7 @@ module gehaeuse_oberseite(
                 ],
                 center = center
             );
-        }
+        } 
 
         //oeffnungen fuer die relais
         for(i = [1:4]) {
@@ -68,12 +68,6 @@ module gehaeuse_oberseite(
         translate([dimension.x / -2 + 17.6, (dimension.y - 15) / 2, -5]) {
             schraubterminal_loecher(anzahl = 2);
         }
-
-
-        //i2c ...
-        //translate([1.6, (dimension.y - 15) / 2, -5]) {
-        //    schraubterminal_loecher(anzahl = 4);
-        //}
 
         //sma
         translate([20, dimension.y / 2, -12.2]) {
@@ -109,21 +103,12 @@ module gehaeuse_oberseite(
     }
 
     module korpus(dimension = [10, 5, 10], center = true) {
-        rotate([0, 90, 0]) {
-            linear_extrude(height = dimension.x, center = center) {
-                mirror_copy([0, 1, 0]) {
-                    polygon(
-                      points = [
-                        [dimension.z / 2, 0],
-                        [dimension.z / 2, dimension.y / 2],
-                        [dimension.z / 2 - 20, dimension.y / 2],
-                        [dimension.z / 2 - 20, dimension.y / 2 - 13.175],
-                        [dimension.z / 2 - 20 - 20, dimension.y / 2 - 13.175],
-                        [dimension.z / 2 - 20 - 20, dimension.y / 2 - 13.175 - 9.25],
-                        [dimension.z / 2 * -1, dimension.y / 2 - 13.175 - 9.25 ],
-                        [dimension.z / 2 * -1, 0],
-                      ]
-                    );
+        union() {
+            cube([dimension.x, dimension.y - 26.350 - 18.5, dimension.z], center);
+            translate([0, 0, -5.2]) {
+                cube([dimension.x, dimension.y - 26.350, 40], center);
+                translate([0, 0, -10]) {
+                    cube([dimension.x, dimension.y, 20], center);
                 }
             }
         }
