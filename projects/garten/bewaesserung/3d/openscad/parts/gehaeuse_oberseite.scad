@@ -56,7 +56,7 @@ module gehaeuse_oberseite(
         //oeffnungen fuer die relais
         for(i = [1:4]) {
             translate([
-                -33 + 18.2 * (i - 1),
+                -33 + 19 * (i - 1),
                 (dimension.y - 15) / -2,
                 -10
             ]) {
@@ -65,12 +65,12 @@ module gehaeuse_oberseite(
         }
 
         //stromanschluss ...
-        translate([dimension.x / -2 + 17.6, (dimension.y - 15) / 2, -5]) {
+        translate([dimension.x / -2 + 17.6, (dimension.y - 15) / 2, -10]) {
             schraubterminal_loecher(anzahl = 2);
         }
 
         //sma
-        translate([20, dimension.y / 2, -12.2]) {
+        translate([20, dimension.y / 2, -17.2]) {
             rotate([90, 0, 0]) {
                 cylinder(h = wandstaerke * 3, d = 6.4, center = true);
             }
