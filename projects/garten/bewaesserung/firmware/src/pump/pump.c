@@ -11,6 +11,7 @@
 struct Valve
 {
   struct DigitalOutputPin *pin;
+  uint16_t delay;
   bool open;
 };
 
@@ -19,27 +20,46 @@ struct Pump
   struct DigitalOutputPin *main_switch;
   struct Valve *garden;
   struct Valve *pool;
-  uint16_t on_delay;
-  uint16_t off_delay;
+  uint16_t delay;
 };
 
 static inline struct Valve *
-pump_create_valve(const digital_pin_config_t *relais)
+pump_valve_create(const digital_pin_config_t *valve_pin, const uint16_t delay)
 {
   struct Valve *result = malloc(sizeof(struct Valve));
   if (!result)
   {
     return NULL;
   }
-  result->pin = digital_output_pin_create(relais);
+  result->pin = digital_output_pin_create(valve_pin);
   if (!result->pin)
   {
     free(result);
     return NULL;
   }
+  result->delay = delay;
   result->open = false;
   return result;
 }
+
+static inline void pump_valve_destroy(struct Valve *valve)
+{
+  if (valve->pin)
+  {
+    digital_output_pin_destroy(valve->pin);
+  }
+  free(valve);
+}
+
+static inline void pump_valve_open(struct Valve *valve)
+{
+  digital_output_pin_switch_on(valve->pin);
+  sleep_ms(valve->delay);
+  valve->open = true;
+  digital_output_pin_switch_off(valve->pin);
+}
+
+// close need access to pump
 
 struct Pump *pump_create(const digital_pin_config_t *main_switch,
                          const digital_pin_config_t *garden_valve_relais,
@@ -63,25 +83,24 @@ struct Pump *pump_create(const digital_pin_config_t *main_switch,
     return NULL;
   }
 
-  result->garden = pump_create_valve(garden_valve_relais);
+  result->garden = pump_valve_create(garden_valve_relais, config->on_delay);
   if (!result->garden)
   {
-    free(result->main_switch);
+    digital_output_pin_destroy(result->main_switch);
     free(result);
     return NULL;
   }
 
-  result->pool = pump_create_valve(pool_valve_relais);
+  result->pool = pump_valve_create(pool_valve_relais, config->on_delay);
   if (!result->pool)
   {
-    free(result->garden);
-    free(result->main_switch);
+    pump_valve_destroy(result->garden);
+    digital_output_pin_destroy(result->main_switch);
     free(result);
     return NULL;
   }
 
-  result->on_delay = config->on_delay;
-  result->off_delay = config->off_delay;
+  result->delay = config->on_delay;
   return result;
 }
 
@@ -92,36 +111,20 @@ void pump_destroy(struct Pump *pump)
   {
     return;
   }
-  free(pump->pool->pin);
-  free(pump->pool);
-  free(pump->garden->pin);
-  free(pump->garden);
-  free(pump->main_switch);
+  pump_valve_destroy(pump->pool);
+  pump_valve_destroy(pump->garden);
+  digital_output_pin_destroy(pump->main_switch);
   free(pump);
 }
 
-static inline void pump_open_valve(struct Valve *valve)
+static inline void pump_valve_close(const struct Pump *pump,
+                                    struct Valve *valve)
 {
-  digital_output_pin_switch_on(valve->pin);
-  valve->open = true;
-}
-
-static inline void pump_close_value(struct Valve *valve)
-{
-  digital_output_pin_switch_off(valve->pin);
-  valve->open = false;
-}
-
-static inline void pump_on(const struct Pump *pump)
-{
-  sleep_ms(pump->on_delay);
+  // we use it as an opener, so we must open it for a short period
   digital_output_pin_switch_on(pump->main_switch);
-}
-
-static inline void pump_off(const struct Pump *pump)
-{
+  sleep_ms(pump->delay);
+  valve->open = false;
   digital_output_pin_switch_off(pump->main_switch);
-  sleep_ms(pump->off_delay);
 }
 
 void pump_open_garden_valve(const struct Pump *pump)
@@ -130,8 +133,7 @@ void pump_open_garden_valve(const struct Pump *pump)
   {
     return;
   }
-  pump_open_valve(pump->garden);
-  pump_on(pump);
+  pump_valve_open(pump->garden);
 }
 
 void pump_close_garden_valve(const struct Pump *pump)
@@ -140,11 +142,11 @@ void pump_close_garden_valve(const struct Pump *pump)
   {
     return;
   }
-  if (!pump->pool->open)
+  pump_valve_close(pump, pump->garden);
+  if (pump->pool->open)
   {
-    pump_off(pump);
+    pump_valve_open(pump->pool);
   }
-  pump_close_value(pump->garden);
 }
 
 void pump_open_pool_valve(const struct Pump *pump)
@@ -153,8 +155,7 @@ void pump_open_pool_valve(const struct Pump *pump)
   {
     return;
   }
-  pump_open_valve(pump->pool);
-  pump_on(pump);
+  pump_valve_open(pump->pool);
 }
 
 void pump_close_pool_valve(const struct Pump *pump)
@@ -163,9 +164,9 @@ void pump_close_pool_valve(const struct Pump *pump)
   {
     return;
   }
-  if (!pump->garden->open)
+  pump_valve_close(pump, pump->pool);
+  if (pump->garden->open)
   {
-    pump_off(pump);
+    pump_valve_open(pump->garden);
   }
-  pump_close_value(pump->pool);
 }

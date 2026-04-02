@@ -55,7 +55,7 @@ void setup()
                      &Poolrelais_pin_config,
                      &(timeout_config_t){
                          .on_delay = 1000,
-                         .off_delay = 500,
+                         .off_delay = 1000,
                      });
 
   lora_secrets = eccx08_create(8);
