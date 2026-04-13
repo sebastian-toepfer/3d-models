@@ -3,3 +3,13 @@
 
 # python
 **/__pycache__/
+
+# KiCad backup and autosave files
+*.bak
+*_autosave-*
+*.lck
+fp-info-cache
+**/*-backups/
+
+# KiCad aisler push
+.kicad-push
