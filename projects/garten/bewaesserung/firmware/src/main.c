@@ -51,11 +51,16 @@ static void lora_daily_beacon()
 void setup()
 {
   orpu = pump_create(&Hauptrelais_pin_config,
-                     &Bewaesserungsrelais_pin_config,
-                     &Poolrelais_pin_config,
+                     &(lockable_valve_t){
+                         .relay = &Bewaesserungsrelais_pin_config,
+                     },
+                     &(lockable_valve_t){
+                         .relay = &Poolrelais_pin_config,
+                         .lock_relay = &Poolvollrelais_pin_config,
+                     },
                      &(timeout_config_t){
                          .on_delay = 1000,
-                         .off_delay = 1000,
+                         .off_delay = 500,
                      });
 
   lora_secrets = eccx08_create(8);

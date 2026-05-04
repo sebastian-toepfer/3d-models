@@ -11,6 +11,7 @@
 struct Valve
 {
   struct DigitalOutputPin *pin;
+  struct DigitalOutputPin *lock;
   uint16_t delay;
   bool open;
 };
@@ -24,18 +25,29 @@ struct Pump
 };
 
 static inline struct Valve *
-pump_valve_create(const digital_pin_config_t *valve_pin, const uint16_t delay)
+pump_valve_create(const lockable_valve_t *valve_pins, const uint16_t delay)
 {
   struct Valve *result = malloc(sizeof(struct Valve));
   if (!result)
   {
     return NULL;
   }
-  result->pin = digital_output_pin_create(valve_pin);
+  result->pin = digital_output_pin_create(valve_pins->relay);
   if (!result->pin)
   {
     free(result);
     return NULL;
+  }
+  if (valve_pins->lock_relay)
+  {
+    result->lock = digital_output_pin_create(valve_pins->lock_relay);
+    if (!result->lock)
+    {
+      digital_output_pin_destroy(result->pin);
+      free(result);
+      return NULL;
+    }
+    digital_output_pin_switch_on(result->lock);
   }
   result->delay = delay;
   result->open = false;
@@ -47,6 +59,11 @@ static inline void pump_valve_destroy(struct Valve *valve)
   if (valve->pin)
   {
     digital_output_pin_destroy(valve->pin);
+  }
+
+  if (valve->lock)
+  {
+    digital_output_pin_destroy(valve->lock);
   }
   free(valve);
 }
@@ -61,9 +78,26 @@ static inline void pump_valve_open(struct Valve *valve)
 
 // close need access to pump
 
+static inline void pump_valve_lock(struct Valve *valve)
+{
+  if (valve->lock)
+  {
+    // is inverted, in the hope that it is so better for the whole system
+    digital_output_pin_switch_off(valve->lock);
+  }
+}
+
+static inline void pump_valve_unlock(const struct Valve *valve)
+{
+  if (valve->lock)
+  {
+    digital_output_pin_switch_on(valve->lock);
+  }
+}
+
 struct Pump *pump_create(const digital_pin_config_t *main_switch,
-                         const digital_pin_config_t *garden_valve_relais,
-                         const digital_pin_config_t *pool_valve_relais,
+                         const lockable_valve_t *garden_valve_relais,
+                         const lockable_valve_t *pool_valve_relais,
                          const timeout_config_t *config)
 {
   if (!main_switch || !garden_valve_relais || !pool_valve_relais || !config)
@@ -149,6 +183,25 @@ void pump_close_garden_valve(const struct Pump *pump)
   }
 }
 
+void pump_lock_garden_valve(const struct Pump *pump)
+{
+  if (!pump)
+  {
+    return;
+  }
+  pump_close_garden_valve(pump);
+  pump_valve_lock(pump->garden);
+}
+
+void pump_unlock_garden_valve(const struct Pump *pump)
+{
+  if (!pump)
+  {
+    return;
+  }
+  pump_valve_unlock(pump->garden);
+}
+
 void pump_open_pool_valve(const struct Pump *pump)
 {
   if (!pump)
@@ -169,4 +222,23 @@ void pump_close_pool_valve(const struct Pump *pump)
   {
     pump_valve_open(pump->garden);
   }
+}
+
+void pump_lock_pool_valve(const struct Pump *pump)
+{
+  if (!pump)
+  {
+    return;
+  }
+  pump_close_pool_valve(pump);
+  pump_valve_lock(pump->pool);
+}
+
+void pump_unlock_pool_valve(const struct Pump *pump)
+{
+  if (!pump)
+  {
+    return;
+  }
+  pump_valve_unlock(pump->pool);
 }
