@@ -42,6 +42,40 @@ static void handle_pool_valve(uint8_t *data, size_t len, void *pump)
   }
 }
 
+/*
+  0x00 - 0000 0000 -> unlocked all
+  0x01 - 0000 0001 -> lock garden
+  0x02 - 0000 0010 -> lock pool
+  0x03 - 0000 0011 -> lock garden & lock pool
+  ...
+  0xFF - 1111 1111 -> lock all
+  */
+static void handle_lock_valves(uint8_t *data, size_t len, void *pump)
+{
+  if (len <= 0)
+  {
+    return;
+  }
+
+  if (data[0] & 1)
+  {
+    pump_lock_garden_valve((struct Pump *)pump);
+  }
+  else
+  {
+    pump_unlock_garden_valve((struct Pump *)pump);
+  }
+
+  if (data[0] & (1 << 1))
+  {
+    pump_lock_pool_valve((struct Pump *)pump);
+  }
+  else
+  {
+    pump_unlock_pool_valve((struct Pump *)pump);
+  }
+}
+
 static void lora_daily_beacon()
 {
   lora_daily_beacon_pending = true;
@@ -67,6 +101,7 @@ void setup()
   lori = lora_create(lora_secrets);
   lora_register_handler(lori, 1, handle_garden_valve, orpu);
   lora_register_handler(lori, 2, handle_pool_valve, orpu);
+  lora_register_handler(lori, 3, handle_lock_valves, orpu);
 
   rtc_set_callback(lora_daily_beacon);
   rtc_init_daily_interrupt();
