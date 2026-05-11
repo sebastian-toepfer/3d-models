@@ -6,8 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "Pumpensteuerung")
-		(date "2025-04-20")
-		(rev "V2.0.0")
+		(date "2026-05-11")
+		(rev "V2.1.0")
 	)
 	(lib_symbols
 		(symbol "Connector:Screw_Terminal_01x02"
@@ -361,146 +361,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:C_Small"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0.254)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "C"
-				(at 0.254 1.778 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "C_Small"
-				(at 0.254 -2.032 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Unpolarized capacitor, small symbol"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "capacitor cap"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "C_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "C_Small_0_1"
-				(polyline
-					(pts
-						(xy -1.524 0.508) (xy 1.524 0.508)
-					)
-					(stroke
-						(width 0.3048)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 -0.508) (xy 1.524 -0.508)
-					)
-					(stroke
-						(width 0.3302)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "C_Small_1_1"
-				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:L"
 			(pin_numbers
 				(hide yes)
@@ -803,6 +663,113 @@
 						)
 					)
 					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Mechanical:MountingHole_Pad"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom no)
+			(on_board yes)
+			(property "Reference" "H"
+				(at 0 6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "MountingHole_Pad"
+				(at 0 4.445 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Mounting Hole with connection"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "mounting hole"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "MountingHole*Pad*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "MountingHole_Pad_0_1"
+				(circle
+					(center 0 1.27)
+					(radius 1.27)
+					(stroke
+						(width 1.27)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "MountingHole_Pad_1_1"
+				(pin input line
+					(at 0 -2.54 90)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2120,16 +2087,22 @@
 		(uuid "04f21680-f2d1-461a-a34f-1c8ca0a0f9be")
 	)
 	(junction
-		(at 99.06 83.82)
+		(at 250.19 26.67)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "2550dd72-7492-4af0-b690-6585c25c1648")
+		(uuid "393021c9-1432-4d68-bcd5-ada5041ec0f4")
 	)
 	(junction
-		(at 110.49 72.39)
+		(at 240.03 26.67)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "5230bdc5-a484-4ad9-812a-bf88b0a48ad7")
+		(uuid "56b487f1-8813-49a6-ba49-a1f3a4e06319")
+	)
+	(junction
+		(at 228.6 26.67)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6197f31c-d4c9-43f6-a3c3-7220f8136313")
 	)
 	(junction
 		(at 85.09 59.69)
@@ -2160,12 +2133,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e4c0d3b7-bca3-4b5f-8441-483e77688c24")
-	)
-	(junction
-		(at 110.49 83.82)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "f324431b-ccc6-44e7-b23d-111fe28ef056")
 	)
 	(no_connect
 		(at 114.3 38.1)
@@ -2257,13 +2224,13 @@
 	)
 	(wire
 		(pts
-			(xy 99.06 72.39) (xy 99.06 74.93)
+			(xy 240.03 26.67) (xy 250.19 26.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "022ef715-9ef8-4c68-9ea0-e094b5ee6d74")
+		(uuid "00a257b0-aa64-48f1-a003-55b045436541")
 	)
 	(wire
 		(pts
@@ -2317,13 +2284,13 @@
 	)
 	(wire
 		(pts
-			(xy 110.49 80.01) (xy 110.49 83.82)
+			(xy 261.62 26.67) (xy 250.19 26.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "28d0453c-599f-43e8-adea-6655a6759021")
+		(uuid "266a8938-3f52-42a9-9419-538420e6ac71")
 	)
 	(wire
 		(pts
@@ -2347,6 +2314,16 @@
 	)
 	(wire
 		(pts
+			(xy 228.6 25.4) (xy 228.6 26.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "37c82743-7c59-491b-81af-7b77a4298569")
+	)
+	(wire
+		(pts
 			(xy 22.86 59.69) (xy 33.02 59.69)
 		)
 		(stroke
@@ -2357,23 +2334,13 @@
 	)
 	(wire
 		(pts
-			(xy 110.49 83.82) (xy 99.06 83.82)
+			(xy 250.19 25.4) (xy 250.19 26.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "40b0662c-d63b-49b3-95e6-fd475c1faead")
-	)
-	(wire
-		(pts
-			(xy 99.06 80.01) (xy 99.06 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "45cf810a-487a-4e03-9f79-f6b052582c5a")
+		(uuid "3e1d1a42-0a22-4a3e-9684-5e8cfe6aa355")
 	)
 	(wire
 		(pts
@@ -2397,6 +2364,16 @@
 	)
 	(wire
 		(pts
+			(xy 113.03 81.28) (xy 114.3 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6482eb4c-88c5-499a-b37d-2c3e3563fbd5")
+	)
+	(wire
+		(pts
 			(xy 58.42 59.69) (xy 60.96 59.69)
 		)
 		(stroke
@@ -2404,16 +2381,6 @@
 			(type default)
 		)
 		(uuid "6cc99ba8-4cf1-4586-878e-5468e8b0b397")
-	)
-	(wire
-		(pts
-			(xy 110.49 72.39) (xy 99.06 72.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6e534647-1ec6-44b5-afad-7b43255e946f")
 	)
 	(wire
 		(pts
@@ -2457,16 +2424,6 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 83.82) (xy 114.3 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "835efc09-9961-4c0f-9ed5-81ed142815a6")
-	)
-	(wire
-		(pts
 			(xy 58.42 54.61) (xy 80.01 54.61)
 		)
 		(stroke
@@ -2474,6 +2431,46 @@
 			(type default)
 		)
 		(uuid "87724380-31ae-40e7-a5c7-41646971d45f")
+	)
+	(wire
+		(pts
+			(xy 228.6 26.67) (xy 228.6 27.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "88616446-86e3-4ecd-8c28-db83747aa4d2")
+	)
+	(wire
+		(pts
+			(xy 240.03 25.4) (xy 240.03 26.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8f809740-8443-4716-8cd0-cd30b7c50672")
+	)
+	(wire
+		(pts
+			(xy 228.6 26.67) (xy 240.03 26.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9135aa5e-0454-419e-a702-314be7912afd")
+	)
+	(wire
+		(pts
+			(xy 261.62 25.4) (xy 261.62 26.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9c137bfe-2ee3-4889-b29c-bbba58609e6d")
 	)
 	(wire
 		(pts
@@ -2497,7 +2494,7 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 72.39) (xy 110.49 72.39)
+			(xy 110.49 73.66) (xy 114.3 73.66)
 		)
 		(stroke
 			(width 0)
@@ -2537,16 +2534,6 @@
 	)
 	(wire
 		(pts
-			(xy 110.49 83.82) (xy 114.3 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c5082a84-c2c6-4a04-9b6a-b218c51e4969")
-	)
-	(wire
-		(pts
 			(xy 31.75 25.4) (xy 31.75 26.67)
 		)
 		(stroke
@@ -2554,16 +2541,6 @@
 			(type default)
 		)
 		(uuid "c9fcbfd9-8d6a-48c2-973d-b024f2c0d30b")
-	)
-	(wire
-		(pts
-			(xy 110.49 72.39) (xy 110.49 74.93)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ca759934-32f2-41d6-885d-296f4693a5ac")
 	)
 	(wire
 		(pts
@@ -2584,16 +2561,6 @@
 			(type default)
 		)
 		(uuid "ce736936-ecf1-47dd-867d-332eee2d4d1c")
-	)
-	(wire
-		(pts
-			(xy 114.3 73.66) (xy 114.3 72.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d0868d97-2b71-4767-9f48-0d95d7204346")
 	)
 	(wire
 		(pts
@@ -2666,7 +2633,7 @@
 		(uuid "fc7ad6cf-9c73-46ef-9f4b-a6b56c1e814c")
 	)
 	(label "+5V"
-		(at 99.06 72.39 0)
+		(at 110.49 73.66 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2872,84 +2839,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Small")
-		(at 110.49 77.47 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "03390df2-3505-4fed-9932-2ae685ad6299")
-		(property "Reference" "C104"
-			(at 106.172 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10000pF 100V 10% Y5P 5mm"
-			(at 109.22 79.502 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm"
-			(at 110.49 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 110.49 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 110.49 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "D103K43Y5PH6TJ5R"
-			(at 110.49 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "697bfd68-d543-4d29-abac-f574af5bb48e")
-		)
-		(pin "1"
-			(uuid "976d49d9-9f26-4549-bd75-ebe182fa9776")
-		)
-		(instances
-			(project ""
-				(path "/21a07dfa-371b-4773-840e-44a8dfeac208"
-					(reference "C104")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 22.86 59.69 270)
 		(unit 1)
@@ -3010,6 +2899,73 @@
 			(project "pumpensteuerung"
 				(path "/21a07dfa-371b-4773-840e-44a8dfeac208"
 					(reference "#PWR0105")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole_Pad")
+		(at 250.19 22.86 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "13521132-f781-4b84-91cd-caf55b84f95c")
+		(property "Reference" "H103"
+			(at 252.73 20.3199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "M3"
+			(at 252.73 22.8599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via"
+			(at 250.19 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 250.19 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole with connection"
+			(at 250.19 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ca14876e-86d2-4474-8bc4-ed147ceec661")
+		)
+		(instances
+			(project "pumpensteuerung"
+				(path "/21a07dfa-371b-4773-840e-44a8dfeac208"
+					(reference "H103")
 					(unit 1)
 				)
 			)
@@ -3149,7 +3105,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 99.06 83.82 270)
+		(at 113.03 81.28 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3158,7 +3114,7 @@
 		(fields_autoplaced yes)
 		(uuid "20417d15-4dc2-4efa-9304-1ff70496c4cd")
 		(property "Reference" "#PWR0109"
-			(at 92.71 83.82 0)
+			(at 106.68 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3167,7 +3123,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 95.25 83.8199 90)
+			(at 109.22 81.2799 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3176,7 +3132,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 99.06 83.82 0)
+			(at 113.03 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3185,7 +3141,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 99.06 83.82 0)
+			(at 113.03 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3194,7 +3150,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 99.06 83.82 0)
+			(at 113.03 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3364,84 +3320,6 @@
 			(project ""
 				(path "/21a07dfa-371b-4773-840e-44a8dfeac208"
 					(reference "MCU101")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Small")
-		(at 99.06 77.47 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "3655e0c5-5d0b-4cea-ba9f-e078d120d2cb")
-		(property "Reference" "C103"
-			(at 94.742 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.1uF 500V +80/-20%"
-			(at 90.678 79.502 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm"
-			(at 99.06 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 99.06 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 99.06 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "S104Z93Z5VL83L0R"
-			(at 99.06 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "1cd7237b-8766-44bf-ab64-bce9461b9643")
-		)
-		(pin "1"
-			(uuid "ee93298c-33f7-46d8-a3f7-14c4d8265f07")
-		)
-		(instances
-			(project ""
-				(path "/21a07dfa-371b-4773-840e-44a8dfeac208"
-					(reference "C103")
 					(unit 1)
 				)
 			)
@@ -4100,6 +3978,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Mechanical:MountingHole_Pad")
+		(at 261.62 22.86 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9eb7784a-57b6-4183-9152-296ba998298f")
+		(property "Reference" "H104"
+			(at 264.16 20.3199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "M3"
+			(at 264.16 22.8599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 261.62 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 261.62 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole with connection"
+			(at 261.62 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e34b0ac0-ae7d-4ccb-b143-ed47c71b256f")
+		)
+		(instances
+			(project "pumpensteuerung"
+				(path "/21a07dfa-371b-4773-840e-44a8dfeac208"
+					(reference "H104")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Diode:1N5822")
 		(at 60.96 64.77 270)
 		(unit 1)
@@ -4523,6 +4468,138 @@
 		)
 	)
 	(symbol
+		(lib_id "Mechanical:MountingHole_Pad")
+		(at 240.03 22.86 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "ccd072b6-4f35-4818-a7e2-9a3e085d5dc9")
+		(property "Reference" "H102"
+			(at 242.57 20.3199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "M3"
+			(at 242.57 22.8599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 240.03 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 240.03 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole with connection"
+			(at 240.03 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "156c0e4b-7592-4fa0-a494-b397c55c8c8e")
+		)
+		(instances
+			(project ""
+				(path "/21a07dfa-371b-4773-840e-44a8dfeac208"
+					(reference "H102")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 228.6 27.94 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "cdd94528-91e8-43cd-a4e7-c3e8813356ea")
+		(property "Reference" "#PWR0114"
+			(at 228.6 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 228.6 33.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 228.6 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 228.6 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 228.6 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1704fb1f-e393-4366-a81f-33a2d4a347bd")
+		)
+		(instances
+			(project "pumpensteuerung"
+				(path "/21a07dfa-371b-4773-840e-44a8dfeac208"
+					(reference "#PWR0114")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:VCC")
 		(at 29.21 24.13 0)
 		(unit 1)
@@ -4583,6 +4660,73 @@
 			(project "pumpensteuerung"
 				(path "/21a07dfa-371b-4773-840e-44a8dfeac208"
 					(reference "#PWR0102")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole_Pad")
+		(at 228.6 22.86 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d6ab239e-627d-4eff-bf16-fa3040e72310")
+		(property "Reference" "H101"
+			(at 231.14 20.3199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "M3"
+			(at 231.14 22.8599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via"
+			(at 228.6 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 228.6 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole with connection"
+			(at 228.6 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "dfd5fa76-2404-48d2-b378-356f83de4b8d")
+		)
+		(instances
+			(project ""
+				(path "/21a07dfa-371b-4773-840e-44a8dfeac208"
+					(reference "H101")
 					(unit 1)
 				)
 			)

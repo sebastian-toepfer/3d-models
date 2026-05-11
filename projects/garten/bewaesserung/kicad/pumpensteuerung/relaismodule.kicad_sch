@@ -7,7 +7,7 @@
 	(title_block
 		(title "Pumpensteuerung")
 		(date "2025-04-20")
-		(rev "V2.0.0")
+		(rev "V2.1.0")
 	)
 	(lib_symbols
 		(symbol "Connector:Screw_Terminal_01x03"
