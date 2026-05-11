@@ -70,7 +70,7 @@ module gehaeuse_oberseite(
         }
 
         //sma
-        translate([20, dimension.y / 2, -17.2]) {
+        translate([-20, dimension.y / 2, -17.2]) {
             rotate([90, 0, 0]) {
                 cylinder(h = wandstaerke * 3, d = 6.4, center = true);
             }
