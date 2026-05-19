@@ -49,6 +49,10 @@ pump_valve_create(const lockable_valve_t *valve_pins, const uint16_t delay)
     }
     digital_output_pin_switch_on(result->lock);
   }
+  else
+  {
+    result->lock = NULL;
+  }
   result->delay = delay;
   result->open = false;
   return result;
@@ -70,6 +74,9 @@ static inline void pump_valve_destroy(struct Valve *valve)
 
 static inline void pump_valve_open(struct Valve *valve)
 {
+  if (!valve) {
+    return;
+  }
   digital_output_pin_switch_on(valve->pin);
   sleep_ms(valve->delay);
   valve->open = true;
