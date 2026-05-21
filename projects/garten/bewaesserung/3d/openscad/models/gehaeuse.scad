@@ -4,7 +4,7 @@ use <../parts/gehaeuse_oberseite.scad>
 use <../parts/gehaeuse_unterseite.scad>
 
 manuell = true;
-step_full_manuell = 3;
+step_full_manuell = 5;
 
 max_steps = 3;
 step_full = manuell 

@@ -19,4 +19,5 @@ size_t secretstore_write_secret(const struct SecretStore *store, const uint8_t *
 
 #ifdef __cplusplus
 }
-#endif#endif
+#endif
+#endif

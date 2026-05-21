@@ -22,4 +22,5 @@ size_t transceiver_read(const struct Transceiver *transceiver, uint8_t *data, si
 
 #ifdef __cplusplus
 }
-#endif#endif
+#endif
+#endif

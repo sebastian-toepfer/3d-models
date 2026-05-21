@@ -1,5 +1,21 @@
-// This file is licensed under CC0 1.0 Universal.
-// See https://creativecommons.org/publicdomain/zero/1.0/
+//
+//  File:        gehaeuse_oberseite.scad
+//
+//  License:     Creative Commons Attribution 4.0 International (CC BY 4.0)
+//               https://creativecommons.org/licenses/by/4.0/
+//
+//  You are free to:
+//    - Share: copy and redistribute the material in any medium or format
+//    - Adapt: remix, transform, and build upon the material for any purpose
+//
+//  Under the following terms:
+//    - Attribution: You must give appropriate credit, provide a link to the license,
+//      and indicate if changes were made. You may do so in any reasonable manner,
+//      but not in any way that suggests the licensor endorses you or your use.
+//
+//  (c) 2026 Sebastian Toepfer – https://github.com/sebastian-toepfer/3d-models
+//
+//  SPDX-License-Identifier: CC-BY-4.0
 include <../libs/own/mirror_copy.fuc>
 use <gehaeuse_unterseite.scad>
 
@@ -35,17 +51,12 @@ module gehaeuse_oberseite(
                 ],
                 center = center
             );
-        }
-
-        //stromanschluss ...
-        translate([dimension.x / -2 + 17.6, (dimension.y - 15) / -2, -10]) {
-            schraubterminal_loecher(anzahl = 2);
-        }
+        } 
 
         //oeffnungen fuer die relais
-        for(i = [1:3]) {
+        for(i = [1:4]) {
             translate([
-                -3.2 + 18.2 * (i - 1),
+                -33 + 19 * (i - 1),
                 (dimension.y - 15) / -2,
                 -10
             ]) {
@@ -53,13 +64,13 @@ module gehaeuse_oberseite(
             }
         }
 
-        //i2c ...
-        //translate([1.6, (dimension.y - 15) / 2, -5]) {
-        //    schraubterminal_loecher(anzahl = 4);
-        //}
+        //stromanschluss ...
+        translate([dimension.x / -2 + 17.6, (dimension.y - 15) / 2, -10]) {
+            schraubterminal_loecher(anzahl = 2);
+        }
 
         //sma
-        translate([20, dimension.y / 2, -12.2]) {
+        translate([-20, dimension.y / 2, -17.2]) {
             rotate([90, 0, 0]) {
                 cylinder(h = wandstaerke * 3, d = 6.4, center = true);
             }
@@ -92,21 +103,12 @@ module gehaeuse_oberseite(
     }
 
     module korpus(dimension = [10, 5, 10], center = true) {
-        rotate([0, 90, 0]) {
-            linear_extrude(height = dimension.x, center = center) {
-                mirror_copy([0, 1, 0]) {
-                    polygon(
-                      points = [
-                        [dimension.z / 2, 0],
-                        [dimension.z / 2, dimension.y / 2],
-                        [dimension.z / 2 - 20, dimension.y / 2],
-                        [dimension.z / 2 - 20, dimension.y / 2 - 13.175],
-                        [dimension.z / 2 - 20 - 20, dimension.y / 2 - 13.175],
-                        [dimension.z / 2 - 20 - 20, dimension.y / 2 - 13.175 - 9.25],
-                        [dimension.z / 2 * -1, dimension.y / 2 - 13.175 - 9.25 ],
-                        [dimension.z / 2 * -1, 0],
-                      ]
-                    );
+        union() {
+            cube([dimension.x, dimension.y - 26.350 - 18.5, dimension.z], center);
+            translate([0, 0, -5.2]) {
+                cube([dimension.x, dimension.y - 26.350, 40], center);
+                translate([0, 0, -10]) {
+                    cube([dimension.x, dimension.y, 20], center);
                 }
             }
         }

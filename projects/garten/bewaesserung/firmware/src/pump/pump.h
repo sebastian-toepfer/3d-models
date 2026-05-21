@@ -19,19 +19,29 @@ typedef struct
     uint16_t off_delay;
 } timeout_config_t;
 
+typedef struct
+{
+    const digital_pin_config_t *relay;
+    const digital_pin_config_t *lock_relay;
+} lockable_valve_t;
+
 struct Pump *pump_create(
     const digital_pin_config_t *main_switch,
-    const digital_pin_config_t *garden_valve_relais,
-    const digital_pin_config_t *pool_valve_relais,
+    const lockable_valve_t *garden_valve,
+    const lockable_valve_t *pool_valve,
     const timeout_config_t *config
 );
 void pump_destroy(struct Pump *pump);
 
 void pump_open_garden_valve(const struct Pump *pump);
 void pump_close_garden_valve(const struct Pump *pump);
+void pump_lock_garden_valve(const struct Pump *pump);
+void pump_unlock_garden_valve(const struct Pump *pump);
 
 void pump_open_pool_valve(const struct Pump *pump);
 void pump_close_pool_valve(const struct Pump *pump);
+void pump_lock_pool_valve(const struct Pump *pump);
+void pump_unlock_pool_valve(const struct Pump *pump);
 
 #ifdef __cplusplus
 }

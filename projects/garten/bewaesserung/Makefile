@@ -20,7 +20,7 @@ $(NETLIST): $(KICAD_SCH)
 	kicad-cli sch export netlist -o $(NETLIST) $(KICAD_SCH)
 
 $(PINMAP_H) $(BOARD_C): $(NETLIST) tools/pinmap/generate_board.py
-	python3 tools/pinmap/generate_board.py --platform mkrwan1310 --mcu-ref MCU1 --netlist $(NETLIST) --out-h $(PINMAP_H) --out-c $(BOARD_C)
+	python3 tools/pinmap/generate_board.py --platform mkrwan1310 --mcu-ref MCU101 --netlist $(NETLIST) --out-h $(PINMAP_H) --out-c $(BOARD_C)
 
 frames: $(FRAME_FILES)
 
