@@ -5,9 +5,9 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+#include "pump.h"
 #include "time/delay.h"
 #include "time/duration.h"
-#include "pump.h"
 
 struct Valve
 {

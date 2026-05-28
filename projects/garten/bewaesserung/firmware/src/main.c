@@ -10,7 +10,7 @@
 #include "connectivity/transceiver.h"
 #include "digital_output_pin_samd21.h"
 #include "pinmap.h"
-#include "pump/pump.h"
+#include "pump.h"
 #include "rtc/rtc.h"
 #include "time/duration.h"
 
