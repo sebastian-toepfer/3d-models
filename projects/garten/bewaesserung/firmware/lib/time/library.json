@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/platformio/platformio-core/v6.1.18/platformio/assets/schema/library.json",
+  "name": "time",
+  "version": "0.1.0",
+  "authors": {
+    "name": "Sebastian Toepfer",
+    "maintainer": true
+  },
+  "license": "MIT",
+  "headers": [
+    "time/duration.h",
+    "time/delay.h"
+  ]
+}

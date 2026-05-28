@@ -5,14 +5,15 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-#include "platform/sleep.h"
+#include "time/delay.h"
+#include "time/duration.h"
 #include "pump.h"
 
 struct Valve
 {
   struct DigitalOutputPin *pin;
   struct DigitalOutputPin *lock;
-  uint16_t delay;
+  duration_t delay;
   bool open;
 };
 
@@ -21,11 +22,11 @@ struct Pump
   struct DigitalOutputPin *main_switch;
   struct Valve *garden;
   struct Valve *pool;
-  uint16_t delay;
+  duration_t delay;
 };
 
 static inline struct Valve *
-pump_valve_create(const lockable_valve_t *valve_pins, const uint16_t delay)
+pump_valve_create(const lockable_valve_t *valve_pins, const duration_t delay)
 {
   struct Valve *result = malloc(sizeof(struct Valve));
   if (!result)
@@ -79,7 +80,7 @@ static inline void pump_valve_open(struct Valve *valve)
     return;
   }
   digital_output_pin_switch_on(valve->pin);
-  sleep_ms(valve->delay);
+  delay_for(valve->delay);
   valve->open = true;
   digital_output_pin_switch_off(valve->pin);
 }
@@ -164,7 +165,7 @@ static inline void pump_valve_close(const struct Pump *pump,
 {
   // we use it as an opener, so we must open it for a short period
   digital_output_pin_switch_on(pump->main_switch);
-  sleep_ms(pump->delay);
+  delay_for(pump->delay);
   valve->open = false;
   digital_output_pin_switch_off(pump->main_switch);
 }

@@ -2,16 +2,17 @@
  * MIT License
  * Copyright (c) 2025 Sebastian Toepfer
  */
-#ifndef DELAY_H
-#define DELAY_H
-#include <stdint.h>
+#ifndef TIME_DELAY_H
+#define TIME_DELAY_H
+
+#include "time/duration.h"
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-void sleep_ms(uint16_t ms);
+void delay_for(duration_t duration);
 
 #ifdef __cplusplus
 }

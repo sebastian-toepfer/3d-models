@@ -12,6 +12,7 @@
 #include "pinmap.h"
 #include "pump/pump.h"
 #include "rtc/rtc.h"
+#include "time/duration.h"
 
 volatile bool lora_daily_beacon_pending = false;
 struct Pump *orpu;
@@ -93,8 +94,8 @@ void setup()
                          .lock_relay = &Poolvollrelais_pin_config,
                      },
                      &(timeout_config_t){
-                         .on_delay = 1000,
-                         .off_delay = 500,
+                         .on_delay = duration_create_seconds(1),
+                         .off_delay = duration_create_milliseconds(500),
                      });
 
   lora_secrets = eccx08_create(8);

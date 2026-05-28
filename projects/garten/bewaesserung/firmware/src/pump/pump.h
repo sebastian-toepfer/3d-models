@@ -10,13 +10,14 @@ extern "C"
 #endif
 
 #include "digital_output_pin.h"
+#include "time/duration.h"
 
 struct Pump;
 
 typedef struct
 {
-    uint16_t on_delay;
-    uint16_t off_delay;
+    duration_t on_delay;
+    duration_t off_delay;
 } timeout_config_t;
 
 typedef struct
