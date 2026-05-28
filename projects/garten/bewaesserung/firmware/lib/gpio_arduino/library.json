@@ -1,13 +1,22 @@
 {
   "$schema": "https://raw.githubusercontent.com/platformio/platformio-core/v6.1.18/platformio/assets/schema/library.json",
-  "name": "gpio",
+  "name": "gpio-arduino",
   "version": "0.1.0",
   "authors": {
     "name": "Sebastian Toepfer",
     "maintainer": true
   },
   "license": "MIT",
+  "dependencies": {
+    "gpio": "0.1.0"
+  },
+  "frameworks": [
+    "arduino"
+  ],
   "headers": [
-    "digital_output_pin.h"
-  ]
+    "digital_output_pin_arduino.h"
+  ],
+  "build": {
+    "includeDir": "include"
+  }
 }

@@ -15,6 +15,17 @@ struct DigitalOutputPin
 };
 
 struct DigitalOutputPin *
+digital_output_pin_create(const digital_pin_config_t *cfg)
+{
+  if (!cfg || !cfg->platform_info)
+  {
+    return NULL;
+  }
+  return digital_output_pin_samd21_create(
+      (const DigitalPinInfo_SAMD21 *)cfg->platform_info);
+}
+
+struct DigitalOutputPin *
 digital_output_pin_samd21_create(const DigitalPinInfo_SAMD21 *pinCfg)
 {
   if (!pinCfg)

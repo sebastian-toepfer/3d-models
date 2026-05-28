@@ -4,6 +4,7 @@
  */
 #ifndef DIGITAL_OUTPUT_PIN_H
 #define DIGITAL_OUTPUT_PIN_H
+#include <pin.h>
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -13,13 +14,6 @@ extern "C"
 #endif
 
   struct DigitalOutputPin;
-
-  // General-purpose configuration for any platform
-  typedef struct
-  {
-    uint8_t pin;
-    void *platform_info;
-  } digital_pin_config_t;
 
   // Create a new digital output pin object
   struct DigitalOutputPin *

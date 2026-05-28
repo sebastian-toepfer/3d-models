@@ -11,6 +11,16 @@ struct DigitalOutputPin
   uint8_t pin;
 };
 
+struct DigitalOutputPin *
+digital_output_pin_create(const digital_pin_config_t *cfg)
+{
+  if (!cfg || !cfg->platform_info)
+  {
+    return NULL;
+  }
+  return digital_output_pin_arduino_create((const uint8_t *)&cfg->pin);
+}
+
 struct DigitalOutputPin *digital_output_pin_arduino_create(const uint8_t *pin)
 {
   if (!pin)

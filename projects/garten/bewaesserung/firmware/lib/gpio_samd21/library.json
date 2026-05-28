@@ -1,13 +1,22 @@
 {
   "$schema": "https://raw.githubusercontent.com/platformio/platformio-core/v6.1.18/platformio/assets/schema/library.json",
-  "name": "gpio",
+  "name": "gpio-samd21",
   "version": "0.1.0",
   "authors": {
     "name": "Sebastian Toepfer",
     "maintainer": true
   },
   "license": "MIT",
+  "dependencies": {
+    "gpio": "0.1.0"
+  },
+  "platforms": [
+    "atmelsam"
+  ],
   "headers": [
-    "digital_output_pin.h"
-  ]
+    "digital_output_pin_samd21.h"
+  ],
+  "build": {
+    "includeDir": "include"
+  }
 }
