@@ -19,7 +19,7 @@ monitor:
 clean:
 	rm -rf .pio build
 
-SRC_FILES := $(shell find src lib -type f \( -name '*.c' -o -name '*.cpp' \))
+SRC_FILES := $(shell find src lib test -type f \( -name '*.c' -o -name '*.cpp' -o -name '*.h' \))
 CLANG_FORMAT := clang-format
 FORMAT_STYLE ?= file
 

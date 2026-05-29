@@ -12,13 +12,17 @@ extern "C"
 {
 #endif
 
-struct Transceiver {
-    size_t (*write)(const struct Transceiver *self, const uint8_t *data, size_t len);
+  struct Transceiver
+  {
+    size_t (*write)(const struct Transceiver *self, const uint8_t *data,
+                    size_t len);
     size_t (*read)(const struct Transceiver *self, uint8_t *data, size_t len);
-};
+  };
 
-size_t transceiver_write(const struct Transceiver *transceiver, const uint8_t *data, size_t len);
-size_t transceiver_read(const struct Transceiver *transceiver, uint8_t *data, size_t len);
+  size_t transceiver_write(const struct Transceiver *transceiver,
+                           const uint8_t *data, size_t len);
+  size_t transceiver_read(const struct Transceiver *transceiver, uint8_t *data,
+                          size_t len);
 
 #ifdef __cplusplus
 }

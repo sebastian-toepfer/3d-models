@@ -12,7 +12,6 @@ extern "C"
 {
 #endif
 
-
   struct Pump;
 
   typedef struct

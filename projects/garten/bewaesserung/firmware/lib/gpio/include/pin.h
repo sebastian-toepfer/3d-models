@@ -11,11 +11,11 @@ extern "C"
 {
 #endif
 
-typedef struct
-{
+  typedef struct
+  {
     uint8_t pin;
     void *platform_info;
-} digital_pin_config_t;
+  } digital_pin_config_t;
 
 #ifdef __cplusplus
 }
