@@ -13,7 +13,7 @@ extern "C"
 {
 #endif
 
-struct SecretStore *eccx08_create(uint8_t slot);
+  struct SecretStore *eccx08_create(uint8_t slot);
 
 #ifdef __cplusplus
 }

@@ -12,7 +12,7 @@ extern "C"
 {
 #endif
 
-void delay_for(duration_t duration);
+  void delay_for(duration_t duration);
 
 #ifdef __cplusplus
 }
