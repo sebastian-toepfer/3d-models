@@ -4,45 +4,43 @@
  */
 #ifndef PUMP_H
 #define PUMP_H
+#include "digital_output_pin.h"
+#include "time/duration.h"
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-#include "digital_output_pin.h"
-#include "time/duration.h"
 
-struct Pump;
+  struct Pump;
 
-typedef struct
-{
-    duration_t on_delay;
-    duration_t off_delay;
-} timeout_config_t;
-
-typedef struct
-{
+  typedef struct
+  {
     const digital_pin_config_t *relay;
     const digital_pin_config_t *lock_relay;
-} lockable_valve_t;
+  } pump_valve_config_t;
 
-struct Pump *pump_create(
-    const digital_pin_config_t *main_switch,
-    const lockable_valve_t *garden_valve,
-    const lockable_valve_t *pool_valve,
-    const timeout_config_t *config
-);
-void pump_destroy(struct Pump *pump);
+  typedef struct
+  {
+    const digital_pin_config_t *main_switch;
+    const pump_valve_config_t *garden_valve;
+    const pump_valve_config_t *pool_valve;
+    const duration_t delay;
+  } pump_config_t;
 
-void pump_open_garden_valve(const struct Pump *pump);
-void pump_close_garden_valve(const struct Pump *pump);
-void pump_lock_garden_valve(const struct Pump *pump);
-void pump_unlock_garden_valve(const struct Pump *pump);
+  struct Pump *pump_create(const pump_config_t *config);
+  void pump_destroy(struct Pump *pump);
 
-void pump_open_pool_valve(const struct Pump *pump);
-void pump_close_pool_valve(const struct Pump *pump);
-void pump_lock_pool_valve(const struct Pump *pump);
-void pump_unlock_pool_valve(const struct Pump *pump);
+  void pump_open_garden_valve(struct Pump *pump);
+  void pump_close_garden_valve(struct Pump *pump);
+  void pump_lock_garden_valve(struct Pump *pump);
+  void pump_unlock_garden_valve(struct Pump *pump);
+
+  void pump_open_pool_valve(struct Pump *pump);
+  void pump_close_pool_valve(struct Pump *pump);
+  void pump_lock_pool_valve(struct Pump *pump);
+  void pump_unlock_pool_valve(struct Pump *pump);
 
 #ifdef __cplusplus
 }

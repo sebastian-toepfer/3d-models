@@ -85,19 +85,18 @@ static void lora_daily_beacon()
 // cppcheck-suppress unusedFunction
 void setup()
 {
-  orpu = pump_create(&Hauptrelais_pin_config,
-                     &(lockable_valve_t){
-                         .relay = &Bewaesserungsrelais_pin_config,
-                     },
-                     &(lockable_valve_t){
-                         .relay = &Poolrelais_pin_config,
-                         .lock_relay = &Poolvollrelais_pin_config,
-                     },
-                     &(timeout_config_t){
-                         .on_delay = duration_create_seconds(1),
-                         .off_delay = duration_create_milliseconds(500),
-                     });
-
+  orpu = pump_create(
+      &(pump_config_t){.main_switch = &Hauptrelais_pin_config,
+                       .garden_valve =
+                           &(pump_valve_config_t){
+                               .relay = &Bewaesserungsrelais_pin_config,
+                           },
+                       .pool_valve =
+                           &(pump_valve_config_t){
+                               .relay = &Poolrelais_pin_config,
+                               .lock_relay = &Poolvollrelais_pin_config,
+                           },
+                       .delay = duration_create_seconds(1)});
   lora_secrets = eccx08_create(8);
   lori = lora_create(lora_secrets);
   lora_register_handler(lori, 1, handle_garden_valve, orpu);
