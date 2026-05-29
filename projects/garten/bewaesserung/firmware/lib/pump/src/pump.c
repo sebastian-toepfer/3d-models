@@ -226,10 +226,13 @@ void pump_close_pool_valve(const struct Pump *pump)
   {
     return;
   }
-  pump_valve_close(pump, pump->pool);
-  if (pump->garden->open)
+  if (pump->pool->open)
   {
-    pump_valve_open(pump->garden);
+    pump_valve_close(pump, pump->pool);
+    if (pump->garden->open)
+    {
+      pump_valve_open(pump->garden);
+    }
   }
 }
 
