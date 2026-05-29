@@ -1,13 +1,20 @@
 # Makefile für firmware/ (PlatformIO)
 all:
 	@$(MAKE) codestyle
-	platformio run
+	@$(MAKE) test
+	@$(MAKE) build
+
+test:
+	platformio test
+
+build:
+	platformio run -e mkrwan1310
 
 upload:
-	platformio run --target upload
+	platformio run -e mkrwan1310 --target upload
 
 monitor:
-	platformio device monitor
+	platformio device -e mkrwan1310 monitor
 
 clean:
 	rm -rf .pio build
@@ -26,5 +33,5 @@ else
 	@$(CLANG_FORMAT) -i -style=$(FORMAT_STYLE) $(SRC_FILES)
 endif
 
-.PHONY: all upload monitor clean
+.PHONY: all test build upload monitor clean
 
