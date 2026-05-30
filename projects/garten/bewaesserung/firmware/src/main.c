@@ -6,6 +6,8 @@
 
 #include "connectivity/eccx08.h"
 #include "connectivity/lora.h"
+#include "connectivity/lorawan_join_config.h"
+#include "connectivity/lorawan_secret.h"
 #include "connectivity/secretstore.h"
 #include "connectivity/transceiver.h"
 #include "digital_output_pin_samd21.h"
@@ -16,7 +18,6 @@
 
 volatile bool lora_daily_beacon_pending = false;
 struct Pump *orpu;
-struct SecretStore *lora_secrets;
 struct LoRa *lori;
 
 static void handle_garden_valve(uint8_t *data, size_t len, void *pump)
@@ -82,6 +83,30 @@ static void lora_daily_beacon()
   lora_daily_beacon_pending = true;
 }
 
+static struct LoRa *create_lora(const struct SecretStore *secrets)
+{
+  struct LoRa *result = NULL;
+  struct LoRaWANSecret *lora_secret = lorawan_secret_create_from_store(secrets);
+  char device_eui[17];
+  struct LoRaWANJoinConfig *join_config = NULL;
+
+  if (lora_secret && lora_read_device_eui(device_eui))
+  {
+    join_config = lorawan_secret_create_otaa_join_config_for_device(lora_secret,
+                                                                    device_eui);
+  }
+
+  if (join_config)
+  {
+    result = lora_create(join_config);
+  }
+
+  lorawan_join_config_destroy(join_config);
+  lorawan_secret_destroy(lora_secret);
+
+  return result;
+}
+
 // cppcheck-suppress unusedFunction
 void setup()
 {
@@ -97,8 +122,15 @@ void setup()
                                .lock_relay = &Poolvollrelais_pin_config,
                            },
                        .delay = duration_create_seconds(1)});
-  lora_secrets = eccx08_create(8);
-  lori = lora_create(lora_secrets);
+  struct SecretStore *lora_secrets = eccx08_create(8);
+  lori = create_lora(lora_secrets);
+  secretstore_destroy(lora_secrets);
+
+  if (!lori)
+  {
+    return;
+  }
+
   lora_register_handler(lori, 1, handle_garden_valve, orpu);
   lora_register_handler(lori, 2, handle_pool_valve, orpu);
   lora_register_handler(lori, 3, handle_lock_valves, orpu);

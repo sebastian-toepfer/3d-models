@@ -2,6 +2,7 @@
 #include <stddef.h>
 
 #include "lora.h"
+#include "lorawan_join_config.h"
 #include "transceiver.h"
 
 #define LORA_MAX_PORT 224
@@ -20,23 +21,53 @@ struct LoRa
 };
 
 static LoRaModem modem;
+static bool modem_started = false;
 
-struct LoRa *lora_create(const struct SecretStore *lora_secrets)
+static bool lora_begin_modem()
 {
+  if (modem_started)
+  {
+    return true;
+  }
+
+  if (!modem.begin(EU868))
+  {
+    return false;
+  }
+
+  modem_started = true;
+  return true;
+}
+
+bool lora_read_device_eui(char device_eui[17])
+{
+  if (!device_eui || !lora_begin_modem())
+  {
+    return false;
+  }
+
+  for (unsigned int i = 0; i < 16; i++)
+  {
+    device_eui[i] = modem.deviceEUI().charAt(i);
+  }
+  device_eui[16] = '\0';
+  return true;
+}
+
+struct LoRa *lora_create(const struct LoRaWANJoinConfig *join_config)
+{
+  if (!join_config)
+  {
+    return NULL;
+  }
+
   struct LoRa *result = new LoRa();
   if (!result)
   {
     return NULL;
   }
 
-  if (!modem.begin(EU868))
-  {
-    delete result;
-    return NULL;
-  }
-  uint8_t secret[64];
-  size_t read = secretstore_read_secret(lora_secrets, secret, 64);
-  if (read != 64)
+  if (!lora_begin_modem())
   {
     delete result;
     return NULL;
@@ -44,24 +75,12 @@ struct LoRa *lora_create(const struct SecretStore *lora_secrets)
 
   char appEui[17];
   char appKey[33];
-  for (unsigned int i = 0; i < 16; i++)
+  if (!lorawan_join_config_get_otaa_app_eui(join_config, appEui) ||
+      !lorawan_join_config_get_otaa_app_key(join_config, appKey))
   {
-    if (modem.deviceEUI().charAt(i) != secret[i])
-    {
-      delete result;
-      return NULL;
-    }
+    delete result;
+    return NULL;
   }
-  for (unsigned int i = 0; i < 16; i++)
-  {
-    appEui[i] = secret[i + 16];
-  }
-  appEui[16] = '\0';
-  for (unsigned int i = 0; i < 32; i++)
-  {
-    appKey[i] = secret[i + 32];
-  }
-  appKey[32] = '\0';
 
   modem.configureClass(CLASS_C);
   modem.setADR(true);
@@ -101,8 +120,13 @@ void lora_register_handler(struct LoRa *lora, uint8_t fport,
 
 void lora_poll(const struct LoRa *lora)
 {
+  if (!lora)
+  {
+    return;
+  }
+
   uint8_t avail = modem.available();
-  if (!lora || avail == 0)
+  if (avail == 0)
   {
     return;
   }
@@ -147,6 +171,11 @@ static size_t lorawan_read(const struct Transceiver *transceiver, uint8_t *data,
 
 struct Transceiver *lora_transceiver(const struct LoRa *lora)
 {
+  if (!lora)
+  {
+    return NULL;
+  }
+
   struct Transceiver *result = new Transceiver();
   if (!result)
   {

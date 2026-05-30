@@ -18,6 +18,7 @@ extern "C"
                                  uint8_t *secret, size_t len);
   size_t secretstore_write_secret(const struct SecretStore *store,
                                   const uint8_t *secret, size_t len);
+  void secretstore_destroy(struct SecretStore *store);
 
 #ifdef __cplusplus
 }

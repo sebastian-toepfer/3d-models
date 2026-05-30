@@ -614,3 +614,13 @@ size_t secretstore_write_secret(const struct SecretStore *store,
   }
   return 0U;
 }
+
+void secretstore_destroy(struct SecretStore *store)
+{
+  if (!store)
+  {
+    return;
+  }
+
+  free(store);
+}

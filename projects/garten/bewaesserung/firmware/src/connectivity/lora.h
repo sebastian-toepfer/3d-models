@@ -4,10 +4,11 @@
  */
 #ifndef LORA_H
 #define LORA_H
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
-#include "secretstore.h"
+#include "lorawan_join_config.h"
 #include "transceiver.h"
 
 #ifdef __cplusplus
@@ -19,7 +20,8 @@ extern "C"
   typedef void (*lora_data_handler_t)(uint8_t *data, size_t len,
                                       void *user_data);
 
-  struct LoRa *lora_create(const struct SecretStore *lora_secrets);
+  bool lora_read_device_eui(char device_eui[17]);
+  struct LoRa *lora_create(const struct LoRaWANJoinConfig *join_config);
   struct Transceiver *lora_transceiver(const struct LoRa *lora);
   void lora_transceiver_destroy(struct Transceiver *transceiver);
   void lora_poll(const struct LoRa *lora);
