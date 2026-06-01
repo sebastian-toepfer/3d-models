@@ -7,8 +7,7 @@
     "maintainer": true
   },
   "license": "MIT",
-  "headers": [
-    "time/duration.h",
-    "time/delay.h"
-  ]
+  "build": {
+    "includeDir": "include"
+  }
 }

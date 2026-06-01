@@ -22,17 +22,17 @@ extern "C"
     return (duration_t){.milliseconds = value};
   }
 
-  static inline duration_t duration_create_seconds(uint32_t value)
+  static inline duration_t duration_create_seconds(uint16_t value)
   {
     return duration_create_milliseconds(value * 1000UL);
   }
 
-  static inline duration_t duration_create_minutes(uint32_t value)
+  static inline duration_t duration_create_minutes(uint16_t value)
   {
     return duration_create_seconds(value * 60UL);
   }
 
-  static inline duration_t duration_create_hours(uint32_t value)
+  static inline duration_t duration_create_hours(uint8_t value)
   {
     return duration_create_minutes(value * 60UL);
   }

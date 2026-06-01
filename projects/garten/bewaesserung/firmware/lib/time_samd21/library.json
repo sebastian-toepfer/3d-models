@@ -1,13 +1,19 @@
 {
   "$schema": "https://raw.githubusercontent.com/platformio/platformio-core/v6.1.18/platformio/assets/schema/library.json",
-  "name": "time-arduino",
+  "name": "time-samd21",
   "version": "0.1.0",
   "authors": {
     "name": "Sebastian Toepfer",
     "maintainer": true
   },
   "license": "MIT",
-  "frameworks": [
-    "arduino"
-  ]
+  "dependencies": {
+    "time": "0.1.0"
+  },
+  "platforms": [
+    "atmelsam"
+  ],
+  "build": {
+    "includeDir": "include"
+  }
 }

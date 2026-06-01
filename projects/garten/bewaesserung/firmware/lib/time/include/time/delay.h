@@ -1,6 +1,6 @@
 /*
  * MIT License
- * Copyright (c) 2025 Sebastian Toepfer
+ * Copyright (c) 2026 Sebastian Toepfer
  */
 #ifndef TIME_DELAY_H
 #define TIME_DELAY_H
