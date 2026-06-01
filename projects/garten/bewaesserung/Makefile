@@ -5,8 +5,7 @@ FRAMES := 1 2 3 4 5
 FRAME_FILES := $(addprefix $(DOCS_DIR)/frame_,$(addsuffix .png,$(FRAMES)))
 KICAD_SCH = kicad/pumpensteuerung/pumpensteuerung.kicad_sch
 NETLIST = netlist.xml
-PINMAP_H = firmware/include/pinmap.h
-BOARD_C  = firmware/src/platform/board/board.c
+BOARD_C  = firmware/src/platform/board/pinmapping.c
 CODEGEN_DEPS := $(PINMAP_H) $(BOARD_C)
 
 include ../../../shared/mk/kicad.mk
@@ -20,7 +19,7 @@ $(NETLIST): $(KICAD_SCH)
 	kicad-cli sch export netlist -o $(NETLIST) $(KICAD_SCH)
 
 $(PINMAP_H) $(BOARD_C): $(NETLIST) tools/pinmap/generate_board.py
-	python3 tools/pinmap/generate_board.py --platform mkrwan1310 --mcu-ref MCU101 --netlist $(NETLIST) --out-h $(PINMAP_H) --out-c $(BOARD_C)
+	python3 tools/pinmap/generate_board.py --platform mkrwan1310 --mcu-ref MCU101 --netlist $(NETLIST) --out-c $(BOARD_C)
 
 frames: $(FRAME_FILES)
 

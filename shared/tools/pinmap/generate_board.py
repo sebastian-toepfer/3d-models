@@ -62,7 +62,6 @@ def load_pinmap(filename):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate board.h and board.c from KiCad netlist")
     parser.add_argument("--netlist", required=True, help="Path to KiCad netlist (.xml S-expression format)")
-    parser.add_argument("--out-h", required=True, help="Path to output board.h")
     parser.add_argument("--out-c", required=True, help="Path to output board.c")
     parser.add_argument("--platform", required=True, help="Target platform name (e.g., samd21, stm32)")
     parser.add_argument("--mcu-ref", required=True, help="MCU reference designator in schematic (e.g., MCU1)")
@@ -78,11 +77,7 @@ if __name__ == "__main__":
     pinmap = load_pinmap(os.path.join(BASE_DIR, "config", f"pinmap_{args.platform}.csv"))
     strategy = get_strategy(args.platform)
 
-    os.makedirs(os.path.dirname(args.out_h), exist_ok=True)
     os.makedirs(os.path.dirname(args.out_c), exist_ok=True)
-
-    with open(args.out_h, "w") as header:
-        header.write(strategy.generate_header(pin_assignment))
 
     with open(args.out_c, "w") as source:
         source.write(strategy.generate_source(pin_assignment, pinmap))

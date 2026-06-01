@@ -1,6 +1,5 @@
 # generated sources
-firmware/include/pinmap.h
-firmware/src/platform/board/board.c
+firmware/src/platform/board/pinmapping.c
 
 netlist.xml
 
