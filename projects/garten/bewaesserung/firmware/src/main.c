@@ -16,9 +16,9 @@
 #include "rtc/rtc.h"
 #include "time/duration.h"
 
-volatile bool lora_daily_beacon_pending = false;
-struct Pump *orpu;
-struct LoRa *lori;
+static volatile bool lora_daily_beacon_pending = false;
+static struct Pump *orpu;
+static struct LoRa *lori;
 
 static void handle_garden_valve(uint8_t *data, size_t len, void *pump)
 {
