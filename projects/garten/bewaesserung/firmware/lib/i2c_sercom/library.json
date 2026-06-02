@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/platformio/platformio-core/v6.1.18/platformio/assets/schema/library.json",
+  "name": "i2c-sercom",
+  "version": "0.1.0",
+  "authors": {
+    "name": "Sebastian Toepfer",
+    "maintainer": true
+  },
+  "license": "MIT",
+  "dependencies": {
+    "i2c": "0.1.0"
+  },
+  "platforms": [
+    "atmelsam"
+  ],
+  "headers": [
+    "i2c_sercom.h"
+  ],
+  "build": {
+    "includeDir": "include"
+  }
+}

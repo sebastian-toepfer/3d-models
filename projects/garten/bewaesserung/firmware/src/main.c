@@ -5,12 +5,16 @@
 #include <Arduino.h>
 
 #include "connectivity/eccx08.h"
+#include "connectivity/eccx08_secretstore.h"
 #include "connectivity/lora.h"
 #include "connectivity/lorawan_join_config.h"
 #include "connectivity/lorawan_secret.h"
 #include "connectivity/secretstore.h"
 #include "connectivity/transceiver.h"
 #include "digital_output_pin_samd21.h"
+#include "i2c.h"
+#include "i2c_peripheral.h"
+#include "i2c_sercom.h"
 #include "pinmap.h"
 #include "pump.h"
 #include "rtc/rtc.h"
@@ -122,9 +126,49 @@ void setup()
                                .lock_relay = &Poolvollrelais_pin_config,
                            },
                        .delay = duration_create_seconds(1)});
-  struct SecretStore *lora_secrets = eccx08_create(8);
+  struct I2C *i2c = i2c_create(&(i2c_config_t){
+      .platform_info =
+          &(I2CSercomInfo){
+              .sercom = SERCOM2,
+              .peripheral_mask = PM_APBCMASK_SERCOM2,
+              .core_clock_id = SERCOM2_GCLK_ID_CORE,
+              .slow_clock_id = SERCOM2_GCLK_ID_SLOW,
+              .sda_group = &PORT->Group[0],
+              .sda_pin_index = 8,
+              .sda_pin_mux = PORT_PMUX_PMUXE_D_Val,
+              .scl_group = &PORT->Group[0],
+              .scl_pin_index = 9,
+              .scl_pin_mux = PORT_PMUX_PMUXE_D_Val,
+              .baudrate = 100000UL,
+              .rise_time_nanoseconds = 125UL,
+              .timeout = 100000UL,
+          },
+  });
+  struct I2CPeripheral *eccx08_i2c =
+      i2c_peripheral_create(&(i2c_peripheral_config_t){
+          .i2c = i2c,
+          .address = ECCX08_I2C_ADDRESS,
+      });
+  if (!eccx08_i2c)
+  {
+    i2c_destroy(i2c);
+    return;
+  }
+
+  struct ECCX08 *eccx08 = eccx08_create(&(eccx08_config_t){.i2c = eccx08_i2c});
+  if (!eccx08)
+  {
+    i2c_peripheral_destroy(eccx08_i2c);
+    i2c_destroy(i2c);
+    return;
+  }
+
+  struct SecretStore *lora_secrets = eccx08_secretstore_create(eccx08, 8);
   lori = create_lora(lora_secrets);
   secretstore_destroy(lora_secrets);
+  eccx08_destroy(eccx08);
+  i2c_peripheral_destroy(eccx08_i2c);
+  i2c_destroy(i2c);
 
   if (!lori)
   {
