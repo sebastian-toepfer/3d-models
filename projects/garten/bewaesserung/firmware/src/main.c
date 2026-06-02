@@ -208,17 +208,40 @@ void setup()
   start_lora_services(lori, orpu);
 }
 
+static void send_lora_daily_beacon(struct LoRa *lora)
+{
+  struct Transceiver *tx = lora_transceiver(lora);
+  if (!tx)
+  {
+    return;
+  }
+
+  uint8_t payload = 0;
+  transceiver_write(tx, &payload, 1);
+  lora_transceiver_destroy(tx);
+}
+
+static void stop_when_lora_is_unavailable()
+{
+  while (true)
+  {
+    __WFI();
+  }
+}
+
 // cppcheck-suppress unusedFunction
 void loop()
 {
+  if (!lori)
+  {
+    stop_when_lora_is_unavailable();
+    return;
+  }
+
   lora_poll(lori);
   if (lora_daily_beacon_pending)
   {
-    struct Transceiver *tx = lora_transceiver(lori);
-    if (transceiver_write(tx, &(uint8_t){0}, 1))
-    {
-      lora_daily_beacon_pending = false;
-    }
-    lora_transceiver_destroy(tx);
+    send_lora_daily_beacon(lori);
+    lora_daily_beacon_pending = false;
   }
 }
