@@ -4,6 +4,7 @@
  */
 #include <Arduino.h>
 
+#include "board/i2c_peripheral.h"
 #include "connectivity/eccx08.h"
 #include "connectivity/eccx08_secretstore.h"
 #include "connectivity/lora.h"
@@ -11,10 +12,8 @@
 #include "connectivity/lorawan_secret.h"
 #include "connectivity/secretstore.h"
 #include "connectivity/transceiver.h"
-#include "digital_output_pin_samd21.h"
 #include "i2c.h"
 #include "i2c_peripheral.h"
-#include "i2c_sercom.h"
 #include "pinmap.h"
 #include "pump.h"
 #include "rtc/rtc.h"
@@ -88,7 +87,23 @@ static void lora_daily_beacon()
   lora_daily_beacon_pending = true;
 }
 
-static struct LoRa *create_lora(const struct SecretStore *secrets)
+static struct Pump *create_pump()
+{
+  return pump_create(
+      &(pump_config_t){.main_switch = &Hauptrelais_pin_config,
+                       .garden_valve =
+                           &(pump_valve_config_t){
+                               .relay = &Bewaesserungsrelais_pin_config,
+                           },
+                       .pool_valve =
+                           &(pump_valve_config_t){
+                               .relay = &Poolrelais_pin_config,
+                               .lock_relay = &Poolvollrelais_pin_config,
+                           },
+                       .delay = duration_create_seconds(1)});
+}
+
+static struct LoRa *create_lora_from_secrets(const struct SecretStore *secrets)
 {
   struct LoRa *result = NULL;
   struct LoRaWANSecret *lora_secret = lorawan_secret_create_from_store(secrets);
@@ -112,39 +127,10 @@ static struct LoRa *create_lora(const struct SecretStore *secrets)
   return result;
 }
 
-// cppcheck-suppress unusedFunction
-void setup()
+static struct LoRa *create_lora_from_eccx08()
 {
-  orpu = pump_create(
-      &(pump_config_t){.main_switch = &Hauptrelais_pin_config,
-                       .garden_valve =
-                           &(pump_valve_config_t){
-                               .relay = &Bewaesserungsrelais_pin_config,
-                           },
-                       .pool_valve =
-                           &(pump_valve_config_t){
-                               .relay = &Poolrelais_pin_config,
-                               .lock_relay = &Poolvollrelais_pin_config,
-                           },
-                       .delay = duration_create_seconds(1)});
-  struct I2C *i2c = i2c_create(&(i2c_config_t){
-      .platform_info =
-          &(I2CSercomInfo){
-              .sercom = SERCOM2,
-              .peripheral_mask = PM_APBCMASK_SERCOM2,
-              .core_clock_id = SERCOM2_GCLK_ID_CORE,
-              .slow_clock_id = SERCOM2_GCLK_ID_SLOW,
-              .sda_group = &PORT->Group[0],
-              .sda_pin_index = 8,
-              .sda_pin_mux = PORT_PMUX_PMUXE_D_Val,
-              .scl_group = &PORT->Group[0],
-              .scl_pin_index = 9,
-              .scl_pin_mux = PORT_PMUX_PMUXE_D_Val,
-              .baudrate = 100000UL,
-              .rise_time_nanoseconds = 125UL,
-              .timeout = 100000UL,
-          },
-  });
+  struct LoRa *result = NULL;
+  struct I2C *i2c = i2c_create(&i2c_eccx08);
   struct I2CPeripheral *eccx08_i2c =
       i2c_peripheral_create(&(i2c_peripheral_config_t){
           .i2c = i2c,
@@ -153,7 +139,7 @@ void setup()
   if (!eccx08_i2c)
   {
     i2c_destroy(i2c);
-    return;
+    return NULL;
   }
 
   struct Timer *eccx08_timer = timer_create(&default_timer_config);
@@ -161,7 +147,7 @@ void setup()
   {
     i2c_peripheral_destroy(eccx08_i2c);
     i2c_destroy(i2c);
-    return;
+    return NULL;
   }
 
   struct ECCX08 *eccx08 = eccx08_create(
@@ -171,28 +157,55 @@ void setup()
     timer_destroy(eccx08_timer);
     i2c_peripheral_destroy(eccx08_i2c);
     i2c_destroy(i2c);
-    return;
+    return NULL;
   }
 
   struct SecretStore *lora_secrets = eccx08_secretstore_create(eccx08, 8);
-  lori = create_lora(lora_secrets);
+  result = create_lora_from_secrets(lora_secrets);
   secretstore_destroy(lora_secrets);
   eccx08_destroy(eccx08);
   timer_destroy(eccx08_timer);
   i2c_peripheral_destroy(eccx08_i2c);
   i2c_destroy(i2c);
 
+  return result;
+}
+
+static void register_lora_handlers(struct LoRa *lora, struct Pump *pump)
+{
+  lora_register_handler(lora, 1, handle_garden_valve, pump);
+  lora_register_handler(lora, 2, handle_pool_valve, pump);
+  lora_register_handler(lora, 3, handle_lock_valves, pump);
+}
+
+static void start_lora_daily_beacon()
+{
+  rtc_set_callback(lora_daily_beacon);
+  rtc_init_daily_interrupt();
+}
+
+static void start_lora_services(struct LoRa *lora, struct Pump *pump)
+{
+  register_lora_handlers(lora, pump);
+  start_lora_daily_beacon();
+}
+
+// cppcheck-suppress unusedFunction
+void setup()
+{
+  orpu = create_pump();
+  if (!orpu)
+  {
+    return;
+  }
+
+  lori = create_lora_from_eccx08();
   if (!lori)
   {
     return;
   }
 
-  lora_register_handler(lori, 1, handle_garden_valve, orpu);
-  lora_register_handler(lori, 2, handle_pool_valve, orpu);
-  lora_register_handler(lori, 3, handle_lock_valves, orpu);
-
-  rtc_set_callback(lora_daily_beacon);
-  rtc_init_daily_interrupt();
+  start_lora_services(lori, orpu);
 }
 
 // cppcheck-suppress unusedFunction
