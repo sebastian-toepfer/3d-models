@@ -5,7 +5,7 @@
 #include "eccx08.h"
 
 #include "i2c_peripheral.h"
-#include "time/delay.h"
+#include "time/timer.h"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdlib.h>
@@ -34,6 +34,7 @@
 struct ECCX08
 {
   struct I2CPeripheral *i2c;
+  struct Timer *timer;
 };
 
 static bool eccx08_i2c_write(struct ECCX08 *eccx08, const uint8_t *data,
@@ -103,7 +104,7 @@ static bool eccx08_receive_response(struct ECCX08 *eccx08, void *response,
 
   if (!response_read || response_buffer[0] != response_size)
   {
-    delay_for(duration_create_milliseconds(1U));
+    timer_delay_for(eccx08->timer, duration_create_milliseconds(1U));
     eccx08_send_word_address(eccx08, ECCX08_WORD_ADDRESS_IDLE);
     return false;
   }
@@ -112,7 +113,7 @@ static bool eccx08_receive_response(struct ECCX08 *eccx08, void *response,
                           ((uint16_t)response_buffer[len + 2U] << 8U);
   if (response_crc != eccx08_crc16(response_buffer, response_size - 2U))
   {
-    delay_for(duration_create_milliseconds(1U));
+    timer_delay_for(eccx08->timer, duration_create_milliseconds(1U));
     eccx08_send_word_address(eccx08, ECCX08_WORD_ADDRESS_IDLE);
     return false;
   }
@@ -150,7 +151,7 @@ static bool eccx08_wakeup(struct ECCX08 *eccx08)
   uint8_t response = 0U;
 
   eccx08_i2c_start_stop(eccx08);
-  delay_for(duration_create_milliseconds(2U));
+  timer_delay_for(eccx08->timer, duration_create_milliseconds(2U));
 
   return eccx08_receive_response(eccx08, &response, sizeof(response)) &&
          response == 0x11U;
@@ -159,7 +160,7 @@ static bool eccx08_wakeup(struct ECCX08 *eccx08)
 static void eccx08_idle(struct ECCX08 *eccx08)
 {
   eccx08_send_word_address(eccx08, ECCX08_WORD_ADDRESS_IDLE);
-  delay_for(duration_create_milliseconds(1U));
+  timer_delay_for(eccx08->timer, duration_create_milliseconds(1U));
 }
 
 static uint32_t eccx08_version(struct ECCX08 *eccx08)
@@ -177,7 +178,7 @@ static uint32_t eccx08_version(struct ECCX08 *eccx08)
     return 0U;
   }
 
-  delay_for(duration_create_milliseconds(2U));
+  timer_delay_for(eccx08->timer, duration_create_milliseconds(2U));
   if (!eccx08_receive_response(eccx08, &version, sizeof(version)))
   {
     return 0U;
@@ -234,7 +235,7 @@ static bool eccx08_read_zone(struct ECCX08 *eccx08, uint8_t zone,
     return false;
   }
 
-  delay_for(duration_create_milliseconds(5U));
+  timer_delay_for(eccx08->timer, duration_create_milliseconds(5U));
   if (!eccx08_receive_response(eccx08, data, len))
   {
     return false;
@@ -270,7 +271,7 @@ static bool eccx08_write_zone(struct ECCX08 *eccx08, uint8_t zone,
     return false;
   }
 
-  delay_for(duration_create_milliseconds(26U));
+  timer_delay_for(eccx08->timer, duration_create_milliseconds(26U));
   if (!eccx08_receive_response(eccx08, &status, sizeof(status)))
   {
     return false;
@@ -371,7 +372,7 @@ static bool eccx08_lock_zone(struct ECCX08 *eccx08, uint8_t zone)
     return false;
   }
 
-  delay_for(duration_create_milliseconds(32U));
+  timer_delay_for(eccx08->timer, duration_create_milliseconds(32U));
   if (!eccx08_receive_response(eccx08, &status, sizeof(status)))
   {
     return false;
@@ -403,7 +404,7 @@ bool eccx08_check_access(struct ECCX08 *eccx08)
 
 struct ECCX08 *eccx08_create(const eccx08_config_t *config)
 {
-  if (!config || !config->i2c)
+  if (!config || !config->i2c || !config->timer)
   {
     return NULL;
   }
@@ -414,6 +415,7 @@ struct ECCX08 *eccx08_create(const eccx08_config_t *config)
     return NULL;
   }
   result->i2c = config->i2c;
+  result->timer = config->timer;
   return result;
 }
 

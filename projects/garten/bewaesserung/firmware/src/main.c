@@ -19,6 +19,7 @@
 #include "pump.h"
 #include "rtc/rtc.h"
 #include "time/duration.h"
+#include "time/timer.h"
 
 static volatile bool lora_daily_beacon_pending = false;
 static struct Pump *orpu;
@@ -155,9 +156,19 @@ void setup()
     return;
   }
 
-  struct ECCX08 *eccx08 = eccx08_create(&(eccx08_config_t){.i2c = eccx08_i2c});
+  struct Timer *eccx08_timer = timer_create(&default_timer_config);
+  if (!eccx08_timer)
+  {
+    i2c_peripheral_destroy(eccx08_i2c);
+    i2c_destroy(i2c);
+    return;
+  }
+
+  struct ECCX08 *eccx08 = eccx08_create(
+      &(eccx08_config_t){.i2c = eccx08_i2c, .timer = eccx08_timer});
   if (!eccx08)
   {
+    timer_destroy(eccx08_timer);
     i2c_peripheral_destroy(eccx08_i2c);
     i2c_destroy(i2c);
     return;
@@ -167,6 +178,7 @@ void setup()
   lori = create_lora(lora_secrets);
   secretstore_destroy(lora_secrets);
   eccx08_destroy(eccx08);
+  timer_destroy(eccx08_timer);
   i2c_peripheral_destroy(eccx08_i2c);
   i2c_destroy(i2c);
 

@@ -9,6 +9,7 @@
 #include <stdint.h>
 
 #include "i2c_peripheral.h"
+#include "time/timer.h"
 
 #define ECCX08_I2C_ADDRESS 0x60U
 #define ECCX08_MAX_SLOT 15U
@@ -23,6 +24,7 @@ extern "C"
   typedef struct
   {
     struct I2CPeripheral *i2c;
+    struct Timer *timer;
   } eccx08_config_t;
 
   struct ECCX08 *eccx08_create(const eccx08_config_t *config);
