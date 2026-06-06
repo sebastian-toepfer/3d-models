@@ -3,12 +3,12 @@
  * Copyright (c) 2025 Sebastian Toepfer
  */
 #include <stddef.h>
-#include <stdlib.h>
 
 #include "pump.h"
 #include "time/delay.h"
 #include "time/duration.h"
 #include "valve.h"
+#include "mem/mem.h"
 
 struct Pump
 {
@@ -26,7 +26,7 @@ struct Pump *pump_create(const pump_config_t *config)
     return NULL;
   }
 
-  struct Pump *result = malloc(sizeof(struct Pump));
+  struct Pump *result = mem_allocate(sizeof(struct Pump));
   if (!result)
   {
     return NULL;
@@ -34,7 +34,7 @@ struct Pump *pump_create(const pump_config_t *config)
   result->main_switch = digital_output_pin_create(config->main_switch);
   if (!result->main_switch)
   {
-    free(result);
+    mem_free(result);
     return NULL;
   }
 
@@ -44,8 +44,8 @@ struct Pump *pump_create(const pump_config_t *config)
       .pin = config->garden_valve->lock_relay});
   if (!result->garden)
   {
-    digital_output_pin_destroy(result->main_switch);
-    free(result);
+    digital_output_pin_destroy(&result->main_switch);
+    mem_free(result);
     return NULL;
   }
 
@@ -55,9 +55,9 @@ struct Pump *pump_create(const pump_config_t *config)
       .pin = config->pool_valve->lock_relay});
   if (!result->pool)
   {
-    lockable_valve_destroy(result->garden);
-    digital_output_pin_destroy(result->main_switch);
-    free(result);
+    lockable_valve_destroy(&result->garden);
+    digital_output_pin_destroy(&result->main_switch);
+    mem_free(result);
     return NULL;
   }
 
@@ -66,16 +66,17 @@ struct Pump *pump_create(const pump_config_t *config)
 }
 
 // cppcheck-suppress unusedFunction
-void pump_destroy(struct Pump *pump)
+void pump_destroy(struct Pump **pump)
 {
-  if (!pump)
+  if (!pump || !*pump)
   {
     return;
   }
-  lockable_valve_destroy(pump->pool);
-  lockable_valve_destroy(pump->garden);
-  digital_output_pin_destroy(pump->main_switch);
-  free(pump);
+  lockable_valve_destroy(&(*pump)->pool);
+  lockable_valve_destroy(&(*pump)->garden);
+  digital_output_pin_destroy(&(*pump)->main_switch);
+  mem_free(*pump);
+  *pump = NULL;
 }
 
 static inline void pump_valve_close(const struct Pump *pump,

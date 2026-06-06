@@ -29,7 +29,7 @@ extern "C"
   } pump_config_t;
 
   struct Pump *pump_create(const pump_config_t *config);
-  void pump_destroy(struct Pump *pump);
+  void pump_destroy(struct Pump **pump);
 
   void pump_open_garden_valve(struct Pump *pump);
   void pump_close_garden_valve(struct Pump *pump);

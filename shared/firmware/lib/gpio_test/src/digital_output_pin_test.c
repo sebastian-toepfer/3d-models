@@ -7,6 +7,7 @@
 
 #include "gpio/test/digital_output_pin.h"
 #include "gpio/digital_output_pin.h"
+#include "mem/mem.h"
 
 struct DigitalOutputPin
 {
@@ -36,7 +37,7 @@ digital_output_pin_test_create(const digital_pin_info_test_t *pinCfg)
     return NULL;
   }
 
-  struct DigitalOutputPin *result = malloc(sizeof(struct DigitalOutputPin));
+  struct DigitalOutputPin *result = mem_allocate(sizeof(struct DigitalOutputPin));
   if (!result)
   {
     return NULL;
@@ -86,14 +87,15 @@ void digital_output_pin_toggle(struct DigitalOutputPin *pin)
   digital_output_pin_record(pin, GPIO_TEST_EVENT_TOGGLE);
 }
 
-void digital_output_pin_destroy(struct DigitalOutputPin *pin)
+void digital_output_pin_destroy(struct DigitalOutputPin **pin)
 {
-  if (!pin)
+  if (!pin || !*pin)
   {
     return;
   }
-  digital_output_pin_record(pin, GPIO_TEST_EVENT_DESTROY);
-  free(pin);
+  digital_output_pin_record(*pin, GPIO_TEST_EVENT_DESTROY);
+  mem_free(*pin);
+  *pin = NULL;
 }
 
 bool digital_output_pin_test_has_event(const digital_pin_event_log_t *eventslog,

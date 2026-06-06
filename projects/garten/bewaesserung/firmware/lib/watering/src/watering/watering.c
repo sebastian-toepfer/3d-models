@@ -11,7 +11,7 @@
 #include "usecase/stop_fill_pool.h"
 #include "usecase/stop_watering_garden.h"
 #include <stddef.h>
-#include <stdlib.h>
+#include "mem/mem.h"
 
 struct Watering
 {
@@ -29,7 +29,7 @@ struct Watering *watering_create(struct Pump *pump)
   {
     return NULL;
   }
-  struct Watering *result = malloc(sizeof(struct Watering));
+  struct Watering *result = mem_allocate(sizeof(struct Watering));
   if (!result)
   {
     return NULL;
@@ -109,6 +109,5 @@ void watering_destroy(struct Watering **self)
   stop_fill_pool_destroy(&(*self)->stop_fill_pool);
   enable_pool_filling_destroy(&(*self)->enable_pool_filling);
   disable_pool_filling_destroy(&(*self)->disable_pool_filling);
-  free(*self);
-  *self = NULL;
+  mem_free(self);
 }

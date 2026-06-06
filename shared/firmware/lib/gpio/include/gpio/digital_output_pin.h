@@ -26,7 +26,7 @@ extern "C"
   // Toggle the current pin state
   void digital_output_pin_toggle(struct DigitalOutputPin *pin);
   // Destroy the digital output pin object
-  void digital_output_pin_destroy(struct DigitalOutputPin *pin);
+  void digital_output_pin_destroy(struct DigitalOutputPin **pin);
 
 #ifdef __cplusplus
 }

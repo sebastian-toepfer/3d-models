@@ -77,14 +77,14 @@ void should_create_all_pins()
       (digital_pin_event_t){.pin_index = POOL_VALVE_LOCK_RELAY_PIN_INDEX,
                             .type = GPIO_TEST_EVENT_CREATE}));
 
-  pump_destroy(pump);
+  pump_destroy(&pump);
 }
 
 void should_destroy_all_pins()
 {
   struct Pump *pump = create_test_pump();
   digital_output_pin_test_event_log_reset(&events);
-  pump_destroy(pump);
+  pump_destroy(&pump);
 
   TEST_ASSERT_EQUAL(
       4,
@@ -105,6 +105,7 @@ void should_destroy_all_pins()
       &events,
       (digital_pin_event_t){.pin_index = POOL_VALVE_LOCK_RELAY_PIN_INDEX,
                             .type = GPIO_TEST_EVENT_DESTROY}));
+  TEST_ASSERT_FALSE(pump);
 }
 
 void should_open_garden_valve()
@@ -123,7 +124,7 @@ void should_open_garden_valve()
       (digital_pin_event_t){.pin_index = GARDEN_VALVE_RELAY_PIN_INDEX,
                             .type = GPIO_TEST_EVENT_OFF}));
 
-  pump_destroy(pump);
+  pump_destroy(&pump);
 }
 
 void should_close_garden_valve()
@@ -143,7 +144,7 @@ void should_close_garden_valve()
       (digital_pin_event_t){.pin_index = MAIN_SWITCH_PIN_INDEX,
                             .type = GPIO_TEST_EVENT_OFF}));
 
-  pump_destroy(pump);
+  pump_destroy(&pump);
 }
 
 void should_created_with_locked_pool_valve()
@@ -154,7 +155,7 @@ void should_created_with_locked_pool_valve()
       (digital_pin_event_t){.pin_index = POOL_VALVE_LOCK_RELAY_PIN_INDEX,
                             .type = GPIO_TEST_EVENT_ON}));
 
-  pump_destroy(pump);
+  pump_destroy(&pump);
 }
 
 void should_open_pool_valve()
@@ -173,7 +174,7 @@ void should_open_pool_valve()
       (digital_pin_event_t){.pin_index = POOL_VALVE_RELAY_PIN_INDEX,
                             .type = GPIO_TEST_EVENT_OFF}));
 
-  pump_destroy(pump);
+  pump_destroy(&pump);
 }
 
 void should_close_pool_valve()
@@ -193,7 +194,7 @@ void should_close_pool_valve()
       (digital_pin_event_t){.pin_index = MAIN_SWITCH_PIN_INDEX,
                             .type = GPIO_TEST_EVENT_OFF}));
 
-  pump_destroy(pump);
+  pump_destroy(&pump);
 }
 
 void should_reopen_garden_valve_if_both_are_open_and_pool_should_closed()
@@ -222,7 +223,7 @@ void should_reopen_garden_valve_if_both_are_open_and_pool_should_closed()
       (digital_pin_event_t){.pin_index = GARDEN_VALVE_RELAY_PIN_INDEX,
                             .type = GPIO_TEST_EVENT_OFF}));
 
-  pump_destroy(pump);
+  pump_destroy(&pump);
 }
 
 void should_reopen_pool_valve_if_both_are_open_and_garden_should_closed()
@@ -252,7 +253,7 @@ void should_reopen_pool_valve_if_both_are_open_and_garden_should_closed()
       (digital_pin_event_t){.pin_index = POOL_VALVE_RELAY_PIN_INDEX,
                             .type = GPIO_TEST_EVENT_OFF}));
 
-  pump_destroy(pump);
+  pump_destroy(&pump);
 }
 
 void should_lock_pool_valve()
@@ -268,7 +269,7 @@ void should_lock_pool_valve()
       (digital_pin_event_t){.pin_index = POOL_VALVE_LOCK_RELAY_PIN_INDEX,
                             .type = GPIO_TEST_EVENT_OFF}));
 
-  pump_destroy(pump);
+  pump_destroy(&pump);
 }
 
 void should_close_pool_valve_before_locking()
@@ -293,7 +294,7 @@ void should_close_pool_valve_before_locking()
       (digital_pin_event_t){.pin_index = POOL_VALVE_LOCK_RELAY_PIN_INDEX,
                             .type = GPIO_TEST_EVENT_OFF}));
 
-  pump_destroy(pump);
+  pump_destroy(&pump);
 }
 
 void should_unlock_pool_valve()
@@ -310,7 +311,7 @@ void should_unlock_pool_valve()
       (digital_pin_event_t){.pin_index = POOL_VALVE_LOCK_RELAY_PIN_INDEX,
                             .type = GPIO_TEST_EVENT_ON}));
 
-  pump_destroy(pump);
+  pump_destroy(&pump);
 }
 
 int main()

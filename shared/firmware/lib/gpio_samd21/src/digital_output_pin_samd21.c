@@ -7,6 +7,7 @@
 
 #include "gpio/samd21/pin_config.h"
 #include "gpio/digital_output_pin.h"
+#include "mem/mem.h"
 
 struct DigitalOutputPin
 {
@@ -23,7 +24,7 @@ digital_output_pin_samd21_create(const PinConfig_SAMD21 *pinCfg)
     return NULL;
   }
 
-  struct DigitalOutputPin *result = malloc(sizeof(struct DigitalOutputPin));
+  struct DigitalOutputPin *result = mem_allocate(sizeof(struct DigitalOutputPin));
   if (!result)
   {
     return NULL;
@@ -78,11 +79,12 @@ void digital_output_pin_toggle(struct DigitalOutputPin *pin)
   pin->group->OUTTGL.reg = pin->pin_mask;
 }
 
-void digital_output_pin_destroy(struct DigitalOutputPin *pin)
+void digital_output_pin_destroy(struct DigitalOutputPin **pin)
 {
-  if (!pin)
+  if (!pin || !*pin)
   {
     return;
   }
-  free(pin);
+  mem_free(*pin);
+  *pin = NULL;
 }

@@ -45,7 +45,7 @@ void setUp(void)
 void tearDown(void)
 {
   stop_wattering_garden_destroy(&usecase);
-  pump_destroy(pump);
+  pump_destroy(&pump);
 }
 
 void should_derefer_pointer()

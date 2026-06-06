@@ -32,7 +32,7 @@ extern "C"
   void valve_close(struct Valve *self);
   bool valve_is_open(const struct Valve *self);
   bool valve_is_close(const struct Valve *self);
-  void valve_destroy(struct Valve *self);
+  void valve_destroy(struct Valve **self);
 
   struct LockableValve *
   lockable_valve_create(const lockable_valve_config_t *config);
@@ -44,7 +44,7 @@ extern "C"
   bool lockable_valve_is_close(const struct LockableValve *self);
   bool lockable_valve_is_locked(const struct LockableValve *self);
   bool lockable_valve_is_unlocked(const struct LockableValve *self);
-  void lockable_valve_destroy(struct LockableValve *self);
+  void lockable_valve_destroy(struct LockableValve **self);
 
 #ifdef __cplusplus
 }

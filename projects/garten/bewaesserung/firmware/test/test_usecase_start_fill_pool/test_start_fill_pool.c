@@ -46,7 +46,7 @@ void setUp(void)
 void tearDown(void)
 {
   start_fill_pool_destroy(&usecase);
-  pump_destroy(pump);
+  pump_destroy(&pump);
 }
 
 void should_derefer_pointer()

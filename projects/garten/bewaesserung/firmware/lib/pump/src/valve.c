@@ -3,12 +3,12 @@
  * Copyright (c) 2026 Sebastian Toepfer
  */
 #include <stddef.h>
-#include <stdlib.h>
 
 #include "gpio/digital_output_pin.h"
 #include "time/delay.h"
 #include "time/duration.h"
 #include "valve.h"
+#include "mem/mem.h"
 
 struct Valve
 {
@@ -31,7 +31,7 @@ struct Valve *valve_create(const valve_config_t *config)
     return NULL;
   }
 
-  struct Valve *result = malloc(sizeof(struct Valve));
+  struct Valve *result = mem_allocate(sizeof(struct Valve));
   if (!result)
   {
     return NULL;
@@ -39,7 +39,7 @@ struct Valve *valve_create(const valve_config_t *config)
   result->pin = digital_output_pin_create(config->pin);
   if (!result->pin)
   {
-    free(result);
+    mem_free(result);
     return NULL;
   }
   result->delay = config->delay;
@@ -78,14 +78,15 @@ bool valve_is_close(const struct Valve *self)
   return !self || !self->open;
 }
 
-void valve_destroy(struct Valve *self)
+void valve_destroy(struct Valve **self)
 {
-  if (!self)
+  if (!self || !*self)
   {
     return;
   }
-  digital_output_pin_destroy(self->pin);
-  free(self);
+  digital_output_pin_destroy(&(*self)->pin);
+  mem_free(*self);
+  *self = NULL;
 }
 
 struct LockableValve *
@@ -107,7 +108,7 @@ lockable_valve_create(const lockable_valve_config_t *config)
     lock = digital_output_pin_create(config->pin);
     if (!lock)
     {
-      valve_destroy(valve);
+      valve_destroy(&valve);
       return NULL;
     }
   }
@@ -116,13 +117,13 @@ lockable_valve_create(const lockable_valve_config_t *config)
     lock = NULL;
   }
 
-  struct LockableValve *result = malloc(sizeof(struct LockableValve));
+  struct LockableValve *result = mem_allocate(sizeof(struct LockableValve));
   if (!result)
   {
-    valve_destroy(valve);
+    valve_destroy(&valve);
     if (lock)
     {
-      digital_output_pin_destroy(lock);
+      digital_output_pin_destroy(&lock);
     }
     return NULL;
   }
@@ -191,13 +192,14 @@ bool lockable_valve_is_unlocked(const struct LockableValve *self)
   return !self || !self->locked;
 }
 
-void lockable_valve_destroy(struct LockableValve *self)
+void lockable_valve_destroy(struct LockableValve **self)
 {
-  if (!self)
+  if (!self || !*self)
   {
     return;
   }
-  valve_destroy(self->valve);
-  digital_output_pin_destroy(self->lock);
-  free(self);
+  valve_destroy(&(*self)->valve);
+  digital_output_pin_destroy(&(*self)->lock);
+  mem_free(*self);
+  *self=NULL;
 }
