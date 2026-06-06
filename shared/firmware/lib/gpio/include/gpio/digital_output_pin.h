@@ -4,9 +4,10 @@
  */
 #ifndef DIGITAL_OUTPUT_PIN_H
 #define DIGITAL_OUTPUT_PIN_H
-#include <pin.h>
 #include <stdbool.h>
 #include <stdint.h>
+
+#include "pin_config.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -17,7 +18,7 @@ extern "C"
 
   // Create a new digital output pin object
   struct DigitalOutputPin *
-  digital_output_pin_create(const digital_pin_config_t *config);
+  digital_output_pin_create(const pin_config_t *config);
   // Set pin to HIGH
   void digital_output_pin_switch_on(struct DigitalOutputPin *pin);
   // Set pin to LOW

@@ -8,7 +8,6 @@
 #include "connectivity/lora.h"
 #include "connectivity/secretstore.h"
 #include "connectivity/transceiver.h"
-#include "digital_output_pin_samd21.h"
 #include "lora_adapter/lora_adapter.h"
 #include "pinmap.h"
 #include "pump.h"

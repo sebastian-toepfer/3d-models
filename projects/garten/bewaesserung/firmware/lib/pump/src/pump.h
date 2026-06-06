@@ -4,7 +4,7 @@
  */
 #ifndef PUMP_H
 #define PUMP_H
-#include "digital_output_pin.h"
+#include "gpio/digital_output_pin.h"
 #include "time/duration.h"
 
 #ifdef __cplusplus
@@ -16,13 +16,13 @@ extern "C"
 
   typedef struct
   {
-    const digital_pin_config_t *relay;
-    const digital_pin_config_t *lock_relay;
+    const pin_config_t *relay;
+    const pin_config_t *lock_relay;
   } pump_valve_config_t;
 
   typedef struct
   {
-    const digital_pin_config_t *main_switch;
+    const pin_config_t *main_switch;
     const pump_valve_config_t *garden_valve;
     const pump_valve_config_t *pool_valve;
     const duration_t delay;

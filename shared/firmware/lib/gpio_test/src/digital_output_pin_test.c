@@ -2,10 +2,11 @@
  * MIT License
  * Copyright (c) 2026 Sebastian Toepfer
  */
-#include "digital_output_pin_test.h"
-#include "digital_output_pin.h"
 #include <stddef.h>
 #include <stdlib.h>
+
+#include "gpio/test/digital_output_pin.h"
+#include "gpio/digital_output_pin.h"
 
 struct DigitalOutputPin
 {
@@ -26,18 +27,8 @@ digital_output_pin_record(struct DigitalOutputPin *pin,
       (digital_pin_event_t){.type = type, .pin_index = pin->pin_index};
 }
 
-struct DigitalOutputPin *
-digital_output_pin_create(const digital_pin_config_t *cfg)
-{
-  if (!cfg || !cfg->platform_info)
-  {
-    return NULL;
-  }
-  return digital_output_pin_test_create(
-      (const digital_pin_info_test_t *)cfg->platform_info);
-}
 
-struct DigitalOutputPin *
+static struct DigitalOutputPin *
 digital_output_pin_test_create(const digital_pin_info_test_t *pinCfg)
 {
   if (!pinCfg)
@@ -55,6 +46,17 @@ digital_output_pin_test_create(const digital_pin_info_test_t *pinCfg)
   result->event_log = pinCfg->event_log;
   digital_output_pin_record(result, GPIO_TEST_EVENT_CREATE);
   return result;
+}
+
+struct DigitalOutputPin *
+digital_output_pin_create(const pin_config_t *cfg)
+{
+  if (!cfg || !cfg->platform_config)
+  {
+    return NULL;
+  }
+  return digital_output_pin_test_create(
+      (const digital_pin_info_test_t *)cfg->platform_config);
 }
 
 void digital_output_pin_switch_on(struct DigitalOutputPin *pin)

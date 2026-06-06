@@ -5,7 +5,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-#include "digital_output_pin.h"
+#include "gpio/digital_output_pin.h"
 #include "time/delay.h"
 #include "time/duration.h"
 #include "valve.h"

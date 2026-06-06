@@ -42,9 +42,6 @@ extern "C"
     digital_pin_event_log_t *event_log;
   } digital_pin_info_test_t;
 
-  struct DigitalOutputPin *
-  digital_output_pin_test_create(const digital_pin_info_test_t *cfg);
-
   bool
   digital_output_pin_test_has_event(const digital_pin_event_log_t *eventslog,
                                     digital_pin_event_t event);

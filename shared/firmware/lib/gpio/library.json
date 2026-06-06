@@ -8,6 +8,7 @@
   },
   "license": "MIT",
   "headers": [
-    "digital_output_pin.h"
+    "gpio/pin_config.h",
+    "gpio/digital_output_pin.h"
   ]
 }

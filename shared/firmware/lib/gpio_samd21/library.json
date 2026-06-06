@@ -14,7 +14,7 @@
     "atmelsam"
   ],
   "headers": [
-    "digital_output_pin_samd21.h"
+    "gpio/samd21/pin_config.h"
   ],
   "build": {
     "includeDir": "include"

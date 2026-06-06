@@ -4,8 +4,8 @@
  */
 #ifndef DIGITAL_OUTPUT_PIN_SAMD21_H
 #define DIGITAL_OUTPUT_PIN_SAMD21_H
-#include "sam.h"
 #include <stdint.h>
+#include <sam.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -17,10 +17,7 @@ extern "C"
     PortGroup *group;
     uint32_t pin_mask;
     uint8_t pin_index;
-  } DigitalPinInfo_SAMD21;
-
-  struct DigitalOutputPin *
-  digital_output_pin_samd21_create(const DigitalPinInfo_SAMD21 *cfg);
+  } PinConfig_SAMD21;
 
 #ifdef __cplusplus
 }

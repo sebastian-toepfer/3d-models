@@ -2,10 +2,11 @@
  * MIT License
  * Copyright (c) 2025 Sebastian Toepfer
  */
-#include "digital_output_pin_samd21.h"
-#include "digital_output_pin.h"
 #include <stddef.h>
 #include <stdlib.h>
+
+#include "gpio/samd21/pin_config.h"
+#include "gpio/digital_output_pin.h"
 
 struct DigitalOutputPin
 {
@@ -14,19 +15,8 @@ struct DigitalOutputPin
   uint8_t pin_index;
 };
 
-struct DigitalOutputPin *
-digital_output_pin_create(const digital_pin_config_t *cfg)
-{
-  if (!cfg || !cfg->platform_info)
-  {
-    return NULL;
-  }
-  return digital_output_pin_samd21_create(
-      (const DigitalPinInfo_SAMD21 *)cfg->platform_info);
-}
-
-struct DigitalOutputPin *
-digital_output_pin_samd21_create(const DigitalPinInfo_SAMD21 *pinCfg)
+static struct DigitalOutputPin *
+digital_output_pin_samd21_create(const PinConfig_SAMD21 *pinCfg)
 {
   if (!pinCfg)
   {
@@ -48,6 +38,17 @@ digital_output_pin_samd21_create(const DigitalPinInfo_SAMD21 *pinCfg)
   result->group->PINCFG[result->pin_index].reg = PORT_PINCFG_INEN;
 
   return result;
+}
+
+struct DigitalOutputPin *
+digital_output_pin_create(const pin_config_t *cfg)
+{
+  if (!cfg || !cfg->platform_config)
+  {
+    return NULL;
+  }
+  return digital_output_pin_samd21_create(
+      (const PinConfig_SAMD21 *)cfg->platform_config);
 }
 
 void digital_output_pin_switch_on(struct DigitalOutputPin *pin)

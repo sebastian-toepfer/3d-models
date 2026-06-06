@@ -5,7 +5,7 @@ class SAMD21Strategy:
             "#ifndef PINMAP_H",
             "#define PINMAP_H",
             "",
-            "#include \"digital_output_pin.h\"",
+            "#include \"gpio/pin_config.h\"",
             "",
             "#ifdef __cplusplus",
             "extern \"C\" {",
@@ -14,7 +14,7 @@ class SAMD21Strategy:
         ]
 
         for name in assignment:
-            lines.append(f"extern const digital_pin_config_t {name}_pin_config;")
+            lines.append(f"extern const pin_config_t {name}_pin_config;")
 
         lines += [
             "",
@@ -30,15 +30,14 @@ class SAMD21Strategy:
     def generate_source(self, assignment, pinmap):
         lines = [
             "#include \"pinmap.h\"",
-            "#include \"digital_output_pin_samd21.h\"",
+            "#include \"gpio/samd21/pin_config.h\"",
             ""
         ]
 
         for name, schematic_pin in assignment.items():
             pin, port, pin_mask, pin_index = pinmap[schematic_pin]
-            lines.append(f"const digital_pin_config_t {name}_pin_config = {{")
-            lines.append(f"    .pin = {pin},")
-            lines.append(f"    .platform_info = &(DigitalPinInfo_SAMD21){{")
+            lines.append(f"const pin_config_t {name}_pin_config = {{")
+            lines.append(f"    .platform_config = &(PinConfig_SAMD21){{")
             lines.append(f"        .group = &PORT->Group[{ord(port) - ord('A')}], .pin_mask = 1 << {pin_mask}, .pin_index = {pin_index}}}}};\n")
 
         return "\n".join(lines)

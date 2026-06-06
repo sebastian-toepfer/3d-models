@@ -13,9 +13,8 @@ extern "C"
 
   typedef struct
   {
-    uint8_t pin;
-    void *platform_info;
-  } digital_pin_config_t;
+    void *platform_config;
+  } pin_config_t;
 
 #ifdef __cplusplus
 }

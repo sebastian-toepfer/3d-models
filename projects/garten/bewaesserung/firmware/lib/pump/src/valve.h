@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 
-#include "digital_output_pin.h"
+#include "gpio/digital_output_pin.h"
 #include "time/duration.h"
 
   struct Valve;
@@ -17,14 +17,14 @@ extern "C"
 
   typedef struct
   {
-    const digital_pin_config_t *pin;
+    const pin_config_t *pin;
     const duration_t delay;
   } valve_config_t;
 
   typedef struct
   {
     const valve_config_t *valve;
-    const digital_pin_config_t *pin;
+    const pin_config_t *pin;
   } lockable_valve_config_t;
 
   struct Valve *valve_create(const valve_config_t *config);

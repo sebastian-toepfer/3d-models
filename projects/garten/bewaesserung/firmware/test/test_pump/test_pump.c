@@ -1,8 +1,8 @@
-#include "digital_output_pin.h"
-#include "digital_output_pin_test.h"
+#include <unity.h>
+
+#include "gpio/test/digital_output_pin.h"
 #include "pump.h"
 #include "time/duration.h"
-#include <unity.h>
 
 static digital_pin_event_log_t events;
 
@@ -17,35 +17,28 @@ enum
 static struct Pump *create_test_pump()
 {
   return pump_create(&(pump_config_t){
-      .main_switch =
-          &(digital_pin_config_t){
-              .pin = MAIN_SWITCH_PIN_INDEX,
-              .platform_info =
-                  &(digital_pin_info_test_t){.pin_index = MAIN_SWITCH_PIN_INDEX,
+      .main_switch = &(pin_config_t){.platform_config =
+                                         &(digital_pin_info_test_t){
+                                             .pin_index = MAIN_SWITCH_PIN_INDEX,
                                              .event_log = &events}},
       .garden_valve =
           &(pump_valve_config_t){
-              .relay =
-                  &(digital_pin_config_t){
-                      .pin = GARDEN_VALVE_RELAY_PIN_INDEX,
-                      .platform_info =
-                          &(digital_pin_info_test_t){
-                              .pin_index = GARDEN_VALVE_RELAY_PIN_INDEX,
-                              .event_log = &events}},
+              .relay = &(pin_config_t){.platform_config =
+                                           &(digital_pin_info_test_t){
+                                               .pin_index =
+                                                   GARDEN_VALVE_RELAY_PIN_INDEX,
+                                               .event_log = &events}},
           },
       .pool_valve =
           &(pump_valve_config_t){
-              .relay =
-                  &(digital_pin_config_t){
-                      .pin = POOL_VALVE_RELAY_PIN_INDEX,
-                      .platform_info =
-                          &(digital_pin_info_test_t){
-                              .pin_index = POOL_VALVE_RELAY_PIN_INDEX,
-                              .event_log = &events}},
+              .relay = &(
+                  pin_config_t){.platform_config =
+                                    &(digital_pin_info_test_t){
+                                        .pin_index = POOL_VALVE_RELAY_PIN_INDEX,
+                                        .event_log = &events}},
               .lock_relay =
-                  &(digital_pin_config_t){
-                      .pin = POOL_VALVE_LOCK_RELAY_PIN_INDEX,
-                      .platform_info =
+                  &(pin_config_t){
+                      .platform_config =
                           &(digital_pin_info_test_t){
                               .pin_index = POOL_VALVE_LOCK_RELAY_PIN_INDEX,
                               .event_log = &events}}},

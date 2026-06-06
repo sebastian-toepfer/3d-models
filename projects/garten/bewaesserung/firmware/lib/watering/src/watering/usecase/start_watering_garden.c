@@ -2,10 +2,11 @@
  * SPDX-License-Identifier: MIT
  * Copyright (c) 2026 Sebastian Toepfer
  */
-#include "start_watering_garden.h"
-#include "pump.h"
 #include <stddef.h>
 #include <stdlib.h>
+
+#include "pump.h"
+#include "start_watering_garden.h"
 
 struct StartWateringGarden
 {
