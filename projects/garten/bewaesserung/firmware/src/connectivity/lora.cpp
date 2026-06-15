@@ -75,10 +75,10 @@ struct LoRa *lora_create(const struct SecretStore *lora_secrets)
   return result;
 }
 
-static size_t lorawan_write(const struct Transceiver *tranceiver,
+static size_t lorawan_write(const void *lora,
                             const uint8_t *data, size_t len)
 {
-  if (!tranceiver || !data || len == 0)
+  if (!lora || !data || len == 0)
   {
     return 0;
   }
@@ -135,9 +135,14 @@ void lora_poll(const struct LoRa *lora)
   free(msg);
 }
 
-static size_t lorawan_read(const struct Transceiver *transceiver, uint8_t *data,
+static size_t lorawan_read(const void *lora, uint8_t *data,
                            size_t len)
 {
+  if (!lora || !data || len == 0)
+  {
+    return 0;
+  }
+
   if (!modem.available())
   {
     return 0;
@@ -145,16 +150,24 @@ static size_t lorawan_read(const struct Transceiver *transceiver, uint8_t *data,
   return modem.readBytes(data, len);
 }
 
+static void lora_flush(const void *self)
+{
+  //nop
+}
+
 struct Transceiver *lora_transceiver(const struct LoRa *lora)
 {
-  struct Transceiver *result = new Transceiver();
-  if (!result)
+  if (!lora)
   {
     return NULL;
   }
-  result->write = lorawan_write;
-  result->read = lorawan_read;
-  return result;
+
+  const transceiver_methods_t methods = {
+    .write = lorawan_write,
+    .read = lorawan_read,
+    .flush = lora_flush
+  };
+  return transceiver_create(lora, &methods);
 }
 
 void lora_transceiver_destroy(struct Transceiver *transceiver)
@@ -163,5 +176,5 @@ void lora_transceiver_destroy(struct Transceiver *transceiver)
   {
     return;
   }
-  delete transceiver;
+  transceiver_destroy(&transceiver);
 }
