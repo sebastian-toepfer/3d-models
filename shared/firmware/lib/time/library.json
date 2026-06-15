@@ -10,5 +10,9 @@
   "headers": [
     "time/duration.h",
     "time/delay.h"
-  ]
+  ],
+  "build": {
+    "includeDir": "src",
+    "srcDir": "src"
+  }
 }

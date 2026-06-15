@@ -9,5 +9,8 @@
   "license": "MIT",
   "frameworks": [
     "arduino"
-  ]
+  ],
+  "build": {
+    "srcDir": "src"
+  }
 }

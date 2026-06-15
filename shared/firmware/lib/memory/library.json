@@ -8,6 +8,6 @@
   },
   "license": "MIT",
   "headers": [
-    "memory/mem.h.h"
+    "mem/mem.h"
   ]
 }

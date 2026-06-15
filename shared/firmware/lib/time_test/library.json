@@ -6,5 +6,8 @@
     "name": "Sebastian Toepfer",
     "maintainer": true
   },
-  "license": "MIT"
+  "license": "MIT",
+  "build": {
+    "srcDir": "src"
+  }
 }
