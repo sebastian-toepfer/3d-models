@@ -74,7 +74,8 @@ static inline void pump_valve_destroy(struct Valve *valve)
 
 static inline void pump_valve_open(struct Valve *valve)
 {
-  if (!valve) {
+  if (!valve)
+  {
     return;
   }
   digital_output_pin_switch_on(valve->pin);
