@@ -1,0 +1,9 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "ISO1410BDWR")(type "KiCad")(uri "${KIPRJMOD}/../libraries/symbols/ultralibrarian/ISO1410BDWR.kicad_sym")(options "")(descr ""))
+  (lib (name "R1M-243-3S-SMD")(type "KiCad")(uri "${KIPRJMOD}/../libraries/symbols/ultralibrarian/R1M-243-3S-SMD.kicad_sym")(options "")(descr ""))
+  (lib (name "RPX-1-5-R")(type "KiCad")(uri "${KIPRJMOD}/../libraries/symbols/ultralibrarian/RPX-1-5-R.kicad_sym")(options "")(descr "")(disabled)(hidden))
+  (lib (name "TPD2E007DCKR")(type "KiCad")(uri "${KIPRJMOD}/../libraries/symbols/ultralibrarian/TPD2E007DCKR.kicad_sym")(options "")(descr ""))
+  (lib (name "ISO7740DWR")(type "KiCad")(uri "${KIPRJMOD}/../libraries/symbols/ultralibrarian/ISO7740DWR.kicad_sym")(options "")(descr ""))
+  (lib (name "RPX-1.5-R")(type "KiCad")(uri "${KIPRJMOD}/../libraries/symbols/snapeda/RPX-1.5-R.kicad_sym")(options "")(descr ""))
+)
